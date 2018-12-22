@@ -1,6 +1,6 @@
 # Ronn is a humane text format and toolchain for authoring manpages (and
 # things that appear as manpages from a distance). Use it to build /
-# install standard UNIX roff(7) formatted manpages or to generate
+# install standard Unix roff(7) formatted manpages or to generate
 # beautiful HTML manpages.
 module Ronn
   autoload :Document, 'ronn/document'

@@ -11,7 +11,7 @@ ronn(1) -- convert markdown files to manpages
 
 ## DESCRIPTION
 
-**Ronn** converts textfiles to standard roff-formatted UNIX manpages or HTML.
+**Ronn** converts textfiles to standard roff-formatted Unix manpages or HTML.
 ronn-format(7) is based on markdown(7) but includes additional rules and syntax
 geared toward authoring manuals.
 

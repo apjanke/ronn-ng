@@ -49,9 +49,9 @@ ronn-format(7) -- manual authoring format based on Markdown
 
 ## DESCRIPTION
 
-The ronn(1) command converts text in a simple markup to UNIX manual pages. The
+The ronn(1) command converts text in a simple markup to Unix manual pages. The
 syntax includes all Markdown formatting features, plus conventions for
-expressing the structure and various notations present in standard UNIX
+expressing the structure and various notations present in standard Unix
 manpages.
 
 Not all roff(7) typesetting features can be expressed using ronn syntax.
