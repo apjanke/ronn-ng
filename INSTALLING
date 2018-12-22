@@ -11,8 +11,10 @@ Historical Ronn tarballs available at: <http://github.com/rtomayko/ronn/download
 
 The hpricot, mustache, and rdiscount packages are required.
 
+    $ gem install hpricot mustache rdiscount
+
 Hacking? Clone the git repository and put ronn/bin on your PATH:
 
-    $ git clone git://github.com/apjanke/ronn-ng.git
+    $ git clone git://github.com/apjanke/ronn-ng
     $ PATH=$(pwd)/ronn-ng/bin:$PATH
     $ ronn --help
