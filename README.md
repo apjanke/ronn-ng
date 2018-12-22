@@ -1,6 +1,7 @@
 # Ronn
 
-Ronn-NG is a new, currently-maintained fork of the original Ronn project.
+Ronn-NG is a new, currently-maintained fork of the [original Ronn 
+project](https://github.com/rtomayko/ronn).
 
 Ronn builds manuals. It converts simple, human readable textfiles to roff for
 terminal display, and also to HTML for the web.
