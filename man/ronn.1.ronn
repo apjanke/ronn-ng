@@ -220,7 +220,7 @@ allow targeting all generated elements:
 
 See the [builtin style sources][builtin] for examples.
 
-[builtin]: http://github.com/rtomayko/ronn/tree/master/lib/ronn/template
+[builtin]: http://github.com/apjanke/ronn-ng/tree/master/lib/ronn/template
           "Builtin Stylesheet .css files"
 
 ## EXAMPLES
@@ -298,7 +298,8 @@ version of this program would be welcome.
 
 ## COPYRIGHT
 
-Ronn is Copyright (C) 2009 Ryan Tomayko <http://tomayko.com/about>
+Ronn-NG is Copyright (C) 2009 Ryan Tomayko <http://tomayko.com/about> and
+(C) 2018 Andrew Janke <https://apjanke.net>
 
 ## SEE ALSO
 

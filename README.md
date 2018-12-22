@@ -1,5 +1,7 @@
 # Ronn
 
+Ronn-NG is a new, currently-maintained fork of the original Ronn project.
+
 Ronn builds manuals. It converts simple, human readable textfiles to roff for
 terminal display, and also to HTML for the web.
 
@@ -12,14 +14,14 @@ The `*.ronn` files found in the [`man/`][1] directory show off a wide range of
 ronn capabilities:
 
   * [ronn(1)](http://rtomayko.github.com/ronn/ronn.1) command -
-    [source file](http://github.com/rtomayko/ronn/blob/master/man/ronn.1.ronn),
-    [roff output](http://github.com/rtomayko/ronn/blob/master/man/ronn.1)
+    [source file](http://github.com/apjanke/ronn-ng/blob/master/man/ronn.1.ronn),
+    [roff output](http://github.com/apjanke/ronn-ng/blob/master/man/ronn.1)
 
   * [ronn-format(7)](http://rtomayko.github.com/ronn/ronn-format.7) -
-    [source file](http://github.com/rtomayko/ronn/blob/master/man/ronn-format.7.ronn),
-    [roff output](http://github.com/rtomayko/ronn/blob/master/man/ronn-format.7)
+    [source file](http://github.com/apjanke/ronn-ng/blob/master/man/ronn-format.7.ronn),
+    [roff output](http://github.com/apjanke/ronn-ng/blob/master/man/ronn-format.7)
 
-[1]: http://github.com/rtomayko/ronn/tree/master/man
+[1]: http://github.com/apjanke/ronn-ng/tree/master/man
 
 As an alternative, you might want to check out [pandoc](http://johnmacfarlane.net/pandoc/) which can also convert markdown into roff manual pages.
 
@@ -53,7 +55,7 @@ comprehensive documentation on `ronn` command line options.
 
 ## Background
 
-Some think UNIX manual pages are a poor and outdated form of documentation. I
+Some think Unix manual pages are a poor and outdated form of documentation. I
 disagree:
 
 - Manpages follow a well defined structure that's immediately familiar. This
@@ -88,7 +90,19 @@ The roff/mandoc/mdoc macro languages are highly extensible, fractured between
 multiple dialects, and include a bunch of device specific stuff irrelevant to
 modern publishing tools.
 
-## Copying
 
-Ronn is Copyright (C) 2010 [Ryan Tomayko](http://tomayko.com/about)<br>
+## Project Management
+
+The project home page is at https://github.com/apjanke/ronn-ng. Bug reports,
+feature requests, and patch submissions are welcome.
+
+## License and Copying
+
+MIT License.
+
+Ronn is Copyright (C) 2010 [Ryan Tomayko](http://tomayko.com/about).
+
+New Ronn-NG material is Copyright (c) 2018 [Andrew Janke](https://apjanke.net)
+and other contributors.
+
 See the file COPYING for information of licensing and distribution.
