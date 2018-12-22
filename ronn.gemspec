@@ -1,20 +1,20 @@
 Gem::Specification.new do |s|
-  s.name = 'ronn'
-  s.version = '0.7.3'
-  s.date = '2010-06-24'
+  s.name = 'ronn-ng'
+  s.version = '0.7.4'
+  s.date = '2018-12-22'
 
   s.description = "Builds manuals"
   s.summary     = "Builds manuals"
-  s.homepage    = "http://rtomayko.github.com/ronn"
+  s.homepage    = "https://github.com/apjanke/ronn-ng"
 
-  s.authors     = ["Ryan Tomayko"]
-  s.email       = "rtomayko@gmail.com"
+  s.authors     = ["Andrew Janke"]
+  s.email       = "floss@apjanke.net"
 
   # = MANIFEST =
   s.files = %w[
     AUTHORS
     CHANGES
-    COPYING
+    LICENSE.txt
     INSTALLING
     README.md
     Rakefile
