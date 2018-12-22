@@ -86,7 +86,7 @@ task :rev do
 end
 
 require 'rubygems'
-$spec = eval(File.read('ronn.gemspec'))
+$spec = eval(File.read('ronn-ng.gemspec'))
 
 def package(ext='')
   "pkg/ronn-#{$spec.version}" + ext
@@ -103,8 +103,8 @@ end
 directory 'pkg/'
 CLOBBER.include('pkg')
 
-file package('.gem') => %w[pkg/ ronn.gemspec] + $spec.files do |f|
-  sh "gem build ronn.gemspec"
+file package('.gem') => %w[pkg/ ronn-ng.gemspec] + $spec.files do |f|
+  sh "gem build ronn-ng.gemspec"
   mv File.basename(f.name), f.name
 end
 
@@ -119,7 +119,7 @@ def source_version
   @source_version ||= `ruby -Ilib -rronn -e 'puts Ronn::VERSION'`.chomp
 end
 
-file 'ronn.gemspec' => FileList['{lib,test,bin}/**','Rakefile'] do |f|
+file 'ronn-ng.gemspec' => FileList['{lib,test,bin}/**','Rakefile'] do |f|
   # read spec file and split out manifest section
   spec = File.read(f.name)
   head, manifest, tail = spec.split("  # = MANIFEST =\n")

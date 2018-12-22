@@ -3,9 +3,10 @@ Gem::Specification.new do |s|
   s.version = '0.7.4'
   s.date = '2018-12-22'
 
-  s.description = "Builds manuals"
   s.summary     = "Builds manuals"
+  s.description = "Ronn-NG builds manuals in HTML and Unix man page format from Markdown."
   s.homepage    = "https://github.com/apjanke/ronn-ng"
+  s.license     = "MIT"
 
   s.authors     = ["Andrew Janke"]
   s.email       = "floss@apjanke.net"
@@ -41,7 +42,7 @@ Gem::Specification.new do |s|
     man/ronn-format.7.ronn
     man/ronn.1
     man/ronn.1.ronn
-    ronn.gemspec
+    ronn-ng.gemspec
     test/angle_bracket_syntax.html
     test/angle_bracket_syntax.ronn
     test/basic_document.html
@@ -85,9 +86,9 @@ Gem::Specification.new do |s|
   s.test_files = s.files.select { |path| path =~ /^test\/.*_test.rb/ }
 
   s.extra_rdoc_files = %w[LICENSE.txt AUTHORS]
-  s.add_dependency 'hpricot',     '>= 0.8.2'
-  s.add_dependency 'rdiscount',   '>= 1.5.8'
-  s.add_dependency 'mustache',    '>= 0.7.0'
+  s.add_dependency 'hpricot',     '~> 0.8', '>= 0.8.2'
+  s.add_dependency 'rdiscount',   '~> 1.5', '>= 1.5.8'
+  s.add_dependency 'mustache',    '~> 0.7', '>= 0.7.0'
 
   s.has_rdoc = true
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Ronn"]
