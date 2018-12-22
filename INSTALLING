@@ -1,6 +1,6 @@
-Ronn is currently distributed mainly as a gem package. Install with rubygems:
+Ronn-NG is currently distributed mainly as a gem package. Install with rubygems:
 
-    $ gem install ronn
+    $ gem install ronn-ng
     $ ronn --help
 
 Historical Ronn tarballs available at: <http://github.com/rtomayko/ronn/downloads>
@@ -9,12 +9,19 @@ Historical Ronn tarballs available at: <http://github.com/rtomayko/ronn/download
     $ cd rtomayko-r*
     $ ruby setup.rb
 
-The hpricot, mustache, and rdiscount packages are required.
+Building from source:
+
+Hacking? Install Ronn-NG from source.
+
+The hpricot, mustache, and rdiscount packages are required:
 
     $ gem install hpricot mustache rdiscount
 
-Hacking? Clone the git repository and put ronn/bin on your PATH:
+Clone the git repository and put ronn/bin on your PATH:
 
     $ git clone git://github.com/apjanke/ronn-ng
     $ PATH=$(pwd)/ronn-ng/bin:$PATH
     $ ronn --help
+
+Then you should be able to make changes directly to your cloned repo and have
+them be reflected in your active `ronn` command.
