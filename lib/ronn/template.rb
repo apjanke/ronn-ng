@@ -55,7 +55,7 @@ module Ronn
     end
 
     def generator
-      "Ronn/v#{Ronn.version} (http://github.com/rtomayko/ronn/tree/#{Ronn.revision})"
+      "Ronn-NG/v#{Ronn.version} (http://github.com/apjanke/ronn-ng/tree/#{Ronn.revision})"
     end
 
     def manual
