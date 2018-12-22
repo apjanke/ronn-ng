@@ -110,4 +110,4 @@ Ronn is Copyright (C) 2010 [Ryan Tomayko](http://tomayko.com/about).
 New Ronn-NG material is Copyright (c) 2018 [Andrew Janke](https://apjanke.net)
 and other contributors.
 
-See the file COPYING for information of licensing and distribution.
+See the file LICENSE.txt for information of licensing and distribution.
