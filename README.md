@@ -1,6 +1,6 @@
 # Ronn
 
-Ronn-NG is a new, currently-maintained fork of the [original Ronn 
+Ronn-NG is a new, currently-maintained fork of the defunct [original Ronn 
 project](https://github.com/rtomayko/ronn).
 
 Ronn builds manuals. It converts simple, human readable textfiles to roff for
@@ -96,6 +96,10 @@ modern publishing tools.
 
 The project home page is at https://github.com/apjanke/ronn-ng. Bug reports,
 feature requests, and patch submissions are welcome.
+
+Ronn-NG was forked from the original Ronn project in 2018 after Ronn
+development had been defunct for a couple years, and Andrew wanted
+some bugs fixed.
 
 ## License and Copying
 
