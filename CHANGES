@@ -1,11 +1,16 @@
 Ronn-NG CHANGES
 ===============
 
-Version 0.7.4 (2018 sometime)
------------------------------
+Version 0.7.5 (???? ??? ??)
+---------------------------
+
+
+
+Version 0.7.4 (2018 Dec 22)
+---------------------------
 
 * Forked Ronn-NG from original Ronn. (apjanke)
-
+* Minor bug fixes: #4, #5 (apjanke)
 
 Original Ronn CHANGES
 =====================
