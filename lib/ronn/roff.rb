@@ -219,6 +219,13 @@ module Ronn
             write escape(node.attributes['href'])
             write '\fR'
           end
+
+        when 'sup'
+          # This superscript equivalent is a big ugly hack.
+          write '^('
+          inline_filter(node.children)
+          write ')'
+
         else
           warn "unrecognized inline tag: %p", node.name
         end
