@@ -90,7 +90,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'rdiscount',   '~> 1.5', '>= 1.5.8'
   s.add_dependency 'mustache',    '~> 0.7', '>= 0.7.0'
 
-  s.has_rdoc = true
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Ronn"]
   s.require_paths = %w[lib]
   s.rubygems_version = '1.1.1'
