@@ -101,6 +101,7 @@ ARGV.options do |argv|
   argv.on('-5', '--html')     { (formats ||= []) << 'html' }
   argv.on('-f', '--fragment') { (formats ||= []) << 'html_fragment' }
   argv.on('--markdown')       { (formats ||= []) << 'markdown' }
+  argv.on('--yaml')           { (formats ||= []) << 'yaml'}
 
   # html output options
   argv.on('-s', '--style=V')  { |val| styles += val.split(/[, \n]+/) }
