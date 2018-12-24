@@ -1,15 +1,15 @@
 require 'rake/clean'
 require 'date'
 
-task :default => :test
+task default: :test
 
-ROOTDIR = File.expand_path('..', __FILE__).sub(/#{Dir.pwd}(?=\/)/, '.')
-LIBDIR  = "#{ROOTDIR}/lib"
-BINDIR  = "#{ROOTDIR}/bin"
+ROOTDIR = File.expand_path(__dir__).sub(/#{Dir.pwd}(?=\/)/, '.')
+LIBDIR = "#{ROOTDIR}/lib".freeze
+BINDIR = "#{ROOTDIR}/bin".freeze
 
 task :environment do
-  $LOAD_PATH.unshift ROOTDIR if !$:.include?(ROOTDIR)
-  $LOAD_PATH.unshift LIBDIR if !$:.include?(LIBDIR)
+  $LOAD_PATH.unshift ROOTDIR unless $LOAD_PATH.include?(ROOTDIR)
+  $LOAD_PATH.unshift LIBDIR unless $LOAD_PATH.include?(LIBDIR)
   require_library 'hpricot'
   require_library 'rdiscount'
   ENV['RUBYLIB'] = $LOAD_PATH.join(':')
@@ -17,15 +17,15 @@ task :environment do
 end
 
 desc 'Run tests'
-task :test => :environment do
+task test: :environment do
   $LOAD_PATH.unshift "#{ROOTDIR}/test"
   Dir['test/test_*.rb'].each { |f| require(f) }
 end
 
 desc 'Start the server'
-task :server => :environment do
+task server: :environment do
   if system('type shotgun >/dev/null 2>&1')
-    exec "shotgun config.ru"
+    exec 'shotgun config.ru'
   else
     require 'ronn/server'
     Ronn::Server.run('man/*.ronn')
@@ -33,9 +33,9 @@ task :server => :environment do
 end
 
 desc 'Start the server'
-task :server => :environment do
+task server: :environment do
   if system('type shotgun >/dev/null 2>&1')
-    exec "shotgun config.ru"
+    exec 'shotgun config.ru'
   else
     require 'ronn/server'
     Ronn::Server.run('man/*.ronn')
@@ -43,18 +43,18 @@ task :server => :environment do
 end
 
 desc 'Build the manual'
-task :man => :environment do
+task man: :environment do
   require 'ronn'
-  ENV['RONN_MANUAL']  = "Ronn Manual"
-  ENV['RONN_ORGANIZATION'] = "Ronn #{Ronn::revision}"
-  sh "ronn -w -s toc -r5 --markdown man/*.ronn"
+  ENV['RONN_MANUAL'] = 'Ronn Manual'
+  ENV['RONN_ORGANIZATION'] = "Ronn #{Ronn.revision}"
+  sh 'ronn -w -s toc -r5 --markdown man/*.ronn'
 end
 
-desc 'Publish to github pages'
-task :pages => :man do
+desc 'Publish to GitHub pages'
+task pages: :man do
   puts '----------------------------------------------'
   puts 'Rebuilding pages ...'
-  verbose(false) {
+  verbose(false) do
     rm_rf 'pages'
     push_url = `git remote show origin`.grep(/Push.*URL/).first[/git@.*/]
     sh "
@@ -69,8 +69,8 @@ task :pages => :man do
       git add -u ronn*.html index.html index.txt
       git commit -m 'rebuild manual'
       git push #{push_url} gh-pages
-    ", :verbose => false
-  }
+    ", verbose: false
+  end
 end
 
 # PACKAGING ============================================================
@@ -88,15 +88,15 @@ end
 require 'rubygems'
 $spec = eval(File.read('ronn-ng.gemspec'))
 
-def package(ext='')
+def package(ext = '')
   "pkg/ronn-#{$spec.version}" + ext
 end
 
 desc 'Build packages'
-task :package => %w[.gem .tar.gz].map { |ext| package(ext) }
+task package: %w[.gem .tar.gz].map { |ext| package(ext) }
 
 desc 'Build and install as local gem'
-task :install => package('.gem') do
+task install: package('.gem') do
   sh "gem install #{package('.gem')}"
 end
 
@@ -104,7 +104,7 @@ directory 'pkg/'
 CLOBBER.include('pkg')
 
 file package('.gem') => %w[pkg/ ronn-ng.gemspec] + $spec.files do |f|
-  sh "gem build ronn-ng.gemspec"
+  sh 'gem build ronn-ng.gemspec'
   mv File.basename(f.name), f.name
 end
 
@@ -119,24 +119,24 @@ def source_version
   @source_version ||= `ruby -Ilib -rronn -e 'puts Ronn::VERSION'`.chomp
 end
 
-file 'ronn-ng.gemspec' => FileList['{lib,test,bin}/**','Rakefile'] do |f|
+file 'ronn-ng.gemspec' => FileList['{lib,test,bin}/**', 'Rakefile'] do |f|
   # read spec file and split out manifest section
   spec = File.read(f.name)
-  head, manifest, tail = spec.split("  # = MANIFEST =\n")
+  head, _manifest, tail = spec.split("  # = MANIFEST =\n")
   # replace version and date
   head.sub!(/\.version = '.*'/, ".version = '#{source_version}'")
-  head.sub!(/\.date = '.*'/, ".date = '#{Date.today.to_s}'")
+  head.sub!(/\.date = '.*'/, ".date = '#{Date.today}'")
   # determine file list from git ls-files
-  files = `git ls-files`.
-    split("\n").
-    sort.
-    reject{ |file| file =~ /^\./ }.
-    reject { |file| file =~ /^doc/ }.
-    map{ |file| "    #{file}" }.
-    join("\n")
+  files = `git ls-files`
+          .split("\n")
+          .sort
+          .reject { |file| file =~ /^\./ }
+          .reject { |file| file =~ /^doc/ }
+          .map { |file| "    #{file}" }
+          .join("\n")
   # piece file back together and write...
   manifest = "  s.files = %w[\n#{files}\n  ]\n"
-  spec = [head,manifest,tail].join("  # = MANIFEST =\n")
+  spec = [head, manifest, tail].join("  # = MANIFEST =\n")
   File.open(f.name, 'w') { |io| io.write(spec) }
   puts "updated #{f.name}"
 end
@@ -146,7 +146,7 @@ end
 def require_library(name)
   require name
 rescue LoadError => boom
-  if !defined?(Gem)
+  unless defined?(Gem)
     warn "warn: #{boom}. trying again with rubygems."
     require 'rubygems'
     retry

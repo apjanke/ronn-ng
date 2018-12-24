@@ -3,13 +3,13 @@ Gem::Specification.new do |s|
   s.version = '0.7.5-SNAPSHOT'
   s.date = '2018-12-22'
 
-  s.summary     = "Builds manuals"
-  s.description = "Ronn-NG builds manuals in HTML and Unix man page format from Markdown."
-  s.homepage    = "https://github.com/apjanke/ronn-ng"
-  s.license     = "MIT"
+  s.summary     = 'Builds manuals'
+  s.description = 'Ronn-NG builds manuals in HTML and Unix man page format from Markdown.'
+  s.homepage    = 'https://github.com/apjanke/ronn-ng'
+  s.license     = 'MIT'
 
-  s.authors     = ["Andrew Janke"]
-  s.email       = "floss@apjanke.net"
+  s.authors     = ['Andrew Janke']
+  s.email       = 'floss@apjanke.net'
 
   # = MANIFEST =
   s.files = %w[
