@@ -51,7 +51,7 @@ rescue LoadError => boom
   if boom.to_s =~ /ronn/
     libdir = File.expand_path('../lib', __dir__).sub(%r{^#{Dir.pwd}/}, './')
     if File.directory?(libdir) && !$LOAD_PATH.include?(libdir)
-      warn "warn: #{boom}. adding #{libdir} to RUBYLIB ..."
+      #warn "warn: #{boom}. adding #{libdir} to RUBYLIB ..."
       $LOAD_PATH.unshift libdir
       retry
     end
