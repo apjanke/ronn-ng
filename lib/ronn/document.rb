@@ -56,7 +56,7 @@ module Ronn
     attr_writer :date
 
     # Array of style modules to apply to the document.
-    attr_accessor :styles
+    attr_reader :styles
 
     # Create a Ronn::Document given a path or with the data returned by
     # calling the block. The document is loaded and preprocessed before
