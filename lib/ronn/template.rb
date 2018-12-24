@@ -1,17 +1,18 @@
 require 'mustache'
 
 module Ronn
+  # A Mustache Template for HTML formatting.
   class Template < Mustache
     self.template_path = File.dirname(__FILE__) + '/template'
     self.template_extension = 'html'
 
-    def initialize(document, style_path=ENV['RONN_STYLE'].to_s.split(':'))
+    def initialize(document, style_path = ENV['RONN_STYLE'].to_s.split(':'))
       @document = document
       @style_path = style_path + [Template.template_path]
     end
 
-    def render(template='default')
-      super template[0,1] == '/' ? File.read(template) : partial(template)
+    def render(template = 'default')
+      super template[0, 1] == '/' ? File.read(template) : partial(template)
     end
 
     ##
@@ -80,8 +81,8 @@ module Ronn
     def section_heads
       @document.section_heads.map do |id, text|
         {
-          :id   => id,
-          :text => text
+          id:   id,
+          text: text
         }
       end
     end
@@ -98,21 +99,21 @@ module Ronn
     def stylesheets
       styles.zip(style_files).map do |name, path|
         base = File.basename(path, '.css')
-        fail "style not found: #{style.inspect}" if path.nil?
+        raise "style not found: #{style.inspect}" if path.nil?
         {
-          :name  => name,
-          :path  => path,
-          :base  => File.basename(path, '.css'),
-          :media => (base =~ /(print|screen)$/) ? $1 : 'all'
+          name:  name,
+          path:  path,
+          base:  File.basename(path, '.css'),
+          media: base =~ /(print|screen)$/ ? $1 : 'all'
         }
       end
     end
 
     # All embedded stylesheets.
     def stylesheet_tags
-      stylesheets.
-        map { |style| inline_stylesheet(style[:path], style[:media]) }.
-        join("\n  ")
+      stylesheets
+        .map { |style| inline_stylesheet(style[:path], style[:media]) }
+        .join("\n  ")
     end
 
     attr_accessor :style_path
@@ -123,27 +124,27 @@ module Ronn
     def style_files
       styles.map do |name|
         next name if name.include?('/')
-        style_path.
-          reject  { |p| p.strip.empty? }.
-          map     { |p| File.join(p, "#{name}.css") }.
-          detect  { |file| File.exist?(file) }
+        style_path
+          .reject     { |p| p.strip.empty? }
+          .map     { |p| File.join(p, "#{name}.css") }
+          .detect  { |file| File.exist?(file) }
       end
     end
 
     # Array of style names for which no file could be found.
     def missing_styles
-      style_files.
-        zip(files).
-        select { |style, file| file.nil? }.
-        map    { |style, file| style }
+      style_files
+        .zip(files)
+        .select { |_style, file| file.nil? }
+        .map    { |style, _file| style }
     end
 
     ##
     # TEMPLATE CSS LOADING
 
-    def inline_stylesheet(path, media='all')
+    def inline_stylesheet(path, media = 'all')
       data = File.read(path)
-      data.gsub!(%r|/\*.+?\*/|m, '')   # comments
+      data.gsub!(%r{/\*.+?\*/}m, '')   # comments
       data.gsub!(/([;{,]) *\n/m, '\1') # end-of-line whitespace
       data.gsub!(/\n{2,}/m, "\n")      # collapse lines
       data.gsub!(/[; ]+\}/, '}')       # superfluous trailing semi-colons
@@ -155,16 +156,16 @@ module Ronn
         "<style type='text/css' media='#{media}'>",
         "/* style: #{File.basename(path, '.css')} */",
         data,
-        "</style>"
+        '</style>'
       ].join("\n  ")
     end
 
-    def remote_stylesheet(name, media='all')
+    def remote_stylesheet(name, media = 'all')
       path = File.expand_path("../template/#{name}.css", __FILE__)
       "<link rel='stylesheet' type='text/css' media='#{media}' href='#{path}'>"
     end
 
-    def stylesheet(path, media='all')
+    def stylesheet(_path, media = 'all')
       inline_stylesheet(name, media)
     end
   end
