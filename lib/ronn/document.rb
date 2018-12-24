@@ -33,11 +33,11 @@ module Ronn
     # a program or filename; displayed along with the section in
     # the left and right portions of the header as well as the bottom
     # right section of the footer.
-    attr_accessor :name
+    attr_writer :name
 
     # The man page's section: a string whose first character
     # is numeric; displayed in parenthesis along with the name.
-    attr_accessor :section
+    attr_writer :section
 
     # Single sentence description of the thing being described
     # by this man page; displayed in the NAME section.
@@ -53,7 +53,7 @@ module Ronn
 
     # The date the document was published; center displayed in
     # the document footer.
-    attr_accessor :date
+    attr_writer :date
 
     # Array of style modules to apply to the document.
     attr_accessor :styles
@@ -62,17 +62,17 @@ module Ronn
     # calling the block. The document is loaded and preprocessed before
     # the intialize method returns. The attributes hash may contain values
     # for any writeable attributes defined on this class.
-    def initialize(path=nil, attributes={}, &block)
+    def initialize(path = nil, attributes = {}, &block)
       @path = path
       @basename = path.to_s =~ /^-?$/ ? nil : File.basename(path)
       @reader = block ||
-        lambda do |f|
-          if ['-', nil].include?(f)
-            STDIN.read
-          else
-            File.read(f)
-          end
-        end
+                lambda do |f|
+                  if ['-', nil].include?(f)
+                    STDIN.read
+                  else
+                    File.read(f)
+                  end
+                end
       @data = @reader.call(path)
       @name, @section, @tagline = sniff
 
@@ -82,14 +82,14 @@ module Ronn
       @index = Ronn::Index[path || '.']
       @index.add_manual(self) if path && name
 
-      attributes.each { |attr_name,value| send("#{attr_name}=", value) }
+      attributes.each { |attr_name, value| send("#{attr_name}=", value) }
     end
 
     # Generate a file basename of the form "<name>.<section>.<type>"
     # for the given file extension. Uses the name and section from
     # the source file path but falls back on the name and section
     # defined in the document.
-    def basename(type=nil)
+    def basename(type = nil)
       type = nil if ['', 'roff'].include?(type.to_s)
       [path_name || @name, path_section || @section, type]
         .compact.join('.')
@@ -98,7 +98,7 @@ module Ronn
     # Construct a path for a file near the source file. Uses the
     # Document#basename method to generate the basename part and
     # appends it to the dirname of the source document.
-    def path_for(type=nil)
+    def path_for(type = nil)
       if @basename
         File.join(File.dirname(path), basename(type))
       else
@@ -229,7 +229,7 @@ module Ronn
     # Convert the document to roff and return the result as a string.
     def to_roff
       RoffFilter.new(
-        to_html_fragment(wrap_class=nil),
+        to_html_fragment(nil),
         name, section, tagline,
         manual, organization, date
       ).to_s
@@ -248,14 +248,14 @@ module Ronn
       end
 
       template = Ronn::Template.new(self)
-      template.context.push :html => to_html_fragment(wrap_class=nil)
+      template.context.push html: to_html_fragment(nil)
       template.render(layout_path || 'default')
     end
 
     # Convert the document to HTML and return the result
     # as a string. The HTML does not include <html>, <head>,
     # or <style> tags.
-    def to_html_fragment(wrap_class='mp')
+    def to_html_fragment(wrap_class = 'mp')
       return html.to_s if wrap_class.nil?
       [
         "<div class='#{wrap_class}'>",
@@ -270,7 +270,7 @@ module Ronn
 
     def to_h
       %w[name section tagline manual organization date styles toc]
-        .inject({}) { |hash, name| hash[name] = send(name); hash }
+        .each_with_object({}) { |name, hash| hash[name] = send(name) }
     end
 
     def to_yaml
@@ -377,7 +377,7 @@ module Ronn
     # Convert special format unordered lists to definition lists.
     def html_filter_definition_lists
       # process all unordered lists depth-first
-      @html.search('ul').to_a.reverse.each do |ul|
+      @html.search('ul').to_a.reverse_each do |ul|
         items = ul.search('li')
         next if items.any? { |item| item.inner_text.split("\n", 2).first !~ /:$/ }
 
@@ -412,12 +412,11 @@ module Ronn
             (tagline ? " - <span class='man-whatis'>#{tagline}</span>\n" : "\n") +
             "</p>\n"
         end
-      if markup
-        if @html.children
-          @html.at('*').before(markup)
-        else
-          @html = Hpricot(markup)
-        end
+      return unless markup
+      if @html.children
+        @html.at('*').before(markup)
+      else
+        @html = Hpricot(markup)
       end
     end
 
@@ -435,12 +434,9 @@ module Ronn
         href = node.attributes['href']
         text = node.inner_text
 
-        if href == text  ||
-           href[0] == ?# ||
-           CGI.unescapeHTML(href) == "mailto:#{CGI.unescapeHTML(text)}"
-        then
-          node.set_attribute('data-bare-link', 'true')
-        end
+        next unless href == text || href[0] == '#' ||
+                    CGI.unescapeHTML(href) == "mailto:#{CGI.unescapeHTML(text)}"
+        node.set_attribute('data-bare-link', 'true')
       end
     end
 
@@ -456,9 +452,9 @@ module Ronn
         next unless node.content.include?(')')
         next if %w[pre code h1 h2 h3].include?(node.parent.name)
         next if child_of?(node, 'a')
-        node.swap(node.content.gsub(/(#{name_pattern})(\(\d+\w*\))/) {
+        node.swap(node.content.gsub(/(#{name_pattern})(\(\d+\w*\))/) do
           html_build_manual_reference_link($1, $2)
-        })
+        end)
       end
 
       # Convert "<code>name</code>(section)" by traversing <code> nodes.
@@ -476,7 +472,6 @@ module Ronn
         node.swap(html_build_manual_reference_link(node, "(#{$1})"))
         sibling.content = sibling.content.gsub(/^\(\d+\w*\)/, '')
       end
-
     end
 
     # HTMLize the manual page reference.  The result is an <a> if the
@@ -497,6 +492,5 @@ module Ronn
         "<span class='man-ref'>#{name_or_node}<span class='s'>#{section}</span></span>"
       end
     end
-
   end
 end
