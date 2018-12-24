@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="RUBY_MODULE" version="4">
+  <component name="ModuleRunConfigurationManager">
+    <shared />
+  </component>
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$" />
+    <orderEntry type="jdk" jdkName="ruby-2.5.3-p105" jdkType="RUBY_SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.17.1, ruby-2.5.3-p105) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="hpricot (v0.8.6, ruby-2.5.3-p105) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mustache (v0.99.8, ruby-2.5.3-p105) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rdiscount (v1.6.8, ruby-2.5.3-p105) [gem]" level="application" />
+  </component>
+</module>

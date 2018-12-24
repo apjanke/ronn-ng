@@ -1,3 +1,6 @@
+# We want to track the RubyMine project in the repo
+!.idea
+
 /man/*.html
 /pkg
 /test/*.wrong
