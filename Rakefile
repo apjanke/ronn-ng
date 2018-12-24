@@ -32,16 +32,6 @@ task server: :environment do
   end
 end
 
-desc 'Start the server'
-task server: :environment do
-  if system('type shotgun >/dev/null 2>&1')
-    exec 'shotgun config.ru'
-  else
-    require 'ronn/server'
-    Ronn::Server.run('man/*.ronn')
-  end
-end
-
 desc 'Build the manual'
 task man: :environment do
   require 'ronn'
