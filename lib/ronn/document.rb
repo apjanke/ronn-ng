@@ -193,7 +193,7 @@ module Ronn
     # tuple of the form: [name, section, description], where missing information
     # is represented by nil and any element may be missing.
     def sniff
-      html = Markdown.new(data[0, 512]).to_html
+      html = Markdown.new(data[0, 512], :no_superscript).to_html
       heading, html = html.split("</h1>\n", 2)
       return [nil, nil, nil] if html.nil?
 
@@ -296,7 +296,7 @@ module Ronn
     end
 
     def input_html
-      @input_html ||= strip_heading(Markdown.new(markdown).to_html)
+      @input_html ||= strip_heading(Markdown.new(markdown, :no_superscript).to_html)
     end
 
     def strip_heading(html)
