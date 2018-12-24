@@ -30,3 +30,6 @@ Style/PerlBackrefs:
 
 Style/Semicolon:
   Enabled: false
+
+Style/WordArray:
+  Enabled: false

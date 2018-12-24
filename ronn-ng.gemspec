@@ -87,10 +87,10 @@ Gem::Specification.new do |s|
 
   s.extra_rdoc_files = %w[LICENSE.txt AUTHORS]
   s.add_dependency 'hpricot',     '~> 0.8', '>= 0.8.2'
-  s.add_dependency 'rdiscount',   '~> 1.5', '>= 1.5.8'
   s.add_dependency 'mustache',    '~> 0.7', '>= 0.7.0'
+  s.add_dependency 'rdiscount',   '~> 1.5', '>= 1.5.8'
 
-  s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Ronn"]
+  s.rdoc_options = ['--line-numbers', '--inline-source', '--title', 'Ronn']
   s.require_paths = %w[lib]
   s.rubygems_version = '1.1.1'
 end
