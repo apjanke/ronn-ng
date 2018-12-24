@@ -91,8 +91,8 @@ module Ronn
     # defined in the document.
     def basename(type=nil)
       type = nil if ['', 'roff'].include?(type.to_s)
-      [path_name || @name, path_section || @section, type].
-      compact.join('.')
+      [path_name || @name, path_section || @section, type]
+        .compact.join('.')
     end
 
     # Construct a path for a file near the source file. Uses the
@@ -120,7 +120,10 @@ module Ronn
     end
 
     # Returns the manual page name based first on the document's
-    # contents and then on the path name.
+    # contents and then on the path name. Usually a single word name of
+    # a program or filename; displayed along with the section in
+    # the left and right portions of the header as well as the bottom
+    # right section of the footer.
     def name
       @name || path_name
     end
@@ -132,7 +135,8 @@ module Ronn
     end
 
     # Returns the manual page section based first on the document's
-    # contents and then on the path name.
+    # contents and then on the path name. A string whose first character
+    # is numeric; displayed in parenthesis along with the name.
     def section
       @section || path_section
     end
@@ -158,12 +162,12 @@ module Ronn
     # The document's title when no name section was defined. When a name section
     # exists, this value is nil.
     def title
-      @tagline if !name?
+      @tagline unless name?
     end
 
     # The date the man page was published. If not set explicitly,
     # this is the file's modified time or, if no file is given,
-    # the current time.
+    # the current time. Center displayed in the document footer.
     def date
       return @date if @date
       return File.mtime(path) if File.exist?(path)
@@ -233,8 +237,11 @@ module Ronn
 
     # Convert the document to HTML and return the result as a string.
     def to_html
-      if layout = ENV['RONN_LAYOUT']
-        if !File.exist?(layout_path = File.expand_path(layout))
+      layout = ENV['RONN_LAYOUT']
+      layout_path = nil
+      if layout
+        layout_path = File.expand_path(layout)
+        unless File.exist?(layout_path)
           warn "warn: can't find #{layout}, using default layout."
           layout_path = nil
         end
@@ -253,7 +260,7 @@ module Ronn
       [
         "<div class='#{wrap_class}'>",
         html.to_s,
-        "</div>"
+        '</div>'
       ].join("\n")
     end
 
@@ -262,8 +269,8 @@ module Ronn
     end
 
     def to_h
-      %w[name section tagline manual organization date styles toc].
-      inject({}) { |hash, name| hash[name] = send(name); hash }
+      %w[name section tagline manual organization date styles toc]
+        .inject({}) { |hash, name| hash[name] = send(name); hash }
     end
 
     def to_yaml
@@ -276,7 +283,8 @@ module Ronn
       to_h.merge('date' => date.iso8601).to_json
     end
 
-  protected
+    protected
+
     ##
     # Document Processing
 
@@ -297,7 +305,7 @@ module Ronn
     end
 
     def process_markdown!
-      markdown = markdown_filter_heading_anchors(self.data)
+      markdown = markdown_filter_heading_anchors(data)
       markdown_filter_link_index(markdown)
       markdown_filter_angle_quotes(markdown)
     end
@@ -340,7 +348,7 @@ module Ronn
 
     # Convert <WORD> to <var>WORD</var> but only if WORD isn't an HTML tag.
     def markdown_filter_angle_quotes(markdown)
-      markdown.gsub(/\<([^:.\/]+?)\>/) do |match|
+      markdown.gsub(/<([^:.\/]+?)>/) do |match|
         contents = $1
         tag, attrs = contents.split(' ', 2)
         if attrs =~ /\/=/ || html_element?(tag.sub(/^\//, '')) ||
@@ -359,9 +367,9 @@ module Ronn
       @html.search('code').search('text()').each do |node|
         next unless node.to_html.include?('var&gt;')
         new =
-          node.to_html.
-            gsub('&lt;var&gt;', '&lt;').
-            gsub("&lt;/var&gt;", '>')
+          node.to_html
+              .gsub('&lt;var&gt;', '&lt;')
+              .gsub('&lt;/var&gt;', '>')
         node.swap(new)
       end
     end
@@ -375,7 +383,8 @@ module Ronn
 
         ul.name = 'dl'
         items.each do |item|
-          if child = item.at('p')
+          child = item.at('p')
+          if child
             wrap = '<p></p>'
             container = child
           else
@@ -398,14 +407,14 @@ module Ronn
         if title?
           "<h1>#{title}</h1>"
         elsif name
-          "<h2>NAME</h2>\n" +
-          "<p class='man-name'>\n  <code>#{name}</code>" +
-          (tagline ? " - <span class='man-whatis'>#{tagline}</span>\n" : "\n") +
-          "</p>\n"
+          "<h2>NAME</h2>\n" \
+            "<p class='man-name'>\n  <code>#{name}</code>" +
+            (tagline ? " - <span class='man-whatis'>#{tagline}</span>\n" : "\n") +
+            "</p>\n"
         end
       if markup
         if @html.children
-          @html.at("*").before(markup)
+          @html.at('*').before(markup)
         else
           @html = Hpricot(markup)
         end
@@ -439,12 +448,12 @@ module Ronn
     # to a hyperlink.  The URL is obtained from the index.
     def html_filter_manual_reference_links
       return if index.nil?
-      name_pattern = "[0-9A-Za-z_:.+=@~-]+"
+      name_pattern = '[0-9A-Za-z_:.+=@~-]+'
 
       # Convert "name(section)" by traversing text nodes searching for
       # text that fits the pattern.  This is the original implementation.
       @html.search('text()').each do |node|
-        next if !node.content.include?(')')
+        next unless node.content.include?(')')
         next if %w[pre code h1 h2 h3].include?(node.parent.name)
         next if child_of?(node, 'a')
         node.swap(node.content.gsub(/(#{name_pattern})(\(\d+\w*\))/) {
@@ -461,12 +470,11 @@ module Ronn
         next if child_of?(node, 'a')
         next unless node.inner_text =~ /^#{name_pattern}$/
         sibling = node.next
-        if sibling
-          next unless sibling.text?
-          next unless sibling.content =~ /^\((\d+\w*)\)/
-          node.swap(html_build_manual_reference_link(node, "(#{$1})"))
-          sibling.content = sibling.content.gsub(/^\(\d+\w*\)/, '')
-        end
+        next unless sibling
+        next unless sibling.text?
+        next unless sibling.content =~ /^\((\d+\w*)\)/
+        node.swap(html_build_manual_reference_link(node, "(#{$1})"))
+        sibling.content = sibling.content.gsub(/^\(\d+\w*\)/, '')
       end
 
     end
@@ -477,17 +485,16 @@ module Ronn
     # be a string of the form "(#{section})".
     def html_build_manual_reference_link(name_or_node, section)
       name = if name_or_node.respond_to?(:inner_text)
-        name_or_node.inner_text
-      else
-        name_or_node
-      end
-      if ref = index["#{name}#{section}"]
-        "<a class='man-ref' href='#{ref.url}'>#{name_or_node
-          }<span class='s'>#{section}</span></a>"
+               name_or_node.inner_text
+             else
+               name_or_node
+             end
+      ref = index["#{name}#{section}"]
+      if ref
+        "<a class='man-ref' href='#{ref.url}'>#{name_or_node}<span class='s'>#{section}</span></a>"
       else
         # warn "warn: manual reference not defined: '#{name}#{section}'"
-        "<span class='man-ref'>#{name_or_node}<span class='s'>#{section
-          }</span></span>"
+        "<span class='man-ref'>#{name_or_node}<span class='s'>#{section}</span></span>"
       end
     end
 

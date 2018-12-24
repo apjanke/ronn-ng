@@ -1,7 +1,6 @@
 require 'ronn'
 
 module Ronn
-
   # Maintains a list of links / references to manuals and other resources.
   class Index
     include Enumerable
@@ -27,7 +26,7 @@ module Ronn
       )
     end
 
-    def initialize(path, &bk)
+    def initialize(path)
       @path = path
       @references = []
       @manuals    = {}
@@ -48,7 +47,7 @@ module Ronn
     def read!(data)
       data.each_line do |line|
         line = line.strip.gsub(/\s*#.*$/, '')
-        if !line.empty?
+        unless line.empty?
           name, url = line.split(/\s+/, 2)
           @references << reference(name, url)
         end
@@ -58,8 +57,8 @@ module Ronn
     ##
     # Enumerable and friends
 
-    def each(&bk)
-      references.each(&bk)
+    def each(&block)
+      references.each(&block)
     end
 
     def size
@@ -87,7 +86,7 @@ module Ronn
     end
 
     def <<(path)
-      raise ArgumentError, "local paths only" if path =~ /(https?|mailto):/
+      raise ArgumentError, 'local paths only' if path =~ /(https?|mailto):/
       return self if any? { |ref| ref.path == File.expand_path(path) }
       relative_path = relative_to_index(path)
       @references << \
@@ -109,8 +108,8 @@ module Ronn
     end
 
     def manuals
-      select { |ref| ref.relative? && ref.ronn? }.
-      map    { |ref| manual(ref.path) }
+      select { |ref| ref.relative? && ref.ronn? }
+        .map { |ref| manual(ref.path) }
     end
 
     ##
@@ -125,7 +124,7 @@ module Ronn
     end
 
     def to_h
-      to_a.map { |doc| doc.to_hash }
+      to_a.map(&:to_hash)
     end
 
     def relative_to_index(path)

@@ -2,11 +2,13 @@ require 'hpricot'
 require 'ronn/utils'
 
 module Ronn
+  # Filter for converting HTML to ROFF
   class RoffFilter
     include Ronn::Utils
 
     # Convert Ronn HTML to roff.
-    def initialize(html, name, section, tagline, manual=nil, version=nil, date=nil)
+    def initialize(html, name, section, tagline, manual = nil,
+                   version = nil, date = nil)
       @buf = []
       title_heading name, section, tagline, manual, version, date
       doc = Hpricot(html)
@@ -20,20 +22,20 @@ module Ronn
       @buf.join.gsub(/[ \t]+$/, '')
     end
 
-  protected
+    protected
+
     def previous(node)
-      if node.respond_to?(:previous)
-        prev = node.previous
-        prev = prev.previous until prev.nil? || prev.elem?
-        prev
-      end
+      return unless node.respond_to?(:previous)
+      prev = node.previous
+      prev = prev.previous until prev.nil? || prev.elem?
+      prev
     end
 
-    def title_heading(name, section, tagline, manual, version, date)
+    def title_heading(name, section, _tagline, manual, version, date)
       comment "generated with Ronn-NG/v#{Ronn.version}"
       comment "http://github.com/apjanke/ronn-ng/tree/#{Ronn.revision}"
       return if name.nil?
-      macro "TH", %["#{escape(name.upcase)}" "#{section}" "#{date.strftime('%B %Y')}" "#{version}" "#{manual}"]
+      macro 'TH', %("#{escape(name.upcase)}" "#{section}" "#{date.strftime('%B %Y')}" "#{version}" "#{manual}")
     end
 
     def remove_extraneous_elements!(doc)
@@ -45,10 +47,9 @@ module Ronn
     end
 
     def normalize_whitespace!(node)
-      case
-      when node.kind_of?(Array) || node.kind_of?(Hpricot::Elements)
+      if node.kind_of?(Array) || node.kind_of?(Hpricot::Elements)
         node.to_a.dup.each { |ch| normalize_whitespace! ch }
-      when node.text?
+      elsif node.text?
         preceding, following = node.previous, node.next
         content = node.content.gsub(/[\n ]+/m, ' ')
         if preceding.nil? || block_element?(preceding.name) ||
@@ -64,13 +65,13 @@ module Ronn
         else
           node.content = content
         end
-      when node.elem? && node.name == 'pre'
+      elsif node.elem? && node.name == 'pre'
         # stop traversing
-      when node.elem? && node.children
+      elsif node.elem? && node.children
         normalize_whitespace! node.children
-      when node.elem?
+      elsif node.elem?
         # element has no children
-      when node.doc?
+      elsif node.doc?
         normalize_whitespace! node.children
       else
         warn "unexpected node during whitespace normalization: %p", node
@@ -94,42 +95,42 @@ module Ronn
         when 'h1'
           # discard
         when 'h2'
-          macro "SH", quote(escape(node.html))
+          macro 'SH', quote(escape(node.html))
         when 'h3'
-          macro "SS", quote(escape(node.html))
+          macro 'SS', quote(escape(node.html))
 
         when 'p'
           prev = previous(node)
           if prev && %w[dd li blockquote].include?(node.parent.name)
-            macro "IP"
+            macro 'IP'
           elsif prev && !%w[h1 h2 h3].include?(prev.name)
-            macro "P"
+            macro 'P'
           end
           inline_filter(node.children)
 
         when 'blockquote'
           prev = previous(node)
           indent = prev.nil? || !%w[h1 h2 h3].include?(prev.name)
-          macro "IP", %w["" 4] if indent
+          macro 'IP', %w["" 4] if indent
           block_filter(node.children)
-          macro "IP", %w["" 0] if indent
+          macro 'IP', %w["" 0] if indent
 
         when 'pre'
           prev = previous(node)
           indent = prev.nil? || !%w[h1 h2 h3].include?(prev.name)
-          macro "IP", %w["" 4] if indent
-          macro "nf"
+          macro 'IP', %w["" 4] if indent
+          macro 'nf'
           write "\n"
           inline_filter(node.children)
-          macro "fi"
-          macro "IP", %w["" 0] if indent
+          macro 'fi'
+          macro 'IP', %w["" 0] if indent
 
         when 'dl'
-          macro "TP"
+          macro 'TP'
           block_filter(node.children)
         when 'dt'
           prev = previous(node)
-          macro "TP" unless prev.nil?
+          macro 'TP' unless prev.nil?
           inline_filter(node.children)
           write "\n"
         when 'dd'
@@ -142,13 +143,15 @@ module Ronn
 
         when 'ol', 'ul'
           block_filter(node.children)
-          macro "IP", %w["" 0]
+          macro 'IP', %w["" 0]
         when 'li'
           case node.parent.name
           when 'ol'
-            macro "IP", %W["#{node.position + 1}." 4]
+            macro 'IP', %W["#{node.position + 1}." 4]
           when 'ul'
-            macro "IP", %w["\\\[ci\]" 4]
+            macro 'IP', %w["\\\[ci\]" 4]
+          else
+            raise "List element found as a child of non-list parent element"
           end
           if node.at('p|ol|ul|dl|div')
             block_filter(node.children)
