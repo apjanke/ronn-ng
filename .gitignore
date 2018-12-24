@@ -1,5 +1,6 @@
 # We want to track the RubyMine project in the repo
 !.idea
+/.idea/workspace.xml
 
 /man/*.html
 /pkg
