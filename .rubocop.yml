@@ -27,3 +27,6 @@ Style/RegexpLiteral:
 
 Style/PerlBackrefs:
   Enabled: false
+
+Style/Semicolon:
+  Enabled: false

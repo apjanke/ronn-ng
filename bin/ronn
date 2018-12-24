@@ -1,43 +1,43 @@
 #!/usr/bin/env ruby
-#/ Usage: ronn <options> <file>...
-#/        ronn -m|--man <file>
-#/        ronn -S|--server <file> ...
-#/        ronn --pipe [<file>...]
-#/ Convert ronn source <file>s to roff or HTML manpage. In the first synopsis form,
-#/ build HTML and roff output files based on the input file names.
-#/
-#/ Mode options alter the default behavior of generating files:
-#/       --pipe                write to standard output instead of generating files
-#/   -m, --man                 show manual like with man(1)
-#/   -S, --server              serve <file>s at http://localhost:1207/
-#/
-#/ Format options control which files / formats are generated:
-#/   -r, --roff                generate roff output
-#/   -5, --html                generate entire HTML page with layout
-#/   -f, --fragment            generate HTML fragment
-#/       --markdown            generate post-processed markdown output
-#/
-#/ Document attributes:
-#/       --date=<date>          published date in YYYY-MM-DD format (bottom-center)
-#/       --manual=<name>        name of the manual (top-center)
-#/       --organization=<name>  publishing group or individual (bottom-left)
-#/
-#/ Misc options:
-#/   -w, --warnings            show troff warnings on stderr
-#/   -W                        disable previously enabled troff warnings
-#/       --version             show ronn version and exit
-#/       --help                show this help message
-#/
-#/ A <file> named example.1.ronn generates example.1.html (HTML manpage)
-#/ and example.1 (roff manpage) by default.
+# / Usage: ronn <options> <file>...
+# /        ronn -m|--man <file>
+# /        ronn -S|--server <file> ...
+# /        ronn --pipe [<file>...]
+# / Convert ronn source <file>s to roff or HTML manpage. In the first synopsis form,
+# / build HTML and roff output files based on the input file names.
+# /
+# / Mode options alter the default behavior of generating files:
+# /       --pipe                write to standard output instead of generating files
+# /   -m, --man                 show manual like with man(1)
+# /   -S, --server              serve <file>s at http://localhost:1207/
+# /
+# / Format options control which files / formats are generated:
+# /   -r, --roff                generate roff output
+# /   -5, --html                generate entire HTML page with layout
+# /   -f, --fragment            generate HTML fragment
+# /       --markdown            generate post-processed markdown output
+# /
+# / Document attributes:
+# /       --date=<date>          published date in YYYY-MM-DD format (bottom-center)
+# /       --manual=<name>        name of the manual (top-center)
+# /       --organization=<name>  publishing group or individual (bottom-left)
+# /
+# / Misc options:
+# /   -w, --warnings            show troff warnings on stderr
+# /   -W                        disable previously enabled troff warnings
+# /       --version             show ronn version and exit
+# /       --help                show this help message
+# /
+# / A <file> named example.1.ronn generates example.1.html (HTML manpage)
+# / and example.1 (roff manpage) by default.
 require 'date'
 require 'optparse'
 
 def usage
-  puts File.readlines(__FILE__).
-    grep(/^#\/.*/).
-    map { |line| line.chomp[3..-1] }.
-    join("\n")
+  puts File.readlines(__FILE__)
+           .grep(/^# \/.*/)
+           .map { |line| line.chomp[4..-1] }
+           .join("\n")
 end
 
 ##
@@ -49,10 +49,10 @@ begin
   require 'ronn'
 rescue LoadError => boom
   if boom.to_s =~ /ronn/
-    libdir = File.expand_path("../../lib", __FILE__).sub(%r|^#{Dir.pwd}/|, './')
-    if File.directory?(libdir) && !$:.include?(libdir)
+    libdir = File.expand_path(__dir__).sub(%r{^#{Dir.pwd}/}, './')
+    if File.directory?(libdir) && !$LOAD_PATH.include?(libdir)
       warn "warn: #{boom}. adding #{libdir} to RUBYLIB ..."
-      $:.unshift libdir
+      $LOAD_PATH.unshift libdir
       retry
     end
   elsif !defined?(Gem)
@@ -73,7 +73,7 @@ formats = nil
 options = {}
 write_index = false
 styles  = %w[man]
-groff   = "groff -Wall -mtty-char -mandoc -Tascii"
+groff   = 'groff -Wall -mtty-char -mandoc -Tascii'
 pager   = ENV['MANPAGER'] || ENV['PAGER'] || 'more'
 
 ##
@@ -81,7 +81,7 @@ pager   = ENV['MANPAGER'] || ENV['PAGER'] || 'more'
 
 %w[manual organization date].each do |attribute|
   value = ENV["RONN_#{attribute.upcase}"]
-  next if value.nil? or value.empty?
+  next if value.nil? || value.empty?
   options[attribute] = value
 end
 
@@ -90,20 +90,20 @@ end
 
 ARGV.options do |argv|
   # modes
-  argv.on("--pipe")           { build = server = false }
-  argv.on("-b", "--build")    { build = true; server = false }
-  argv.on("-m", "--man")      { build = server = false; view = true }
-  argv.on("-S", "--server")   { build = view = false; server = true }
-  argv.on("-i", "--index")    { write_index = true }
+  argv.on('--pipe')           { build = server = false }
+  argv.on('-b', '--build')    { build = true; server = false }
+  argv.on('-m', '--man')      { build = server = false; view = true }
+  argv.on('-S', '--server')   { build = view = false; server = true }
+  argv.on('-i', '--index')    { write_index = true }
 
   # format options
-  argv.on("-r", "--roff")     { (formats ||= []) << 'roff' }
-  argv.on("-5", "--html")     { (formats ||= []) << 'html' }
-  argv.on("-f", "--fragment") { (formats ||= []) << 'html_fragment' }
-  argv.on("--markdown")       { (formats ||= []) << 'markdown' }
+  argv.on('-r', '--roff')     { (formats ||= []) << 'roff' }
+  argv.on('-5', '--html')     { (formats ||= []) << 'html' }
+  argv.on('-f', '--fragment') { (formats ||= []) << 'html_fragment' }
+  argv.on('--markdown')       { (formats ||= []) << 'markdown' }
 
   # html output options
-  argv.on("-s", "--style=V")  { |val| styles += val.split(/[, \n]+/) }
+  argv.on('-s', '--style=V')  { |val| styles += val.split(/[, \n]+/) }
 
   # manual attribute options
   %w[name section manual organization date].each do |attribute|
@@ -111,9 +111,9 @@ ARGV.options do |argv|
   end
 
   # misc
-  argv.on("-w", "--warnings") { groff += ' -ww' }
-  argv.on("-W")               { groff += ' -Ww' }
-  argv.on("-v", "--version")  do
+  argv.on('-w', '--warnings') { groff += ' -ww' }
+  argv.on('-W')               { groff += ' -Ww' }
+  argv.on('-v', '--version')  do
     require 'ronn'
     if Ronn.release?
       printf "Ronn-NG v%s\n", Ronn::VERSION
@@ -123,24 +123,23 @@ ARGV.options do |argv|
     printf "http://github.com/apjanke/ronn-ng/tree/%s\n", Ronn.revision
     exit 0
   end
-  argv.on_tail("--help") { usage ; exit 0 }
+  argv.on_tail('--help') { usage; exit 0 }
   argv.parse!
 end
 
 ##
 # Modes, Formats, Options
 
-case
-when ARGV.empty? && $stdin.tty?
+if ARGV.empty? && $stdin.tty?
   usage
   exit 2
-when ARGV.empty? && !server
+elsif ARGV.empty? && !server
   ARGV.push '-'
   build = false
   formats ||= %w[roff]
-when view
+elsif view
   formats ||= %w[roff]
-when build
+elsif build
   formats ||= %w[roff html]
 end
 formats ||= []
@@ -168,7 +167,8 @@ documents.each do |doc|
   # setup the man pipeline if the --man option was specified
   if view && !build
     rd, wr = IO.pipe
-    if pid = fork
+    pid = fork
+    if pid
       rd.close
     else
       wr.close
@@ -178,20 +178,20 @@ documents.each do |doc|
   end
 
   # write output for each format
-  formats.each do |format|
+  formats.each do |fmt|
     if build
-      path = doc.path_for(format)
-      case format
+      path = doc.path_for(fmt)
+      case fmt
       when 'html'
-        warn "%9s: %-43s%15s" % [format, path, '+' + doc.styles.join(',')]
+        warn format('%9s: %-43s%15s', fmt, path, '+' + doc.styles.join(','))
       when 'roff', 'html_fragment', 'markdown'
-        warn "%9s: %-43s" % [format, path]
+        warn format('%9s: %-43s', fmt, path)
       end
 
-      output = doc.convert(format)
+      output = doc.convert(fmt)
       File.open(path, 'wb') { |f| f.puts(output) }
 
-      if format == 'roff'
+      if fmt == 'roff'
         if view
           system "man #{path}"
         else
@@ -199,7 +199,7 @@ documents.each do |doc|
         end
       end
     else
-      output = doc.convert(format)
+      output = doc.convert(fmt)
       wr.puts(output)
     end
   end
@@ -214,7 +214,7 @@ end
 # Write index.txt files
 
 if write_index
-  indexes = documents.map { |doc| doc.index }.uniq
+  indexes = documents.map(&:index).uniq
   indexes.each do |index|
     File.open(index.path, 'wb') do |fd|
       fd.puts(index.to_text)
