@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2a0d7f0a-d621-4068-bc8f-958b9526ddfe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ronn.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ronn.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ronn/document.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ronn/document.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ronn/index.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ronn/index.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.rubocop.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.rubocop.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ronn/roff.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ronn/roff.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ronn/utils.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ronn/utils.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/ronn/roff.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="80" column="18" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="18" />
+            <state relative-caret-position="352">
+              <caret line="153" column="34" selection-start-line="153" selection-start-column="34" selection-end-line="153" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -56,8 +52,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.rubocop.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+            <state relative-caret-position="352">
+              <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -85,15 +81,15 @@
       <list>
         <option value="$PROJECT_DIR$/lib/ronn/document.rb" />
         <option value="$PROJECT_DIR$/lib/ronn/index.rb" />
-        <option value="$PROJECT_DIR$/.rubocop.yml" />
         <option value="$PROJECT_DIR$/lib/ronn/utils.rb" />
         <option value="$PROJECT_DIR$/lib/ronn.rb" />
+        <option value="$PROJECT_DIR$/.rubocop.yml" />
         <option value="$PROJECT_DIR$/lib/ronn/roff.rb" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="115" />
+    <option name="x" value="64" />
     <option name="y" value="82" />
     <option name="width" value="1413" />
     <option name="height" value="1013" />
@@ -164,15 +160,15 @@
       <option name="presentableId" value="Default" />
       <updated>1545624379900</updated>
       <workItem from="1545624381359" duration="19000" />
-      <workItem from="1545624419212" duration="5009000" />
+      <workItem from="1545624419212" duration="6131000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5028000" />
+    <option name="totallyTimeSpent" value="6150000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="115" y="82" width="1413" height="1013" extended-state="0" />
+    <frame x="64" y="82" width="1413" height="1013" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49947312" visible="true" weight="0.25091174" />
@@ -217,13 +213,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.rubocop.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/ronn/document.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
@@ -245,10 +234,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.rubocop.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/ronn/roff.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="80" column="18" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="18" />
+        <state relative-caret-position="352">
+          <caret line="153" column="34" selection-start-line="153" selection-start-column="34" selection-end-line="153" selection-end-column="34" />
         </state>
       </provider>
     </entry>

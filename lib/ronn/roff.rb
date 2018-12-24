@@ -47,10 +47,11 @@ module Ronn
     end
 
     def normalize_whitespace!(node)
-      if node.kind_of?(Array) || node.kind_of?(Hpricot::Elements)
+      if node.is_a?(Array) || node.is_a?(Hpricot::Elements)
         node.to_a.dup.each { |ch| normalize_whitespace! ch }
       elsif node.text?
-        preceding, following = node.previous, node.next
+        preceding = node.previous
+        following = node.next
         content = node.content.gsub(/[\n ]+/m, ' ')
         if preceding.nil? || block_element?(preceding.name) ||
            preceding.name == 'br'
@@ -74,19 +75,19 @@ module Ronn
       elsif node.doc?
         normalize_whitespace! node.children
       else
-        warn "unexpected node during whitespace normalization: %p", node
+        warn 'unexpected node during whitespace normalization: %p', node
       end
     end
 
     def block_filter(node)
-      if node.kind_of?(Array) || node.kind_of?(Hpricot::Elements)
+      if node.is_a?(Array) || node.is_a?(Hpricot::Elements)
         node.each { |ch| block_filter(ch) }
 
       elsif node.doc?
         block_filter(node.children)
 
       elsif node.text?
-        warn "unexpected text: %p",  node
+        warn 'unexpected text: %p', node
 
       elsif node.elem?
         case node.name
@@ -94,6 +95,7 @@ module Ronn
           block_filter(node.children)
         when 'h1'
           # discard
+          nop
         when 'h2'
           macro 'SH', quote(escape(node.html))
         when 'h3'
@@ -149,9 +151,9 @@ module Ronn
           when 'ol'
             macro 'IP', %W["#{node.position + 1}." 4]
           when 'ul'
-            macro 'IP', %w["\\\[ci\]" 4]
+            macro 'IP', ['"\\[ci]"', '4']
           else
-            raise "List element found as a child of non-list parent element"
+            raise "List element found as a child of non-list parent element: #{node.inspect}"
           end
           if node.at('p|ol|ul|dl|div')
             block_filter(node.children)
@@ -164,18 +166,18 @@ module Ronn
              'u', 'br', 'a'
           inline_filter(node)
         else
-          warn "unrecognized block tag: %p", node.name
+          warn 'unrecognized block tag: %p', node.name
         end
 
       else
-        fail "unexpected node: #{node.inspect}"
+        raise "unexpected node: #{node.inspect}"
       end
     end
 
     def inline_filter(node)
       return unless node # is an empty node
 
-      if node.kind_of?(Array) || node.kind_of?(Hpricot::Elements)
+      if node.is_a?(Array) || node.is_a?(Hpricot::Elements)
         node.each { |ch| inline_filter(ch) }
 
       elsif node.text?
@@ -230,15 +232,15 @@ module Ronn
           write ')'
 
         else
-          warn "unrecognized inline tag: %p", node.name
+          warn 'unrecognized inline tag: %p', node.name
         end
 
       else
-        fail "unexpected node: #{node.inspect}"
+        raise "unexpected node: #{node.inspect}"
       end
     end
 
-    def macro(name, value=nil)
+    def macro(name, value = nil)
       writeln ".\n.#{[name, value].compact.join(' ')}"
     end
 
@@ -256,7 +258,7 @@ module Ronn
       '&le;'    => '\(<=',
       '&ne;'    => '\(!=',
       '&equiv;' => '\(=='
-    }
+    }.freeze
 
     def escape(text)
       return text.to_s if text.nil? || text.empty?
@@ -268,7 +270,7 @@ module Ronn
       text.gsub!('...', '\|.\|.\|.')                        # ellipses
       text.gsub!(/['.-]/) { |m| "\\#{m}" }                  # control chars
       text.gsub!(/(&[A-Za-z]+;)/) { ent[$1] || $1 }         # named entities
-      text.gsub!('&amp;',  '&')                             # amps
+      text.gsub!('&amp;', '&')                              # amps
       text
     end
 
@@ -280,8 +282,8 @@ module Ronn
     def write(text)
       return if text.nil? || text.empty?
       # lines cannot start with a '.'. insert zero-width character before.
-      if text[0,2] == '\.' &&
-        (@buf.last && @buf.last[-1] == ?\n)
+      if text[0, 2] == '\.' &&
+         (@buf.last && @buf.last[-1] == "\n")
         @buf << '\&'
       end
       @buf << text
@@ -289,17 +291,21 @@ module Ronn
 
     # write text to output buffer on a new line.
     def writeln(text)
-      write "\n" if @buf.last && @buf.last[-1] != ?\n
+      write "\n" if @buf.last && @buf.last[-1] != "\n"
       write text
       write "\n"
     end
 
     def comment(text)
-      writeln %[.\\" #{text}]
+      writeln %(.\\" #{text})
     end
 
     def warn(text, *args)
-      $stderr.puts "warn: #{text}" % args
+      Kernel.warn format("warn: #{text}", args)
+    end
+
+    def nop
+      # Do nothing
     end
   end
 end
