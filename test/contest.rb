@@ -44,8 +44,8 @@ module Test
       end
 
       class << self
-        alias :should :test
-        alias :describe :context
+        alias should test
+        alias describe context
       end
 
       def self.context_name(name)
