@@ -80,7 +80,7 @@ class RonnTest < Test::Unit::TestCase
       output = `ronn --pipe --html --fragment #{source}`
       expected = begin
                    File.read(dest)
-                 rescue
+                 rescue IOError
                    ''
                  end
       if expected != output
@@ -103,7 +103,7 @@ class RonnTest < Test::Unit::TestCase
                .split("\n", 4).last # remove ronn version comments
       expected = begin
                    File.read(dest)
-                 rescue
+                 rescue IOError
                    ''
                  end
       if expected != output
