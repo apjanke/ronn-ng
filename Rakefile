@@ -86,10 +86,10 @@ task :rev do
 end
 
 require 'rubygems'
-$spec = eval(File.read('ronn-ng.gemspec'))
+@spec = eval(File.read('ronn-ng.gemspec'))
 
 def package(ext = '')
-  "pkg/ronn-#{$spec.version}" + ext
+  "pkg/ronn-#{@spec.version}" + ext
 end
 
 desc 'Build packages'
@@ -103,12 +103,12 @@ end
 directory 'pkg/'
 CLOBBER.include('pkg')
 
-file package('.gem') => %w[pkg/ ronn-ng.gemspec] + $spec.files do |f|
+file package('.gem') => %w[pkg/ ronn-ng.gemspec] + @spec.files do |f|
   sh 'gem build ronn-ng.gemspec'
   mv File.basename(f.name), f.name
 end
 
-file package('.tar.gz') => %w[pkg/] + $spec.files do |f|
+file package('.tar.gz') => %w[pkg/] + @spec.files do |f|
   sh <<-SH
     git archive --prefix=ronn-#{source_version}/ --format=tar HEAD |
     gzip > #{f.name}
