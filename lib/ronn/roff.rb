@@ -313,19 +313,19 @@ module Ronn
     end
 
     HTML_ROFF_ENTITIES = {
-      '&bull;'  => '\[ci]',
-      '&lt;'    => '<',
-      '&gt;'    => '>',
-      '&nbsp;'  => '\~',
-      '&copy;'  => '\(co',
-      '&rdquo;' => '\(rs',
-      '&mdash;' => '\(em',
-      '&reg;'   => '\(rg',
-      '&sec;'   => '\(sc',
-      '&ge;'    => '\(>=',
-      '&le;'    => '\(<=',
-      '&ne;'    => '\(!=',
-      '&equiv;' => '\(=='
+      '•'  => '\[ci]',
+      '&lt;'  => '<',
+      '&gt;'  => '>',
+      ' '  => '\~',   # That's a literal non-breaking space character there
+      '©'  => '\(co',
+      '”'  => '\(rs',
+      '—'  => '\(em',
+      '®'  => '\(rg',
+      '§'  => '\(sc',
+      '≥'  => '\(>=',
+      '≤'  => '\(<=',
+      '≠'  => '\(!=',
+      '≡'  => '\(=='
     }.freeze
 
     def escape(text)
@@ -337,7 +337,9 @@ module Ronn
       text.gsub!('\\', '\e')                                # backslash
       text.gsub!('...', '\|.\|.\|.')                        # ellipses
       text.gsub!(/['.-]/) { |m| "\\#{m}" }                  # control chars
-      text.gsub!(/(&[A-Za-z]+;)/) { ent[$1] || $1 }         # named entities
+      ent.each do |key, val|
+        text.gsub!(key, val)
+      end
       text.gsub!('&amp;', '&')                              # amps
       text
     end
