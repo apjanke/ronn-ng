@@ -27,22 +27,20 @@ module Ronn
           end
         end
 
-        styles = lambda do
-          params[:styles] ||= params[:style]
-          if params[:styles].respond_to?(:to_ary)
-            params[:styles]
-          elsif params[:styles]
-            params[:styles].split(/[, ]+/)
-          else
-            []
-          end
-        end
+        options[:styles] ||= options[:style]
+        my_styles = if options[:styles].respond_to?(:to_ary)
+                      options[:styles]
+                    elsif options[:styles]
+                      options[:styles].split(/[, ]+/)
+                    else
+                      []
+                    end
 
         files.each do |file|
           basename = File.basename(file, '.ronn')
 
           get "/#{basename}.html" do
-            options = options.merge(styles: styles)
+            options = options.merge(styles: my_styles)
             %w[date manual organization].each do |attribute|
               next unless params[attribute]
               options[attribute] = params[attribute]
