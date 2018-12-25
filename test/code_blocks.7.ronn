@@ -31,7 +31,7 @@ Some code.
 Here's some &lt;pre> text.
 
 <pre>
-    This is pre text
+    This is pre text.
 </pre>
 
 Some more text.
