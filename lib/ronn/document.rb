@@ -58,6 +58,9 @@ module Ronn
     # Array of style modules to apply to the document.
     attr_reader :styles
 
+    # Output directory to write files to
+    attr_accessor :outdir
+
     # Create a Ronn::Document given a path or with the data returned by
     # calling the block. The document is loaded and preprocessed before
     # the intialize method returns. The attributes hash may contain values
@@ -100,9 +103,17 @@ module Ronn
     # appends it to the dirname of the source document.
     def path_for(type = nil)
       if @basename
-        File.join(File.dirname(path), basename(type))
+        if @outdir
+          File.join(@outdir, basename(type))
+        else
+          File.join(File.dirname(path), basename(type))
+        end
       else
-        basename(type)
+        if @outdir
+          File.join(@outdir, basename(type))
+        else
+          basename(type)
+        end
       end
     end
 

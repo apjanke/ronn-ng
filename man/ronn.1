@@ -60,6 +60,10 @@ The server respects the \fB\-\-style\fR and document attribute options (\fB\-\-m
 \fB\-\-pipe\fR
 Don\'t generate files, write generated output to standard output\. This is the default behavior when ronn source text is piped in on standard input and no \fIfile\fR arguments are provided\.
 .
+.TP
+\fB\-o\fR=\fIdirectory\fR, \fB\-\-output\-dir\fR=\fIdirectory\fR
+Write generated files to the specified directory instead of the default location\.
+.
 .P
 Format options control the files \fBronn\fR generates, or the output format when the \fB\-\-pipe\fR argument is specified\. When no format options are given, both \fB\-\-roff\fR and \fB\-\-html\fR are assumed\.
 .

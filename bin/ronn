@@ -10,6 +10,7 @@
 # /       --pipe                write to standard output instead of generating files
 # /   -m, --man                 show manual like with man(1)
 # /   -S, --server              serve <file>s at http://localhost:1207/
+# /   -o, --output-dir <dir>    write generated files to specified directory
 # /
 # / Format options control which files / formats are generated:
 # /   -r, --roff                generate roff output
@@ -75,6 +76,7 @@ write_index = false
 styles  = %w[man]
 groff   = 'groff -Wall -mtty-char -mandoc -Tascii -t'
 pager   = ENV['MANPAGER'] || ENV['PAGER'] || 'more'
+output_dir = nil
 
 ##
 # Environment variables
@@ -95,6 +97,7 @@ ARGV.options do |argv|
   argv.on('-m', '--man')      { build = server = false; view = true }
   argv.on('-S', '--server')   { build = view = false; server = true }
   argv.on('-i', '--index')    { write_index = true }
+  argv.on('-o', '--output-dir=V') { |val| output_dir = val }
 
   # format options
   argv.on('-r', '--roff')     { (formats ||= []) << 'roff' }
@@ -148,6 +151,7 @@ formats.delete('html') if formats.include?('html_fragment')
 
 options['date'] &&= Date.strptime(options['date'], '%Y-%m-%d')
 options['styles'] = styles
+options['outdir'] = output_dir
 
 ##
 # Server

@@ -71,6 +71,10 @@ directly to a man pager.
     default behavior when ronn source text is piped in on standard input and no
     <file> arguments are provided.
 
+  * `-o`=<directory>, `--output-dir`=<directory>:
+    Write generated files to the specified directory instead of the default
+    location.
+
 Format options control the files `ronn` generates, or the output format when the
 `--pipe` argument is specified. When no format options are given, both `--roff`
 and `--html` are assumed.
