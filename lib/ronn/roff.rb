@@ -15,7 +15,6 @@ module Ronn
       doc = Nokogiri::HTML.fragment(html_fragment)
       remove_extraneous_elements! doc
       normalize_whitespace! doc
-      # puts "HTML: #{doc}"
       block_filter doc
       write "\n"
     end
@@ -94,8 +93,8 @@ module Ronn
         block_filter(node.children)
 
       elsif node.text?
-        return if node.inner_html =~ /^\s*$/
-        warn 'unexpected text: %p', node
+        # This hack is necessary to support mixed-child-type dd's
+        inline_filter(node)
 
       elsif node.elem?
         case node.name
@@ -117,6 +116,8 @@ module Ronn
             macro 'IP'
           elsif prev && !%w[h1 h2 h3].include?(prev.name)
             macro 'P'
+          elsif node.previous&.text?
+            macro 'IP'
           end
           inline_filter(node.children)
 

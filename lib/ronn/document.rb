@@ -401,30 +401,17 @@ module Ronn
 
         dl = Nokogiri::XML::Node.new 'dl', html
         items.each do |item|
-          child = item.at('p')
-          if child
-            wrap_in_p = true
-            wrap = '<p></p>'
-            container = child
-          else
-            wrap_in_p = false
-            wrap = '<dd></dd>'
-            container = item
-          end
-          term, definition = container.inner_html.split(":\n", 2)
+          # This processing is specific to how Markdown generates definition lists
+          term, definition = item.inner_html.split(":\n", 2)
+          term = term.sub(/^<p>/, '')
 
           dt = Nokogiri::XML::Node.new 'dt', html
           dt.children = Nokogiri::HTML.fragment(term)
           dt.attributes['class'] = 'flush' if dt.inner_text.length <= 7
 
-          contents = Nokogiri::HTML.fragment(definition)
-          if wrap_in_p
-            wrapper = Nokogiri::XML::Node.new 'p', html
-            wrapper.add_child(contents)
-            contents = wrapper
-          end
           dd = Nokogiri::XML::Node.new 'dd', html
-          dd.children = contents
+          dd_contents = Nokogiri::HTML.fragment(definition)
+          dd.children = dd_contents
 
           dl.add_child(dt)
           dl.add_child(dd)
@@ -484,6 +471,7 @@ module Ronn
         next unless node.content.include?(')')
         next if %w[pre code h1 h2 h3].include?(node.parent.name)
         next if child_of?(node, 'a')
+        # puts "swapping text() node: #{node.content}"
         node.swap(node.content.gsub(/(#{name_pattern})(\(\d+\w*\))/) do
           html_build_manual_reference_link($1, $2)
         end)
@@ -501,6 +489,7 @@ module Ronn
         next unless sibling
         next unless sibling.text?
         next unless sibling.content =~ /^\((\d+\w*)\)/
+        # puts "swapping code node: #{node.content}"
         node.swap(html_build_manual_reference_link(node, "(#{$1})"))
         sibling.content = sibling.content.gsub(/^\(\d+\w*\)/, '')
       end
@@ -517,6 +506,7 @@ module Ronn
                name_or_node
              end
       ref = index["#{name}#{section}"]
+      # puts "html_build_manual_reference_link: name=#{name} ref=#{ref}"
       if ref
         "<a class='man-ref' href='#{ref.url}'>#{name_or_node}<span class='s'>#{section}</span></a>"
       else
