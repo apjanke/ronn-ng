@@ -7,6 +7,7 @@ Version 0.8.0 (???? ??? ??)
 * Added tables support. (apjanke)
 * Lint & Rubocop fixes. (apjanke)
 * Added --output-dir option. (apjanke)
+* Support file names with periods in the name section. (apjanke)
 
 Version 0.7.4 (2018 Dec 22)
 ---------------------------
