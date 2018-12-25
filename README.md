@@ -126,4 +126,6 @@ and other contributors.
 
 See the file LICENSE.txt for information of licensing and distribution.
 
+## Build Status
+
 ![Travis build status](https://travis-ci.com/apjanke/ronn-ng.svg?branch=master)
