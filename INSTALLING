@@ -58,6 +58,9 @@ Clone the git repository and put ronn/bin on your PATH:
 Then you should be able to make changes directly to your cloned repo and have
 them be reflected in your active `ronn` command.
 
+If you want to use the `--server` mode, you must also install `rack` and `sinatra`:
+
+    $ gem install rack sinatra
 
 ## Legacy Versions
 
