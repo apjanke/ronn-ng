@@ -9,4 +9,4 @@ See the following section.
 
 See [SECTION 1][]
 or [to put it another way][SECTION 1]
-or even [link this](#SECTION-1)
+or even [like this](#SECTION-1)

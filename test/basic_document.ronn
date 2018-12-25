@@ -1,4 +1,4 @@
-simple(7) -- a simple ron example
+simple(7) -- a simple ronn example
 =================================
 
-This document created by ron.
+This document created by ronn.
