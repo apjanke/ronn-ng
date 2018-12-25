@@ -16,7 +16,7 @@ module Ronn
       raise ArgumentError, 'no files' if files.empty?
       Sinatra.new do
         set :show_exceptions, true
-        set :public, File.expand_path(__FILE__, '../templates')
+        set :public_dir, File.expand_path(__FILE__, '../templates')
         set :static, false
         set :views, File.expand_path(__FILE__, '../templates')
 
