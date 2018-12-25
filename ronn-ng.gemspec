@@ -42,6 +42,8 @@ Gem::Specification.new do |s|
     man/ronn-format.7.ronn
     man/ronn.1
     man/ronn.1.ronn
+    completion/bash/ronn
+    completion/zsh/_ronn
     ronn-ng.gemspec
     test/angle_bracket_syntax.html
     test/angle_bracket_syntax.ronn
