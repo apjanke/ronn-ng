@@ -323,8 +323,7 @@ module Ronn
     def process_markdown!
       md = markdown_filter_heading_anchors(data)
       md = markdown_filter_link_index(md)
-      md = markdown_filter_angle_quotes(md)
-      md
+      markdown_filter_angle_quotes(md)
     end
 
     def process_html!
