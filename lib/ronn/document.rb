@@ -321,9 +321,10 @@ module Ronn
     end
 
     def process_markdown!
-      markdown = markdown_filter_heading_anchors(data)
-      markdown_filter_link_index(markdown)
-      markdown_filter_angle_quotes(markdown)
+      md = markdown_filter_heading_anchors(data)
+      md = markdown_filter_link_index(md)
+      md = markdown_filter_angle_quotes(md)
+      md
     end
 
     def process_html!
@@ -347,6 +348,7 @@ module Ronn
       return markdown if index.nil? || index.empty?
       markdown << "\n\n"
       index.each { |ref| markdown << "[#{ref.name}]: #{ref.url}\n" }
+      markdown
     end
 
     # Add [id]: #ANCHOR elements to the markdown source text for all sections.
@@ -369,7 +371,7 @@ module Ronn
         contents = $1
         tag, attrs = contents.split(' ', 2)
         if attrs =~ /\/=/ || html_element?(tag.sub(/^\//, '')) ||
-           data.include?("</#{tag}>")
+           data.include?("</#{tag}>") || contents =~ /^!/
           match.to_s
         else
           "<var>#{contents}</var>"

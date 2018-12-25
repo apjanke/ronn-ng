@@ -75,7 +75,7 @@ module Ronn
         # element has no children
       elsif node.document? || node.fragment?
         normalize_whitespace! node.children
-      elsif node.is_a?(Nokogiri::XML::DTD)
+      elsif node.is_a?(Nokogiri::XML::DTD) || node.is_a?(Nokogiri::XML::Comment)
         # ignore
         nop
       else
