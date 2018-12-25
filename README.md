@@ -93,7 +93,7 @@ modern publishing tools.
 
 ## Requirements
 
-Ruby 1.9 or newer.
+Ruby 2.3 or newer.
 
 ## Project Management
 

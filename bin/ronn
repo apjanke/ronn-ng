@@ -46,7 +46,7 @@ end
 
 begin
   require 'rdiscount'
-  require 'hpricot'
+  require 'nokogiri'
   require 'ronn'
 rescue LoadError => boom
   if boom.to_s =~ /ronn/

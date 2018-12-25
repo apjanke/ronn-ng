@@ -86,7 +86,7 @@ Gem::Specification.new do |s|
   s.test_files = s.files.select { |path| path =~ /^test\/.*_test.rb/ }
 
   s.extra_rdoc_files = %w[LICENSE.txt AUTHORS]
-  s.add_dependency 'hpricot',     '~> 0.8', '>= 0.8.2'
+  s.add_dependency 'nokogiri',    '>= 1.9.0'
   s.add_dependency 'mustache',    '~> 0.7', '>= 0.7.0'
   s.add_dependency 'rdiscount',   '>= 2.0.7'
 

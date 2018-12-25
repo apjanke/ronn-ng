@@ -48,6 +48,7 @@ module Ronn
     def child_of?(node, tag)
       while node
         return true if node.name && node.name.downcase == tag
+        return false if node.document?
         node = node.parent
       end
       false

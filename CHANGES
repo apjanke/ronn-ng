@@ -8,6 +8,7 @@ Version 0.8.0 (???? ??? ??)
 * Lint & Rubocop fixes. (apjanke)
 * Added --output-dir option. (apjanke)
 * Support file names with periods in the name section. (apjanke)
+* Migrated from Hpricot to Nokogiri. (apjanke)
 
 Version 0.7.4 (2018 Dec 22)
 ---------------------------

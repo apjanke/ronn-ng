@@ -13,9 +13,9 @@ Building from source:
 
 Hacking? Install Ronn-NG from source.
 
-The hpricot, mustache, and rdiscount packages are required:
+The nokogiri, mustache, and rdiscount packages are required:
 
-    $ gem install hpricot mustache rdiscount
+    $ gem install nokogiri mustache rdiscount
 
 Clone the git repository and put ronn/bin on your PATH:
 

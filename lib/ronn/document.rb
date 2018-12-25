@@ -1,6 +1,6 @@
 require 'time'
 require 'cgi'
-require 'hpricot'
+require 'nokogiri'
 require 'rdiscount'
 require 'ronn/index'
 require 'ronn/roff'
@@ -230,7 +230,7 @@ module Ronn
       @markdown ||= process_markdown!
     end
 
-    # A Hpricot::Document for the manual content fragment.
+    # A Nokogiri DocumentFragment for the manual content fragment.
     def html
       @html ||= process_html!
     end
@@ -326,7 +326,8 @@ module Ronn
     end
 
     def process_html!
-      @html = Hpricot(input_html)
+      wrapped_html = "<html>\n  <body>\n#{input_html}\n  </body>\n</html>"
+      @html = Nokogiri::HTML.parse(wrapped_html)
       html_filter_angle_quotes
       html_filter_definition_lists
       html_filter_inject_name_section
@@ -379,7 +380,8 @@ module Ronn
     def html_filter_angle_quotes
       # convert all angle quote vars nested in code blocks
       # back to the original text
-      @html.search('code').search('text()').each do |node|
+      code_nodes = @html.search('code')
+      code_nodes.search('.//text() | text()').each do |node|
         next unless node.to_html.include?('var&gt;')
         new =
           node.to_html
@@ -396,24 +398,37 @@ module Ronn
         items = ul.search('li')
         next if items.any? { |item| item.inner_text.split("\n", 2).first !~ /:$/ }
 
-        ul.name = 'dl'
+        dl = Nokogiri::XML::Node.new 'dl', html
         items.each do |item|
           child = item.at('p')
           if child
+            wrap_in_p = true
             wrap = '<p></p>'
             container = child
           else
+            wrap_in_p = false
             wrap = '<dd></dd>'
             container = item
           end
           term, definition = container.inner_html.split(":\n", 2)
 
-          dt = item.before("<dt>#{term}</dt>").first
+          dt = Nokogiri::XML::Node.new 'dt', html
+          dt.children = Nokogiri::HTML.fragment(term)
           dt.attributes['class'] = 'flush' if dt.inner_text.length <= 7
 
-          item.name = 'dd'
-          container.swap(wrap.sub(/></, ">#{definition}<"))
+          contents = Nokogiri::HTML.fragment(definition)
+          if wrap_in_p
+            wrapper = Nokogiri::XML::Node.new 'p', html
+            wrapper.add_child(contents)
+            contents = wrapper
+          end
+          dd = Nokogiri::XML::Node.new 'dd', html
+          dd.children = contents
+
+          dl.add_child(dt)
+          dl.add_child(dd)
         end
+        ul.replace(dl)
       end
     end
 
@@ -428,16 +443,13 @@ module Ronn
             "</p>\n"
         end
       return unless markup
-      if @html.children
-        @html.at('*').before(markup)
-      else
-        @html = Hpricot(markup)
-      end
+      html.at('body').first_element_child.before(Nokogiri::HTML.fragment(markup))
     end
 
     # Add URL anchors to all HTML heading elements.
     def html_filter_heading_anchors
-      @html.search('h2|h3|h4|h5|h6').not('[@id]').each do |heading|
+      h_nodes = @html.search('//*[self::h1 or self::h2 or self::h3 or self::h4 or self::h5 and not(@id)]')
+      h_nodes.each do |heading|
         heading.set_attribute('id', heading.inner_text.gsub(/\W+/, '-'))
       end
     end
@@ -463,7 +475,7 @@ module Ronn
 
       # Convert "name(section)" by traversing text nodes searching for
       # text that fits the pattern.  This is the original implementation.
-      @html.search('text()').each do |node|
+      @html.search('.//text() | text()').each do |node|
         next unless node.content.include?(')')
         next if %w[pre code h1 h2 h3].include?(node.parent.name)
         next if child_of?(node, 'a')

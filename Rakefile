@@ -10,7 +10,7 @@ BINDIR = "#{ROOTDIR}/bin".freeze
 task :environment do
   $LOAD_PATH.unshift ROOTDIR unless $LOAD_PATH.include?(ROOTDIR)
   $LOAD_PATH.unshift LIBDIR unless $LOAD_PATH.include?(LIBDIR)
-  require_library 'hpricot'
+  require_library 'nokogiri'
   require_library 'rdiscount'
   ENV['RUBYLIB'] = $LOAD_PATH.join(':')
   ENV['PATH'] = "#{BINDIR}:#{ENV['PATH']}"

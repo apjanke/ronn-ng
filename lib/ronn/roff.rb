@@ -1,4 +1,4 @@
-require 'hpricot'
+require 'nokogiri'
 require 'ronn/utils'
 
 module Ronn
@@ -11,10 +11,10 @@ module Ronn
                    version = nil, date = nil)
       @buf = []
       title_heading name, section, tagline, manual, version, date
-      doc = Hpricot(html)
+      doc = Nokogiri::XML.parse(html)
       remove_extraneous_elements! doc
       normalize_whitespace! doc
-      block_filter doc
+      block_filter doc.at('body')
       write "\n"
     end
 
@@ -39,15 +39,15 @@ module Ronn
     end
 
     def remove_extraneous_elements!(doc)
-      doc.traverse_all_element do |node|
-        if node.comment? || node.procins? || node.doctype? || node.xmldecl?
+      doc.traverse do |node|
+        if node.comment?
           node.parent.children.delete(node)
         end
       end
     end
 
     def normalize_whitespace!(node)
-      if node.is_a?(Array) || node.is_a?(Hpricot::Elements)
+      if node.is_a?(Array) || node.is_a?(Nokogiri::XML::NodeSet)
         node.to_a.dup.each { |ch| normalize_whitespace! ch }
       elsif node.text?
         preceding = node.previous
@@ -72,34 +72,42 @@ module Ronn
         normalize_whitespace! node.children
       elsif node.elem?
         # element has no children
-      elsif node.doc?
+      elsif node.document? || node.fragment?
         normalize_whitespace! node.children
+      elsif node.is_a?(Nokogiri::XML::DTD)
+        # ignore
+        nop
       else
         warn 'unexpected node during whitespace normalization: %p', node
       end
     end
 
     def block_filter(node)
-      if node.is_a?(Array) || node.is_a?(Hpricot::Elements)
+      if node.is_a?(Array) || node.is_a?(Nokogiri::XML::NodeSet)
         node.each { |ch| block_filter(ch) }
 
-      elsif node.doc?
+      elsif node.document? || node.fragment?
         block_filter(node.children)
 
       elsif node.text?
+        # TODO: See if Nokogiri has a processing mode that can normalize away
+        # extra whitespace.
+        return if node.inner_html =~ /^\s*$/
         warn 'unexpected text: %p', node
 
       elsif node.elem?
         case node.name
+        when 'html', 'body'
+          block_filter(node.children)
         when 'div'
           block_filter(node.children)
         when 'h1'
           # discard
           nop
         when 'h2'
-          macro 'SH', quote(escape(node.html))
+          macro 'SH', quote(escape(node.inner_html))
         when 'h3'
-          macro 'SS', quote(escape(node.html))
+          macro 'SS', quote(escape(node.inner_html))
 
         when 'p'
           prev = previous(node)
@@ -126,7 +134,7 @@ module Ronn
           if node.children && node.children[0].text?
             text = node.children[0].to_s
             if text.start_with? "\n"
-              node.children[0] = Hpricot::Text.new(text[1..-1])
+              node.children[0].replace(text[1..-1])
             end
           end
           inline_filter(node.children)
@@ -218,6 +226,9 @@ module Ronn
           warn 'unrecognized block tag: %p', node.name
         end
 
+      elsif node.is_a?(Nokogiri::XML::DTD)
+        # ignore
+        nop
       else
         raise "unexpected node: #{node.inspect}"
       end
@@ -226,7 +237,7 @@ module Ronn
     def inline_filter(node)
       return unless node # is an empty node
 
-      if node.is_a?(Array) || node.is_a?(Hpricot::Elements)
+      if node.is_a?(Array) || node.is_a?(Nokogiri::XML::NodeSet)
         node.each { |ch| inline_filter(ch) }
 
       elsif node.text?
