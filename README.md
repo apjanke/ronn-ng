@@ -125,3 +125,5 @@ New Ronn-NG material is Copyright (c) 2018 [Andrew Janke](https://apjanke.net)
 and other contributors.
 
 See the file LICENSE.txt for information of licensing and distribution.
+
+![Travis build status](https://travis-ci.com/apjanke/ronn-ng.svg?branch=master)

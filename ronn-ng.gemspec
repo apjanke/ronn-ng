@@ -3,13 +3,19 @@ Gem::Specification.new do |s|
   s.version = '0.8.0'
   s.date = '2018-12-25'
 
-  s.summary     = 'Builds manuals'
+  s.summary     = 'Builds man pages from Markdown'
   s.description = 'Ronn-NG builds manuals in HTML and Unix man page format from Markdown.'
   s.homepage    = 'https://github.com/apjanke/ronn-ng'
   s.license     = 'MIT'
 
   s.authors     = ['Andrew Janke']
   s.email       = 'floss@apjanke.net'
+
+  s.metadata = {
+    'bug_tracker_uri'   => 'https://github.com/apjanke/ronn-ng/issues',
+    'source_code_uri'   => 'https://github.com/apjanke/ronn-ng',
+    'changelog_uri'     => 'https://github.com/apjanke/ronn-ng/blob/master/CHANGES'
+  }
 
   # = MANIFEST =
   s.files = %w[
@@ -101,9 +107,14 @@ Gem::Specification.new do |s|
   s.test_files = s.files.select { |path| path =~ /^test\/.*_test.rb/ }
 
   s.extra_rdoc_files = %w[LICENSE.txt AUTHORS]
-  s.add_dependency 'nokogiri',    '~> 1.9', '>= 1.9.0'
   s.add_dependency 'mustache',    '~> 0.7', '>= 0.7.0'
+  s.add_dependency 'nokogiri',    '~> 1.9', '>= 1.9.0'
   s.add_dependency 'rdiscount',   '~> 2.0', '>= 2.0.7'
+  s.add_development_dependency 'rack',      '~> 2.0',  '>= 2.0.6'
+  s.add_development_dependency 'rake',      '~> 12.3', '>= 12.3.0'
+  s.add_development_dependency 'rubocop',   '~> 0.60', '>= 0.57.1'
+  s.add_development_dependency 'sinatra',   '~> 2.0',  '>= 2.0.0'
+  s.add_development_dependency 'test-unit', '~> 3.2',  '>= 3.2.7'
 
   s.rdoc_options = ['--line-numbers', '--inline-source', '--title', 'Ronn']
   s.require_paths = %w[lib]
