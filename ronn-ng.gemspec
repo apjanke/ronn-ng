@@ -101,9 +101,9 @@ Gem::Specification.new do |s|
   s.test_files = s.files.select { |path| path =~ /^test\/.*_test.rb/ }
 
   s.extra_rdoc_files = %w[LICENSE.txt AUTHORS]
-  s.add_dependency 'nokogiri',    '>= 1.9.0'
+  s.add_dependency 'nokogiri',    '~> 1.9', '>= 1.9.0'
   s.add_dependency 'mustache',    '~> 0.7', '>= 0.7.0'
-  s.add_dependency 'rdiscount',   '>= 2.0.7'
+  s.add_dependency 'rdiscount',   '~> 2.0', '>= 2.0.7'
 
   s.rdoc_options = ['--line-numbers', '--inline-source', '--title', 'Ronn']
   s.require_paths = %w[lib]
