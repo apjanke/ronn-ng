@@ -3,12 +3,25 @@ Ronn-NG Installation
 
 ## Installation Process
 
-Ronn-NG is currently distributed mainly as a gem package. Install with rubygems:
+### From a Package Manager
 
-    $ gem install ronn-ng
-    $ ronn --help
+The best way to install Ronn-NG is with a package manager. This is currently
+only supported on macOS, with [Homebrew](http://brew.sh). To install with `brew`:
 
-### Installing Shell Tab Completion
+```
+brew tap apjanke/ronn-ng
+brew install --HEAD ronn-ng
+```
+
+### From RubyGems
+
+Ronn-NG is distributed as a gem package, which can be used if you don't have
+a supported package manager. Install with rubygems:
+
+```
+gem install ronn-ng
+ronn --help
+```
 
 Ronn-NG includes completion definitions for bash and zsh, but these are not
 installed into the system locations as part of the gem. You will need to figure 
@@ -47,25 +60,34 @@ Hacking? Install Ronn-NG from source.
 
 The nokogiri, mustache, and rdiscount packages are required:
 
-    $ gem install nokogiri mustache rdiscount
+```
+gem install nokogiri mustache rdiscount
+```
 
 Clone the git repository and put ronn/bin on your PATH:
 
-    $ git clone git://github.com/apjanke/ronn-ng
-    $ PATH=$(pwd)/ronn-ng/bin:$PATH
-    $ ronn --help
+```
+git clone git://github.com/apjanke/ronn-ng
+PATH=$(pwd)/ronn-ng/bin:$PATH
+ronn --help
+```
 
 Then you should be able to make changes directly to your cloned repo and have
 them be reflected in your active `ronn` command.
 
 If you want to use the `--server` mode, you must also install `rack` and `sinatra`:
 
-    $ gem install rack sinatra
+```
+gem install rack sinatra
+```
 
 ## Legacy Versions
 
-Historical Ronn tarballs available at: <http://github.com/rtomayko/ronn/downloads>
+Historical Ronn tarballs available at [the original Ronn repo](http://github.com/rtomayko/ronn/downloads).
 
-    $ curl -L http://github.com/rtomayko/ronn/downloads/0.6.6 | tar xvzf -
-    $ cd rtomayko-r*
-    $ ruby setup.rb
+```
+curl -L http://github.com/rtomayko/ronn/downloads/0.6.6 | tar xvzf -
+cd rtomayko-r*
+ruby setup.rb
+```
+
