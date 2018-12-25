@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = 'ronn-ng'
-  s.version = '0.8.0-SNAPSHOT'
-  s.date = '2018-12-22'
+  s.version = '0.8.0'
+  s.date = '2018-12-25'
 
   s.summary     = 'Builds manuals'
   s.description = 'Ronn-NG builds manuals in HTML and Unix man page format from Markdown.'
@@ -15,11 +15,14 @@ Gem::Specification.new do |s|
   s.files = %w[
     AUTHORS
     CHANGES
-    LICENSE.txt
+    Gemfile
     INSTALLING
+    LICENSE.txt
     README.md
     Rakefile
     bin/ronn
+    completion/bash/ronn
+    completion/zsh/_ronn
     config.ru
     lib/ronn.rb
     lib/ronn/document.rb
@@ -42,13 +45,15 @@ Gem::Specification.new do |s|
     man/ronn-format.7.ronn
     man/ronn.1
     man/ronn.1.ronn
-    completion/bash/ronn
-    completion/zsh/_ronn
     ronn-ng.gemspec
     test/angle_bracket_syntax.html
     test/angle_bracket_syntax.ronn
+    test/backticks.html
+    test/backticks.ronn
     test/basic_document.html
     test/basic_document.ronn
+    test/circumflexes.ronn
+    test/code_blocks.7.ronn
     test/contest.rb
     test/custom_title_document.html
     test/custom_title_document.ronn
@@ -57,6 +62,8 @@ Gem::Specification.new do |s|
     test/definition_list_syntax.ronn
     test/dots_at_line_start_test.roff
     test/dots_at_line_start_test.ronn
+    test/ellipses.roff
+    test/ellipses.ronn
     test/entity_encoding_test.html
     test/entity_encoding_test.roff
     test/entity_encoding_test.ronn
@@ -69,11 +76,17 @@ Gem::Specification.new do |s|
     test/middle_paragraph.ronn
     test/missing_spaces.roff
     test/missing_spaces.ronn
+    test/nested_list.ronn
+    test/nested_list_with_code.html
+    test/nested_list_with_code.roff
+    test/nested_list_with_code.ronn
+    test/page.with.periods.in.name.5.ronn
     test/pre_block_with_quotes.roff
     test/pre_block_with_quotes.ronn
     test/section_reference_links.html
     test/section_reference_links.roff
     test/section_reference_links.ronn
+    test/tables.ronn
     test/test_ronn.rb
     test/test_ronn_document.rb
     test/test_ronn_index.rb
