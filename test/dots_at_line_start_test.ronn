@@ -2,3 +2,11 @@ There's a weird issue where dots at the beginning of a line
 generate troff warnings due to escaping.
 
 .. let's see what happens.
+
+    . A dot on an indented line
+
+    . Another dot on an indented line
+
+    some text
+    some more text
+    . A dot on an indented line as part of a paragraph
