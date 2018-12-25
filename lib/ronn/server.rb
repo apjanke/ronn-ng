@@ -58,9 +58,10 @@ module Ronn
     end
 
     def self.run(files, options = {})
+      port_number = options['port'] || 1207
       new(files, options).run!(
         server:  %w[mongrel thin webrick],
-        port:    1207,
+        port:    port_number,
         logging: true
       )
     end

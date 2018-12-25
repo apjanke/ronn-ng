@@ -10,6 +10,7 @@
 # /       --pipe                write to standard output instead of generating files
 # /   -m, --man                 show manual like with man(1)
 # /   -S, --server              serve <file>s at http://localhost:1207/
+# /       --port <port>         run server at specified port instead of 1207
 # /   -o, --output-dir <dir>    write generated files to specified directory
 # /
 # / Format options control which files / formats are generated:
@@ -70,6 +71,7 @@ end
 build   = true
 view    = false
 server  = false
+port_arg = nil
 formats = nil
 options = {}
 write_index = false
@@ -98,6 +100,7 @@ ARGV.options do |argv|
   argv.on('-S', '--server')   { build = view = false; server = true }
   argv.on('-i', '--index')    { write_index = true }
   argv.on('-o', '--output-dir=V') { |val| output_dir = val }
+  argv.on('--port=V')         { |val| port_arg = val }
 
   # format options
   argv.on('-r', '--roff')     { (formats ||= []) << 'roff' }
@@ -152,6 +155,15 @@ formats.delete('html') if formats.include?('html_fragment')
 options['date'] &&= Date.strptime(options['date'], '%Y-%m-%d')
 options['styles'] = styles
 options['outdir'] = output_dir
+
+unless port_arg.nil?
+  begin
+    options['port'] = Integer(port_arg)
+  rescue ArgumentError
+    warn "Error: invalid port number: '#{port_arg}'"
+    exit 1
+  end
+end
 
 ##
 # Server

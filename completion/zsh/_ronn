@@ -6,6 +6,7 @@ _arguments -C -s -S \
   '(--pipe)--pipe[write to standard output instead of generating files]' \
   '(-m --man)'{-m,--man}'[show manual like with man]' \
   '(-S --server)'{-S,--server}'[serve <file>s at http://localhost:1207/]' \
+  '(--port)--port[run server at specified port instead of 1207]:Port Number' \
   '(-o --output-dir)'{-o,--output-dir}'[write generated files to specified directory]:Output Directory:_dirs' \
   '(-r --roff)'{-r,--roff}'[generate roff output]' \
   '(-5 --html)'{-5,--html}'[generate entire HTML page with layout]' \

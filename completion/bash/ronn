@@ -19,7 +19,7 @@ _ronn()
 	esac
 
 	if [[ "$cur" == -* ]]; then
-		COMREPLY=( $( compgen -W '--pipe -m --man -S --server -o --output-dir -r --roff -5 --html -f --fragment --markdown --date --manual --organization -w --warnings -W --version --help'))
+		COMREPLY=( $( compgen -W '--pipe -m --man -S --server --port -o --output-dir -r --roff -5 --html -f --fragment --markdown --date --manual --organization -w --warnings -W --version --help'))
 		return
 	fi
 

@@ -66,6 +66,10 @@ directly to a man pager.
     and styling manuals. It is in no way recommended as a general purpose web
     server.*
 
+  * `--port`=<port>
+    When used with `-S`/`--server`, runs the server at the specified port instead
+    of the default port 1207.
+
   * `--pipe`:
     Don't generate files, write generated output to standard output. This is the
     default behavior when ronn source text is piped in on standard input and no
