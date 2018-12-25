@@ -122,7 +122,13 @@ module Ronn
           indent = prev.nil? || !%w[h1 h2 h3].include?(prev.name)
           macro 'IP', %w["" 4] if indent
           macro 'nf'
-          write "\n"
+          # Hack: strip an initial \n to avoid extra spacing
+          if node.children && node.children[0].text?
+            text = node.children[0].to_s
+            if text.start_with? "\n"
+              node.children[0] = Hpricot::Text.new(text[1..-1])
+            end
+          end
           inline_filter(node.children)
           macro 'fi'
           macro 'IP', %w["" 0] if indent
@@ -283,8 +289,13 @@ module Ronn
       end
     end
 
+    def maybe_new_line
+      write "\n" if @buf.last && @buf.last[-1] != "\n"
+    end
+
     def macro(name, value = nil)
-      writeln ".\n.#{[name, value].compact.join(' ')}"
+      maybe_new_line
+      writeln ".#{[name, value].compact.join(' ')}"
     end
 
     HTML_ROFF_ENTITIES = {
@@ -334,7 +345,7 @@ module Ronn
 
     # write text to output buffer on a new line.
     def writeln(text)
-      write "\n" if @buf.last && @buf.last[-1] != "\n"
+      maybe_new_line
       write text
       write "\n"
     end

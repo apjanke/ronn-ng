@@ -1,0 +1,41 @@
+Example Code Blocks
+===================
+
+## Basic code block
+
+```
+Hello, world!
+```
+
+## Language-identified code blocks
+
+```html
+<html>
+  <head>
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    Hello, world!
+  </body>
+</html>
+```
+
+## Interspersed code blocks and text
+
+Some text.
+
+```
+Some code.
+```
+
+Here's some &lt;pre> text.
+
+<pre>
+    This is pre text
+</pre>
+
+Some more text.
+
+```
+Some more code.
+```
