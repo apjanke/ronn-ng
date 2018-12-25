@@ -17,12 +17,10 @@ class RonnTest < Test::Unit::TestCase
   test 'takes ronn text on stdin and produces roff on stdout' do
     output = `echo '# hello(1) -- hello world' | ronn --date=2009-11-23`
     lines = output.split("\n")
-    assert_equal 7, lines.size
+    assert_equal 5, lines.size
     assert_equal %(.\\" generated with Ronn-NG/v#{Ronn.version}), lines.shift
     assert_equal %(.\\" http://github.com/apjanke/ronn-ng/tree/#{Ronn.revision}), lines.shift
-    assert_equal %(.), lines.shift
     assert_equal %(.TH "HELLO" "1" "November 2009" "" ""), lines.shift
-    assert_equal %(.), lines.shift
     assert_equal %(.SH "NAME"), lines.shift
     assert_equal %(\\fBhello\\fR \\- hello world), lines.shift
     assert_equal 0, lines.size
@@ -100,7 +98,7 @@ class RonnTest < Test::Unit::TestCase
     wrong = dest + '.wrong'
     test File.basename(source, '.ronn') + ' roff' do
       output = `ronn --pipe --roff --date=1979-01-01 #{source}`
-               .split("\n", 4).last # remove ronn version comments
+               .split("\n", 3).last # remove ronn version comments
       expected = begin
                    File.read(dest)
                  rescue IOError

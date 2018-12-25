@@ -1,5 +1,5 @@
-defition_list_syntax(5) -- hiya
-===============================
+definition_list_syntax(5) -- hiya
+=================================
 
 Definition lists look like unordered lists:
 
