@@ -7,14 +7,16 @@ module Ronn
     include Ronn::Utils
 
     # Convert Ronn HTML to roff.
-    def initialize(html, name, section, tagline, manual = nil,
+    # The html input is an HTML fragment, not a complete document
+    def initialize(html_fragment, name, section, tagline, manual = nil,
                    version = nil, date = nil)
       @buf = []
       title_heading name, section, tagline, manual, version, date
-      doc = Nokogiri::XML.parse(html)
+      doc = Nokogiri::HTML.fragment(html_fragment)
       remove_extraneous_elements! doc
       normalize_whitespace! doc
-      block_filter doc.at('body')
+      # puts "HTML: #{doc}"
+      block_filter doc
       write "\n"
     end
 
@@ -62,7 +64,7 @@ module Ronn
           content.rstrip!
         end
         if content.empty?
-          node.parent.children.delete(node)
+          node.remove
         else
           node.content = content
         end
@@ -83,6 +85,8 @@ module Ronn
     end
 
     def block_filter(node)
+      return if node.nil?
+
       if node.is_a?(Array) || node.is_a?(Nokogiri::XML::NodeSet)
         node.each { |ch| block_filter(ch) }
 
@@ -90,8 +94,6 @@ module Ronn
         block_filter(node.children)
 
       elsif node.text?
-        # TODO: See if Nokogiri has a processing mode that can normalize away
-        # extra whitespace.
         return if node.inner_html =~ /^\s*$/
         warn 'unexpected text: %p', node
 
@@ -169,7 +171,7 @@ module Ronn
           else
             raise "List element found as a child of non-list parent element: #{node.inspect}"
           end
-          if node.at('p|ol|ul|dl|div')
+          if node.at('p,ol,ul,dl,div')
             block_filter(node.children)
           else
             inline_filter(node.children)
@@ -281,7 +283,7 @@ module Ronn
             inline_filter(node.children)
             write ' '
             write '\fI'
-            write escape(node.attributes['href'])
+            write escape(node.attributes['href'].content)
             write '\fR'
           end
 
