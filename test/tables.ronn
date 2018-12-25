@@ -1,0 +1,24 @@
+Hello, world with tables
+========================
+
+
+## Simple table
+
+| Syntax      | Description |
+| ----------- | ----------- |
+| Header      | Title       |
+| Paragraph   | Text        |
+
+## Table with column alignment
+
+| Syntax      | Description | Test Text With A Long Header Name    |
+| :---        |    :----:   |          ---: |
+| Header      | Title       | Here's this   |
+| Paragraph   | Text        | And more      |
+
+## Table with embedded markup
+
+| Header |
+| ------ |
+| Code: `some code` |
+| Emphasis: *foo* and *bar* |

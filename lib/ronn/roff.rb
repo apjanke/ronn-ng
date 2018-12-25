@@ -165,6 +165,49 @@ module Ronn
         when 'span', 'code', 'b', 'strong', 'kbd', 'samp', 'var', 'em', 'i',
              'u', 'br', 'a'
           inline_filter(node)
+
+        when 'table'
+          macro 'TS'
+          write "allbox;\n"
+          block_filter(node.children)
+          macro 'TE'
+        when 'thead'
+          # Convert to format section and first row
+          tr = node.children[0]
+          header_contents = []
+          cell_formats = []
+          tr.children.each do |th|
+            style = th['style']
+            cell_format = case style
+                          when 'text-align:left;'
+                            'l'
+                          when 'text-align:right;'
+                            'r'
+                          when 'text-align:center;'
+                            'c'
+                          else
+                            'l'
+                          end
+            header_contents << th.inner_html
+            cell_formats << cell_format
+          end
+          write cell_formats.join(' ') + ".\n"
+          write header_contents.join("\t") + "\n"
+        when 'th'
+          raise 'internal error: unexpected <th> element'
+        when 'tbody'
+          # Let the 'tr' handle it
+          block_filter(node.children)
+        when 'tr'
+          # Convert to a table data row
+          node.children.each do |child|
+            block_filter(child)
+            write "\t"
+          end
+          write "\n"
+        when 'td'
+          inline_filter(node.children)
+
         else
           warn 'unrecognized block tag: %p', node.name
         end

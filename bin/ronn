@@ -73,7 +73,7 @@ formats = nil
 options = {}
 write_index = false
 styles  = %w[man]
-groff   = 'groff -Wall -mtty-char -mandoc -Tascii'
+groff   = 'groff -Wall -mtty-char -mandoc -Tascii -t'
 pager   = ENV['MANPAGER'] || ENV['PAGER'] || 'more'
 
 ##
