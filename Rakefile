@@ -79,7 +79,7 @@ require 'rubygems'
 @spec = eval(File.read('ronn-ng.gemspec'))
 
 def package(ext = '')
-  "pkg/ronn-#{@spec.version}" + ext
+  "pkg/ronn-ng-#{@spec.version}" + ext
 end
 
 desc 'Build packages'
