@@ -33,6 +33,10 @@ ronn_bash_dir="$ronn_dist_dir/completion/bash"
 ln -s "$ronn_bash_dir/ronn" /usr/local/etc/bash_completion.d
 ```
 
+You will need to redo these steps each time you upgrade `ronn-ng` or install
+it into a different Ruby environment. Sorry for the inconvenience; this seems
+to be a limitation of the `gem` installation mechanism.
+
 If that `gem which` stuff doesn't work for you, you can `gem install gem-path`
 and use `gem path ronn-ng` instead.
 
