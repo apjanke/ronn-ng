@@ -194,7 +194,7 @@ module Ronn
     # id and +text+ is the inner text of the heading element.
     def toc
       @toc ||=
-        html.search('h2[@id]').map { |h2| [h2.attributes['id'], h2.inner_text] }
+        html.search('h2[@id]').map { |h2| [h2.attributes['id'].content.upcase, h2.inner_text] }
     end
     alias section_heads toc
 
@@ -251,6 +251,7 @@ module Ronn
     end
 
     # Convert the document to HTML and return the result as a string.
+    # The returned string is a complete HTML document.
     def to_html
       layout = ENV['RONN_LAYOUT']
       layout_path = nil
@@ -271,12 +272,12 @@ module Ronn
     # as a string. The HTML does not include <html>, <head>,
     # or <style> tags.
     def to_html_fragment(wrap_class = 'mp')
-      return html.to_s if wrap_class.nil?
-      [
-        "<div class='#{wrap_class}'>",
-        html.to_s,
-        '</div>'
-      ].join("\n")
+      frag_nodes = html.at('body').children
+      out = frag_nodes.to_s.rstrip
+      unless wrap_class.nil?
+        out = "<div class='#{wrap_class}'>#{out}\n</div>"
+      end
+      out
     end
 
     def to_markdown
@@ -443,7 +444,11 @@ module Ronn
             "</p>\n"
         end
       return unless markup
-      html.at('body').first_element_child.before(Nokogiri::HTML.fragment(markup))
+      if html.at('body').first_element_child
+        html.at('body').first_element_child.before(Nokogiri::HTML.fragment(markup))
+      else
+        html.at('body').add_child(Nokogiri::HTML.fragment(markup))
+      end
     end
 
     # Add URL anchors to all HTML heading elements.
