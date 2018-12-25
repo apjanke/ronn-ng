@@ -34,6 +34,16 @@ class RonnTest < Test::Unit::TestCase
       .tr('"', "'")
   end
 
+  def flunk_with_diff(dest, wrong, output)
+    if ENV["RONN_QUIET_TEST"] == "1"
+      flunk "Output did not match expected."
+    else
+      File.open(wrong, 'wb') { |f| f.write(output) }
+      diff = `diff -u #{dest} #{wrong} 2>/dev/null`
+      flunk diff
+    end
+  end
+
   test 'produces html instead of roff with the --html argument' do
     output = `echo '# hello(1) -- hello world' | ronn --html`
     output = canonicalize(output)
@@ -82,9 +92,7 @@ class RonnTest < Test::Unit::TestCase
                    ''
                  end
       if expected != output
-        File.open(wrong, 'wb') { |f| f.write(output) }
-        diff = `diff -u #{dest} #{wrong} 2>/dev/null`
-        flunk diff
+        flunk_with_diff(dest, wrong, output)
       elsif File.exist?(wrong)
         File.unlink(wrong)
       end
@@ -105,9 +113,7 @@ class RonnTest < Test::Unit::TestCase
                    ''
                  end
       if expected != output
-        File.open(wrong, 'wb') { |f| f.write(output) }
-        diff = `diff -u #{dest} #{wrong} 2>/dev/null`
-        flunk diff
+        flunk_with_diff(dest, wrong, output)
       elsif File.exist?(wrong)
         File.unlink(wrong)
       end
