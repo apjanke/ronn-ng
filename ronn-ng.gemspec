@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'ronn-ng'
-  s.version = '0.7.5-SNAPSHOT'
+  s.version = '0.8.0-SNAPSHOT'
   s.date = '2018-12-22'
 
   s.summary     = 'Builds manuals'
