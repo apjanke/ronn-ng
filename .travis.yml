@@ -9,5 +9,5 @@ install:
 
 script:
   - bundle exec rake test
-  - bundle exec rake build
+  - bundle exec rake package
   - bundle exec rake man
