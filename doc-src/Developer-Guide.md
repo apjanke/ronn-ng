@@ -24,3 +24,11 @@ After the release, start development on the next release:
 * Update `CHANGES` with a new section for the next release
 * Regenerate the man pages again: `rake man`
 * Commit and push
+
+
+## Running tests
+
+`rake test` will run all the tests.
+
+Do `RONN_QUIET_TEST=1 rake test` for shorter output that omits the possibly-long
+diff outputs.
