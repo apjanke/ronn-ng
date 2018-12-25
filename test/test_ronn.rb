@@ -35,10 +35,10 @@ class RonnTest < Test::Unit::TestCase
   end
 
   def flunk_with_diff(dest, wrong, output)
+    File.open(wrong, 'wb') { |f| f.write(output) }
     if ENV["RONN_QUIET_TEST"] == "1"
       flunk "Output did not match expected."
     else
-      File.open(wrong, 'wb') { |f| f.write(output) }
       diff = `diff -u #{dest} #{wrong} 2>/dev/null`
       flunk diff
     end
