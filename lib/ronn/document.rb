@@ -450,7 +450,7 @@ module Ronn
     # whose text labels are the same as their href URLs.
     def html_filter_annotate_bare_links
       @html.search('a[@href]').each do |node|
-        href = node.attributes['href']
+        href = node.attributes['href'].content
         text = node.inner_text
 
         next unless href == text || href[0] == '#' ||
