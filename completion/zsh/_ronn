@@ -1,0 +1,23 @@
+#compdef ronn
+
+# Zsh completion definitions for ronn, from Ronn-NG
+
+_arguments -C -s -S \
+  '(--pipe)--pipe[write to standard output instead of generating files]' \
+  '(-m --man)'{-m,--man}'[show manual like with man]' \
+  '(-S --server)'{-S,--server}'[serve <file>s at http://localhost:1207/]' \
+  '(-o --output-dir)'{-o,--output-dir}'[write generated files to specified directory]:Output Directory:_dirs' \
+  '(-r --roff)'{-r,--roff}'[generate roff output]' \
+  '(-5 --html)'{-5,--html}'[generate entire HTML page with layout]' \
+  '(-f --fragment)'{-f,--fragment}'[generate HTML fragment]' \
+  '(--markdown)--markdown[generate post-processed markdown output]' \
+  '(--date)--date[published date in YYYY-MM-DD format]:Date' \
+  '(--manual)--manual[name of the manual]:Manual Name' \
+  '(--organization)--organization[publishing group or individual]:Organization Name' \
+  '(-w --warnings)'{-w,--warnings}'[show troff warnings on stderr]' \
+  '(-W)-W[disable previously enabled troff warnings]' \
+  '(--version)--version[show ronn version and exit]' \
+  '(--help)--help[show help message and exit]' \
+  '*:input files:_files' \
+  && ret=0
+

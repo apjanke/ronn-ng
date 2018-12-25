@@ -1,0 +1,32 @@
+# Bash completion script for ronn(1) from Ronn-NG
+
+_ronn()
+{
+	local cur prev words cword
+	_init_completion -n = || return
+
+	COMREPLY=()
+	cur=${COMP_WORDS[COMP_CWORD]}
+
+	case "$prev" in
+		--help|--version|-!(-*)'?')
+			return
+			;;
+		-o|--output-dir|-!(-*)e)
+			_filedir -d
+			return
+			;;
+	esac
+
+	if [[ "$cur" == -* ]]; then
+		COMREPLY=( $( compgen -W '--pipe -m --man -S --server -o --output-dir -r --roff -5 --html -f --fragment --markdown --date --manual --organization -w --warnings -W --version --help'))
+		return
+	fi
+
+	_filedir
+
+	return 0
+} &&
+complete -F _ronn ronn
+
+# ex: filetype=sh
