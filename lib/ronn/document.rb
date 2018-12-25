@@ -471,7 +471,6 @@ module Ronn
         next unless node.content.include?(')')
         next if %w[pre code h1 h2 h3].include?(node.parent.name)
         next if child_of?(node, 'a')
-        # puts "swapping text() node: #{node.content}"
         node.swap(node.content.gsub(/(#{name_pattern})(\(\d+\w*\))/) do
           html_build_manual_reference_link($1, $2)
         end)
@@ -489,7 +488,6 @@ module Ronn
         next unless sibling
         next unless sibling.text?
         next unless sibling.content =~ /^\((\d+\w*)\)/
-        # puts "swapping code node: #{node.content}"
         node.swap(html_build_manual_reference_link(node, "(#{$1})"))
         sibling.content = sibling.content.gsub(/^\(\d+\w*\)/, '')
       end
@@ -506,7 +504,6 @@ module Ronn
                name_or_node
              end
       ref = index["#{name}#{section}"]
-      # puts "html_build_manual_reference_link: name=#{name} ref=#{ref}"
       if ref
         "<a class='man-ref' href='#{ref.url}'>#{name_or_node}<span class='s'>#{section}</span></a>"
       else
