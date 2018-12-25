@@ -15,7 +15,7 @@ Here's some special entities:
   * &amp;rdquo;      &rdquo;
   * &amp;mdash;      &mdash;
   * &amp;reg;        &reg;
-  * &amp;sec;        &sec;
+  * &amp;sect;       &sect;
   * &amp;ge;         &ge;
   * &amp;le;         &le;
   * &amp;ne;         &ne;
