@@ -232,6 +232,9 @@ module Ronn
       elsif node.is_a?(Nokogiri::XML::DTD)
         # ignore
         nop
+      elsif node.is_a?(Nokogiri::XML::Comment)
+        #ignore
+        nop
       else
         raise "unexpected node: #{node.inspect}"
       end
