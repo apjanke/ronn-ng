@@ -35,7 +35,7 @@ brew tap apjanke/ronn-ng
 brew install ronn-ng
 ```
 
-See [INSTALLING.md][] for details on other systems and installation methods.
+See INSTALLING.md for details on other systems and installation methods.
 
 ## Examples
 
