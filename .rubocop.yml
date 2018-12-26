@@ -1,7 +1,9 @@
-Metrics/ClassLength:
-  Enabled: false
+AllCops:
+  TargetRubyVersion: 2.3
 
-Metrics/MethodLength:
+# To get fixed
+
+Layout/AlignHash:
   Enabled: false
 
 Metrics/BlockLength:
@@ -22,6 +24,30 @@ Metrics/CyclomaticComplexity:
 Metrics/PerceivedComplexity:
   Enabled: false
 
+Security/Eval:
+  Enabled: false
+
+# test_ronn_document fails when it uses safe_load
+Security/YAMLLoad:
+  Enabled: false
+
+# Permanently disabled - I don't care about these.
+
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+
+Metrics/BlockNesting:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 Style/RegexpLiteral:
   Enabled: false
 
@@ -33,3 +59,4 @@ Style/Semicolon:
 
 Style/WordArray:
   Enabled: false
+

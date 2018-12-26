@@ -36,8 +36,8 @@ class RonnTest < Test::Unit::TestCase
 
   def flunk_with_diff(dest, wrong, output)
     File.open(wrong, 'wb') { |f| f.write(output) }
-    if ENV["RONN_QUIET_TEST"] == "1"
-      flunk "Output did not match expected."
+    if ENV['RONN_QUIET_TEST'] == '1'
+      flunk 'Output did not match expected.'
     else
       diff = `diff -u #{dest} #{wrong} 2>/dev/null`
       flunk diff
@@ -83,6 +83,7 @@ class RonnTest < Test::Unit::TestCase
   Dir[testdir + '/*.ronn'].each do |source|
     dest = source.sub(/ronn$/, 'html')
     next unless File.exist?(dest)
+
     wrong = dest + '.wrong'
     test File.basename(source, '.ronn') + ' HTML' do
       output = `ronn --pipe --html --fragment #{source}`
@@ -103,6 +104,7 @@ class RonnTest < Test::Unit::TestCase
   Dir[testdir + '/*.ronn'].each do |source|
     dest = source.sub(/ronn$/, 'roff')
     next unless File.exist?(dest)
+
     wrong = dest + '.wrong'
     test File.basename(source, '.ronn') + ' roff' do
       output = `ronn --pipe --roff --date=1979-01-01 #{source}`

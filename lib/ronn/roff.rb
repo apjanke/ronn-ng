@@ -41,9 +41,7 @@ module Ronn
 
     def remove_extraneous_elements!(doc)
       doc.traverse do |node|
-        if node.comment?
-          node.parent.children.delete(node)
-        end
+        node.parent.children.delete(node) if node.comment?
       end
     end
 
@@ -133,12 +131,10 @@ module Ronn
           indent = prev.nil? || !%w[h1 h2 h3].include?(prev.name)
           macro 'IP', %w["" 4] if indent
           macro 'nf'
-          # Hack: strip an initial \n to avoid extra spacing
+          # HACK: strip an initial \n to avoid extra spacing
           if node.children && node.children[0].text?
             text = node.children[0].to_s
-            if text.start_with? "\n"
-              node.children[0].replace(text[1..-1])
-            end
+            node.children[0].replace(text[1..-1]) if text.start_with? "\n"
           end
           inline_filter(node.children)
           macro 'fi'
@@ -230,10 +226,10 @@ module Ronn
         end
 
       elsif node.is_a?(Nokogiri::XML::DTD)
-        # ignore
+        # Ignore
         nop
       elsif node.is_a?(Nokogiri::XML::Comment)
-        #ignore
+        # Ignore
         nop
       else
         raise "unexpected node: #{node.inspect}"
@@ -316,19 +312,19 @@ module Ronn
     end
 
     HTML_ROFF_ENTITIES = {
-      '•'  => '\[ci]',
-      '&lt;'  => '<',
-      '&gt;'  => '>',
-      ' '  => '\~',   # That's a literal non-breaking space character there
-      '©'  => '\(co',
-      '”'  => '\(rs',
-      '—'  => '\(em',
-      '®'  => '\(rg',
-      '§'  => '\(sc',
-      '≥'  => '\(>=',
-      '≤'  => '\(<=',
-      '≠'  => '\(!=',
-      '≡'  => '\(=='
+      '•' => '\[ci]',
+      '&lt;' => '<',
+      '&gt;' => '>',
+      ' ' => '\~', # That's a literal non-breaking space character there
+      '©' => '\(co',
+      '”' => '\(rs',
+      '—' => '\(em',
+      '®' => '\(rg',
+      '§' => '\(sc',
+      '≥' => '\(>=',
+      '≤' => '\(<=',
+      '≠' => '\(!=',
+      '≡' => '\(=='
     }.freeze
 
     def escape(text)
@@ -356,9 +352,8 @@ module Ronn
       return if text.nil? || text.empty?
       # lines cannot start with a '.'. insert zero-width character before.
       text = text.gsub(/\n\\\./s, "\n\\\\&\\.")
-      if text[0, 2] == '\.' && (@buf.last && @buf.last[-1] == "\n")
-        @buf << '\&'
-      end
+      buf_ends_in_newline = @buf.last && @buf.last[-1] == "\n"
+      @buf << '\&' if text[0, 2] == '\.' && buf_ends_in_newline
       @buf << text
     end
 

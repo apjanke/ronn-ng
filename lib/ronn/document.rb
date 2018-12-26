@@ -102,18 +102,12 @@ module Ronn
     # Document#basename method to generate the basename part and
     # appends it to the dirname of the source document.
     def path_for(type = nil)
-      if @basename
-        if @outdir
-          File.join(@outdir, basename(type))
-        else
-          File.join(File.dirname(path), basename(type))
-        end
+      if @outdir
+        File.join(@outdir, basename(type))
+      elsif @basename
+        File.join(File.dirname(path), basename(type))
       else
-        if @outdir
-          File.join(@outdir, basename(type))
-        else
-          basename(type)
-        end
+        basename(type)
       end
     end
 
@@ -122,10 +116,11 @@ module Ronn
     # file contents do not include a name section.
     def path_name
       return unless @basename
+
       parts = @basename.split('.')
-      parts.pop if parts.last.downcase == 'ronn'
+      parts.pop if parts.last.casecmp('ronn').zero?
       parts.pop if parts.last =~ /^\d+$/
-      parts.join(".")
+      parts.join('.')
     end
 
     # Returns the <section> part of the path, or nil when
@@ -185,7 +180,9 @@ module Ronn
     # the current time. Center displayed in the document footer.
     def date
       return @date if @date
+
       return File.mtime(path) if File.exist?(path)
+
       Time.now
     end
 
@@ -274,10 +271,7 @@ module Ronn
     def to_html_fragment(wrap_class = 'mp')
       frag_nodes = html.at('body').children
       out = frag_nodes.to_s.rstrip
-      unless wrap_class.nil?
-        out = "<div class='#{wrap_class}'>#{out}\n</div>"
-      end
-      out
+      "<div class='#{wrap_class}'>#{out}\n</div>" unless wrap_class.nil?
     end
 
     def to_markdown
@@ -345,6 +339,7 @@ module Ronn
     # links. This lets us use [foo(3)][] syntax to link to index entries.
     def markdown_filter_link_index(markdown)
       return markdown if index.nil? || index.empty?
+
       markdown << "\n\n"
       index.each { |ref| markdown << "[#{ref.name}]: #{ref.url}\n" }
       markdown
@@ -385,6 +380,7 @@ module Ronn
       code_nodes = @html.search('code')
       code_nodes.search('.//text() | text()').each do |node|
         next unless node.to_html.include?('var&gt;')
+
         new =
           node.to_html
               .gsub('&lt;var&gt;', '&lt;')
@@ -432,6 +428,7 @@ module Ronn
             "</p>\n"
         end
       return unless markup
+
       if html.at('body').first_element_child
         html.at('body').first_element_child.before(Nokogiri::HTML.fragment(markup))
       else
@@ -456,6 +453,7 @@ module Ronn
 
         next unless href == text || href[0] == '#' ||
                     CGI.unescapeHTML(href) == "mailto:#{CGI.unescapeHTML(text)}"
+
         node.set_attribute('data-bare-link', 'true')
       end
     end
@@ -464,6 +462,7 @@ module Ronn
     # to a hyperlink.  The URL is obtained from the index.
     def html_filter_manual_reference_links
       return if index.nil?
+
       name_pattern = '[0-9A-Za-z_:.+=@~-]+'
 
       # Convert "name(section)" by traversing text nodes searching for

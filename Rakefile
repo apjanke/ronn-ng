@@ -21,7 +21,7 @@ task test: :environment do
   $LOAD_PATH.unshift "#{ROOTDIR}/test"
   Dir['test/test_*.rb'].each { |f| require(f) }
   # Rubocop disabled because it's currently failing
-  #exec 'rubocop'
+  # exec 'rubocop'
 end
 
 desc 'Start the server'
