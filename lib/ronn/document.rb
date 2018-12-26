@@ -271,7 +271,8 @@ module Ronn
     def to_html_fragment(wrap_class = 'mp')
       frag_nodes = html.at('body').children
       out = frag_nodes.to_s.rstrip
-      "<div class='#{wrap_class}'>#{out}\n</div>" unless wrap_class.nil?
+      out = "<div class='#{wrap_class}'>#{out}\n</div>" unless wrap_class.nil?
+      out
     end
 
     def to_markdown
