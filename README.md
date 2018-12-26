@@ -1,4 +1,4 @@
-# Ronn
+# Ronn-NG
 
 Ronn-NG is a new, currently-maintained fork of the defunct [original Ronn 
 project](https://github.com/rtomayko/ronn).
