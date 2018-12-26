@@ -12,6 +12,7 @@ Ronn-NG Developer's Guide
 * Commit the updated files
 * Tag the release: `git tag vX.Y.Z`
 * `git push --tags`
+* Create the Release on GitHub Releases
 * Build and deploy the gem to RubyGems
   * `gem build ronn-ng.gemspec`
   * `gem push ronn-ng-<version>.gem`
