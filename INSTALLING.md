@@ -58,28 +58,35 @@ and use `gem path ronn-ng` instead.
 
 Hacking? Install Ronn-NG from source.
 
-The nokogiri, mustache, and rdiscount packages are required:
-
-```
-gem install nokogiri mustache rdiscount
-```
-
 Clone the git repository and put ronn/bin on your PATH:
 
 ```
 git clone git://github.com/apjanke/ronn-ng
 PATH=$(pwd)/ronn-ng/bin:$PATH
-ronn --help
+```
+
+The following gems are required for ronn-ng development:
+ * nokogiri
+ * mustache
+ * rdiscount
+ * rubocop
+ * sinatra
+ * rack
+ * rake
+ * test-unit
+
+```
+gem install nokogiri mustache rdiscount rubocop sinatra rack rake test-unit
+```
+
+Or install them with bundler using the project's gem definition:
+
+```
+bundle install --with development
 ```
 
 Then you should be able to make changes directly to your cloned repo and have
 them be reflected in your active `ronn` command.
-
-If you want to use the `--server` mode, you must also install `rack` and `sinatra`:
-
-```
-gem install rack sinatra
-```
 
 ## Legacy Versions
 
