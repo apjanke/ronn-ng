@@ -13,7 +13,8 @@ Ronn-NG Developer's Guide
 * Tag the release: `git tag vX.Y.Z`
 * `git push --tags`
 * Build and deploy the gem to RubyGems
-  * ???
+  * `gem build ronn-ng.gemspec`
+  * `gem push ronn-ng-<version>.gem`
 * TODO: Announce the release somewhere
 
 After the release, start development on the next release:
