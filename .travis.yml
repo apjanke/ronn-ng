@@ -11,3 +11,4 @@ script:
   - bundle exec rake test
   - bundle exec rake package
   - bundle exec rake man
+  - bundle exec rubocop
