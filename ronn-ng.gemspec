@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
     AUTHORS
     CHANGES
     Gemfile
-    INSTALLING
+    INSTALLING.md
     LICENSE.txt
     README.md
     Rakefile
