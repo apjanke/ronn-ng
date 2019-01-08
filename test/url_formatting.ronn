@@ -1,0 +1,3 @@
+# URL formatting
+
+Documentation of the Emily programming language can be found at <http://emilylang.org> or <http://bitbucket.org/runhello/emily>.
