@@ -35,7 +35,13 @@ brew tap apjanke/ronn-ng
 brew install ronn-ng
 ```
 
-See INSTALLING.md for details on other systems and installation methods.
+Install with `gem` anywhere that supports it:
+
+```
+gem install ronn-ng
+```
+
+See [INSTALLING.md](INSTALLING.md) for details on other systems and installation methods.
 
 ## Examples
 

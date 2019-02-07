@@ -10,7 +10,7 @@ only supported on macOS, with [Homebrew](http://brew.sh). To install with `brew`
 
 ```
 brew tap apjanke/ronn-ng
-brew install --HEAD ronn-ng
+brew install ronn-ng
 ```
 
 ### From RubyGems
@@ -97,4 +97,3 @@ curl -L http://github.com/rtomayko/ronn/downloads/0.6.6 | tar xvzf -
 cd rtomayko-r*
 ruby setup.rb
 ```
-
