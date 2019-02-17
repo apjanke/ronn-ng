@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = 'ronn-ng'
-  s.version = '0.8.1.SNAPSHOT'
-  s.date = '2018-12-25'
+  s.version = '0.8.1.beta.1'
+  s.date = '2019-02-16'
 
   s.summary     = 'Builds man pages from Markdown'
   s.description = 'Ronn-NG builds manuals in HTML and Unix man page format from Markdown.'
@@ -86,6 +86,9 @@ Gem::Specification.new do |s|
     test/nested_list_with_code.html
     test/nested_list_with_code.roff
     test/nested_list_with_code.ronn
+    test/ordered_list.html
+    test/ordered_list.roff
+    test/ordered_list.ronn
     test/page.with.periods.in.name.5.ronn
     test/pre_block_with_quotes.roff
     test/pre_block_with_quotes.ronn
@@ -100,6 +103,7 @@ Gem::Specification.new do |s|
     test/titleless_document.ronn
     test/underline_spacing_test.roff
     test/underline_spacing_test.ronn
+    test/url_formatting.ronn
   ]
   # = MANIFEST =
 
