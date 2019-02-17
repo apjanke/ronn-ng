@@ -4,6 +4,9 @@ Ronn-NG CHANGES
 Version 0.8.1 (???)
 -------------------
 
+* Fixed URL hyphenation bug. (https://github.com/apjanke/ronn-ng/issues/23) (apjanke)
+* Fixed ordered-list bustication. (https://github.com/apjanke/ronn-ng/issues/24) (apjanke)
+
 Version 0.8.0 (2018 Dec 25)
 ---------------------------
 
