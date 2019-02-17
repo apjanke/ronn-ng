@@ -162,7 +162,7 @@ module Ronn
         when 'li'
           case node.parent.name
           when 'ol'
-            macro 'IP', %W["#{node.position + 1}." 4]
+            macro 'IP', %W["#{node.parent.children.index(node) + 1}." 4]
           when 'ul'
             macro 'IP', ['"\\[ci]"', '4']
           else
