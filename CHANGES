@@ -1,7 +1,7 @@
 Ronn-NG CHANGES
 ===============
 
-Version 0.8.1 (???)
+Version 0.8.1 (2019 Mar 5)
 -------------------
 
 * Fixed URL hyphenation bug. (https://github.com/apjanke/ronn-ng/issues/23) (apjanke)
