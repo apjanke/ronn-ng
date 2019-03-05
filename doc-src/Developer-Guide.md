@@ -8,7 +8,7 @@ Ronn-NG Developer's Guide
   * `lib/ronn.rb`
 * Update `CHANGES` with the release date
 * Regenerate the man pages with `rake man`
-* Run the tests one last time! `rake test`
+* Run the tests one last time! `bundle exec rake test`
 * Commit the updated files
 * Tag the release: `git tag vX.Y.Z`
 * `git push --tags`

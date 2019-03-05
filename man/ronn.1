@@ -1,6 +1,6 @@
-.\" generated with Ronn-NG/v0.8.1
-.\" http://github.com/apjanke/ronn-ng/tree/0.8.1.SNAPSHOT
-.TH "RONN" "1" "December 2018" "Ronn-NG 0.8.1.SNAPSHOT" "Ronn Manual"
+.\" generated with Ronn-NG/v0.8.2
+.\" http://github.com/apjanke/ronn-ng/tree/0.8.2
+.TH "RONN" "1" "February 2019" "Ronn-NG 0.8.2" "Ronn Manual"
 .SH "NAME"
 \fBronn\fR \- convert markdown files to manpages
 .SH "SYNOPSIS"
@@ -30,7 +30,7 @@ These options control whether output is written to file(s), standard output, or 
 .IP "\[ci]" 4
 \fB\-m\fR, \fB\-\-man\fR: Don\'t generate files, display \fIfile\fRs as if man(1) were invoked on the roff output file\. This simulates default man behavior by piping the roff output through groff(1) and the paging program specified by the \fBMANPAGER\fR environment variable\.
 .IP "\[ci]" 4
-\fB\-S\fR, \fB\-\-server\fR: Don\'t generate files, start an HTTP server at \fIhttp://localhost:1207/\fR and serve dynamically generated HTML for the set of input \fIfile\fRs\. A file named \fIexample\.2\.ronn\fR is served as \fI/example\.2\.html\fR\. There\'s also an index page at the root with links to each \fIfile\fR\.
+\fB\-S\fR, \fB\-\-server\fR: Don\'t generate files, start an HTTP server at \fI\%http://localhost:1207/\fR and serve dynamically generated HTML for the set of input \fIfile\fRs\. A file named \fIexample\.2\.ronn\fR is served as \fI/example\.2\.html\fR\. There\'s also an index page at the root with links to each \fIfile\fR\.
 .IP
 The server respects the \fB\-\-style\fR and document attribute options (\fB\-\-manual\fR, \fB\-\-date\fR, etc\.)\. These same options can be varied at request time by giving them as query parameters: \fB?manual=FOO&style=dark,toc\fR
 .IP
@@ -54,7 +54,7 @@ Generate output in HTML format\.
 \fB\-f\fR, \fB\-\-fragment\fR
 Generate output in HTML format but only the document fragment, not the header, title, or footer\.
 .P
-Document attributes displayed in the header and footer areas of generated content are specified with these options\. (These values may also be set via the \fIENVIRONMENT\fR\.)
+Document attributes displayed in the header and footer areas of generated content are specified with these options\. (These values may also be set via the \fI\%#ENVIRONMENT\fR\.)
 .TP
 \fB\-\-manual\fR=\fImanual\fR
 The name of the manual this man page belongs to; \fImanual\fR is prominently displayed top\-center in the header area\.
@@ -70,11 +70,11 @@ HTML output can be customized through the use of CSS stylesheets:
 \fB\-\-style\fR=\fImodule\fR[,\fImodule\fR]\|\.\|\.\|\.
 The list of CSS stylesheets to apply to the document\. Multiple \fImodule\fR arguments may be specified, but must be separated by commas or spaces\.
 .IP
-When \fImodule\fR is a simple word, search for files named \fImodule\fR\fB\.css\fR in all directories listed in the \fI\fBRONN_STYLE\fR\fR environment variable, and then search internal styles\.
+When \fImodule\fR is a simple word, search for files named \fImodule\fR\fB\.css\fR in all directories listed in the \fI\%#ENVIRONMENT\fR environment variable, and then search internal styles\.
 .IP
 When \fImodule\fR includes a \fI/\fR character, use it as the full path to a stylesheet file\.
 .IP
-Internal styles are \fIman\fR (included by default), \fItoc\fR, and \fI80c\fR\. See \fISTYLES\fR for descriptions of features added by each module\.
+Internal styles are \fIman\fR (included by default), \fItoc\fR, and \fI80c\fR\. See \fI\%#STYLES\fR for descriptions of features added by each module\.
 .P
 Miscellaneous options:
 .TP
@@ -143,7 +143,7 @@ The heading and footing, respectively\.
 \fB\.man\-title\fR
 The main \fB<h1>\fR element\. Hidden by default unless the manual has no \fIname\fR or \fIsection\fR attributes\.
 .P
-See the builtin style sources \fIhttp://github\.com/apjanke/ronn\-ng/tree/master/lib/ronn/template\fR for examples\.
+See the builtin style sources \fI\%http://github\.com/apjanke/ronn\-ng/tree/master/lib/ronn/template\fR for examples\.
 .SH "EXAMPLES"
 Build roff and HTML output files and view the roff manpage using man(1):
 .IP "" 4
@@ -189,7 +189,7 @@ $ ronn \-\-man hello\.1\.ronn
 .fi
 .IP "" 0
 .P
-Serve HTML manpages at \fIhttp://localhost:1207/\fR for all \fB*\.ronn\fR files under a \fBman/\fR directory:
+Serve HTML manpages at \fI\%http://localhost:1207/\fR for all \fB*\.ronn\fR files under a \fBman/\fR directory:
 .IP "" 4
 .nf
 $ ronn \-\-server man/*\.ronn
@@ -218,6 +218,6 @@ Used instead of \fBMANPAGER\fR when \fBMANPAGER\fR is not defined\.
 .SH "BUGS"
 \fBRonn\fR is written in Ruby and depends on hpricot and rdiscount, extension libraries that are non\-trivial to install on some systems\. A more portable version of this program would be welcome\.
 .SH "COPYRIGHT"
-Ronn\-NG is Copyright (C) 2009 Ryan Tomayko \fIhttp://tomayko\.com/about\fR and (C) 2018 Andrew Janke \fIhttps://apjanke\.net\fR
+Ronn\-NG is Copyright (C) 2009 Ryan Tomayko \fI\%http://tomayko\.com/about\fR and (C) 2018 Andrew Janke \fI\%https://apjanke\.net\fR
 .SH "SEE ALSO"
 groff(1), man(1), pandoc(1), manpages(5), markdown(7), roff(7), ronn\-format(7)
