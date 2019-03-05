@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = 'ronn-ng'
-  s.version = '0.8.1.beta.1'
-  s.date = '2019-02-16'
+  s.version = '0.8.1'
+  s.date = '2019-03-05'
 
   s.summary     = 'Builds man pages from Markdown'
   s.description = 'Ronn-NG builds manuals in HTML and Unix man page format from Markdown.'
