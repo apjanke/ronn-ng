@@ -1,7 +1,7 @@
 require 'time'
 require 'cgi'
 require 'nokogiri'
-require 'rdiscount'
+require 'kramdown'
 require 'ronn/index'
 require 'ronn/roff'
 require 'ronn/template'
@@ -205,7 +205,7 @@ module Ronn
     # tuple of the form: [name, section, description], where missing information
     # is represented by nil and any element may be missing.
     def sniff
-      html = Markdown.new(data[0, 512], :no_superscript).to_html
+      html = Kramdown::Document.new(data[0, 512], auto_ids: false, smart_quotes: ['apos', 'apos', 'quot', 'quot'], typographic_symbols: { hellip: '...', ndash: '--', mdash: '--' }).to_html
       heading, html = html.split("</h1>\n", 2)
       return [nil, nil, nil] if html.nil?
 
@@ -307,7 +307,7 @@ module Ronn
     end
 
     def input_html
-      @input_html ||= strip_heading(Markdown.new(markdown, :no_superscript).to_html)
+      @input_html ||= strip_heading(Kramdown::Document.new(markdown, auto_ids: false, smart_quotes: ['apos', 'apos', 'quot', 'quot'], typographic_symbols: { hellip: '...', ndash: '--', mdash: '--' }).to_html)
     end
 
     def strip_heading(html)
@@ -395,12 +395,12 @@ module Ronn
       # process all unordered lists depth-first
       @html.search('ul').to_a.reverse_each do |ul|
         items = ul.search('li')
-        next if items.any? { |item| item.inner_text.split("\n", 2).first !~ /:$/ }
+        next if items.any? { |item| item.inner_text.strip.split("\n", 2).first !~ /:$/ }
 
         dl = Nokogiri::XML::Node.new 'dl', html
         items.each do |item|
           # This processing is specific to how Markdown generates definition lists
-          term, definition = item.inner_html.split(":\n", 2)
+          term, definition = item.inner_html.strip.split(":\n", 2)
           term = term.sub(/^<p>/, '')
 
           dt = Nokogiri::XML::Node.new 'dt', html

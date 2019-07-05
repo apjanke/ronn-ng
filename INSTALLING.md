@@ -68,7 +68,7 @@ PATH=$(pwd)/ronn-ng/bin:$PATH
 The following gems are required for ronn-ng development:
  * nokogiri
  * mustache
- * rdiscount
+ * kramdown
  * rubocop
  * sinatra
  * rack
@@ -76,7 +76,7 @@ The following gems are required for ronn-ng development:
  * test-unit
 
 ```
-gem install nokogiri mustache rdiscount rubocop sinatra rack rake test-unit
+gem install nokogiri mustache kramdown rubocop sinatra rack rake test-unit
 ```
 
 Or install them with bundler using the project's gem definition:

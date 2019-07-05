@@ -48,7 +48,7 @@ end
 # Libraries and LOAD_PATH shenanigans
 
 begin
-  require 'rdiscount'
+  require 'kramdown'
   require 'nokogiri'
   require 'ronn'
 rescue LoadError => e
