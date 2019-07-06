@@ -289,7 +289,7 @@ module Ronn
       to_h.to_yaml
     end
 
-    def to_json
+    def to_json(*_args)
       require 'json'
       to_h.merge('date' => date.iso8601).to_json
     end

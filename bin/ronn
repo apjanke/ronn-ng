@@ -49,8 +49,8 @@ begin
   require 'rdiscount'
   require 'nokogiri'
   require 'ronn'
-rescue LoadError => boom
-  if boom.to_s =~ /ronn/
+rescue LoadError => e
+  if e.to_s =~ /ronn/
     libdir = File.expand_path('../lib', __dir__).sub(%r{^#{Dir.pwd}/}, './')
     if File.directory?(libdir) && !$LOAD_PATH.include?(libdir)
       # warn "warn: #{boom}. adding #{libdir} to RUBYLIB ..."
@@ -58,11 +58,11 @@ rescue LoadError => boom
       retry
     end
   elsif !defined?(Gem)
-    warn "warn: #{boom}. loading rubygems ..."
+    warn "warn: #{e}. loading rubygems ..."
     require 'rubygems'
     retry
   end
-  abort boom.to_s
+  abort e.to_s
 end
 
 ##
@@ -75,9 +75,9 @@ port_arg = nil
 formats = nil
 options = {}
 write_index = false
-styles  = %w[man]
-groff   = 'groff -Wall -mtty-char -mandoc -Tascii -t'
-pager   = ENV['MANPAGER'] || ENV['PAGER'] || 'more -is'
+styles = %w[man]
+groff = 'groff -Wall -mtty-char -mandoc -Tascii -t'
+pager = ENV['MANPAGER'] || ENV['PAGER'] || 'more -is'
 output_dir = nil
 
 ##
