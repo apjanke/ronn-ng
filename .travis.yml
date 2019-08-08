@@ -1,4 +1,9 @@
 language: ruby
+
+matrix:
+  allow_failures:
+    - rvm: jruby-9.2.7.0
+
 rvm:
   - 2.3.8
   - 2.4.6
