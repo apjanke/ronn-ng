@@ -10,6 +10,5 @@ ronn.5
 ronn.7
 ronn*.markdown
 ronn*.html
-Gemfile.lock
 ronn-ng-*.gem
 .bundle
