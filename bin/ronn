@@ -22,7 +22,9 @@
 # / Document attributes:
 # /       --date=<date>          published date in YYYY-MM-DD format (bottom-center)
 # /       --manual=<name>        name of the manual (top-center)
+# /       --name=<name>          title of the manual page (top-left, top-right, bottom-right)
 # /       --organization=<name>  publishing group or individual (bottom-left)
+# /       --section=<sec>        section of the manual page (with name)
 # /
 # / Misc options:
 # /   -w, --warnings            show troff warnings on stderr
