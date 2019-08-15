@@ -135,9 +135,9 @@ end
 
 def require_library(name)
   require name
-rescue LoadError => boom
+rescue LoadError => e
   unless defined?(Gem)
-    warn "warn: #{boom}. trying again with rubygems."
+    warn "warn: #{e}. trying again with rubygems."
     require 'rubygems'
     retry
   end
