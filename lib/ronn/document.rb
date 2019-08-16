@@ -118,7 +118,7 @@ module Ronn
       return unless @basename
 
       parts = @basename.split('.')
-      parts.pop if parts.last.casecmp('ronn').zero?
+      parts.pop if parts.length > 1 && parts.last =~ /^\w+$/
       parts.pop if parts.last =~ /^\d+$/
       parts.join('.')
     end
