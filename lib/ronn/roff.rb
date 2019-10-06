@@ -351,7 +351,7 @@ module Ronn
     def write(text)
       return if text.nil? || text.empty?
       # lines cannot start with a '.'. insert zero-width character before.
-      text = text.gsub(/\n\\\./s, "\n\\\\&\\.")
+      text = text.gsub(/\n\\\./, "\n\\\\&\\.")
       buf_ends_in_newline = @buf.last && @buf.last[-1] == "\n"
       @buf << '\&' if text[0, 2] == '\.' && buf_ends_in_newline
       @buf << text
