@@ -1,9 +1,15 @@
 language: ruby
+
+matrix:
+  allow_failures:
+    - rvm: jruby-9.2.7.0
+
 rvm:
   - 2.3.8
   - 2.4.6
   - 2.5.5
   - 2.6.3
+  - jruby-9.2.7.0
 
 before_install:
   - gem install bundler:2.0.2
