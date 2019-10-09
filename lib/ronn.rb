@@ -15,7 +15,7 @@ module Ronn
     Document.new(filename, attributes, &block)
   end
 
-  # truthy when this a release (\d.\d.\d) version.
+  # truthy when this a release (\d\.\d\.\d) version.
   def self.release?
     revision != '' && !revision.include?('-')
   end
