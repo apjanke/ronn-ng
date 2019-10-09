@@ -58,7 +58,7 @@ module Ronn
     # Array of style modules to apply to the document.
     attr_reader :styles
 
-    # Output directory to write files to
+    # Output directory to write files to.
     attr_accessor :outdir
 
     # Create a Ronn::Document given a path or with the data returned by
