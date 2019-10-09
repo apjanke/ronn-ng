@@ -20,8 +20,6 @@ module Ronn
     revision != '' && !revision.include?('-')
   end
 
-  # version: 0.6.11
-  #
   # A semantic version number based on the git revision. The third element
   # of the version is incremented by the commit offset, such that version
   # 0.6.6-5-gdacd74b => 0.6.11
@@ -31,11 +29,8 @@ module Ronn
     ver.join('.')
   end
 
-  # revision: 0.6.6-5-gdacd74b
-  # revision: 0.6.25
-  #
   # The string revision as reported by: git-describe --tags. This is just the
-  # tag name when a tag references the HEAD commit (0.6.25). When the HEAD
+  # tag name when a tag references the HEAD commit (e.g. 0.6.25). When the HEAD
   # commit is not tagged, this is a "<tag>-<offset>-<sha1>" string:
   #   <tag>    - closest tag name
   #   <offset> - number of commits ahead of <tag>
