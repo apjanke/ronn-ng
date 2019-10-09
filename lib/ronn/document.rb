@@ -20,7 +20,7 @@ module Ronn
     include Ronn::Utils
 
     # Path to the Ronn document. This may be '-' or nil when the Ronn::Document
-    # object is created with a stream.
+    # object is created with a stream, in which case stdin will be read.
     attr_reader :path
 
     # The raw input data, read from path or stream and unmodified.
