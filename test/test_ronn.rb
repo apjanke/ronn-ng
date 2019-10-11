@@ -20,7 +20,7 @@ class RonnTest < Test::Unit::TestCase
     assert_equal 5, lines.size
     assert_equal %(.\\" generated with Ronn-NG/v#{Ronn.version}), lines.shift
     assert_equal %(.\\" http://github.com/apjanke/ronn-ng/tree/#{Ronn.revision}), lines.shift
-    assert_equal %(.TH "HELLO" "1" "November 2009" "" ""), lines.shift
+    assert_equal %(.TH "HELLO" "1" "November 2009" ""), lines.shift
     assert_equal %(.SH "NAME"), lines.shift
     assert_equal %(\\fBhello\\fR \\- hello world), lines.shift
     assert_equal 0, lines.size
