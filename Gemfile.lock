@@ -2,19 +2,20 @@ PATH
   remote: .
   specs:
     ronn-ng (0.8.2)
+      kramdown (~> 2.1)
       mustache (~> 0.7, >= 0.7.0)
       nokogiri (~> 1.9, >= 1.9.0)
-      rdiscount (~> 2.0, >= 2.0.7)
 
 GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.0)
     jaro_winkler (1.5.3)
+    kramdown (2.1.0)
     mini_portile2 (2.4.0)
     mustache (0.99.8)
     mustermann (1.0.3)
-    nokogiri (1.10.3)
+    nokogiri (1.10.5)
       mini_portile2 (~> 2.4.0)
     parallel (1.17.0)
     parser (2.6.3.0)
@@ -25,7 +26,6 @@ GEM
       rack
     rainbow (3.0.0)
     rake (12.3.3)
-    rdiscount (2.2.0.1)
     rubocop (0.74.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
