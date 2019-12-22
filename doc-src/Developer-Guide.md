@@ -4,7 +4,7 @@ Ronn-NG Developer's Guide
 ## Release checklist
 
 * Update the version in files
-  * ronn-ng.gemspec
+  * ronn-ng.gemspec (update the release date, too)
   * `lib/ronn.rb`
 * Update `CHANGES` with the release date
 * Regenerate the man pages with `rake man`

@@ -1,6 +1,12 @@
 Ronn-NG CHANGES
 ===============
 
+Version 0.9.0 (2019 Dec 21)
+---------------------------
+
+* Migrate to kramdown for the underlying Markdown library
+* Minor output formatting and documentation improvements
+
 Version 0.8.2 (2019 Mar 5)
 --------------------------
 
