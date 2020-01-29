@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env ruby -E UTF-8
 # / Usage: ronn <options> <file>...
 # /        ronn -m|--man <file>
 # /        ronn -S|--server <file> ...
@@ -31,6 +31,9 @@
 # /   -W                        disable previously enabled troff warnings
 # /       --version             show ronn version and exit
 # /       --help                show this help message
+# /   -E <encoding>             specify the encoding files are in (default is UTF-8)
+# /                             Note: this only affects files. Data passed in to ronn's STDIN
+# /                             must be in UTF-8 regardless of the -E setting.
 # /
 # / A <file> named example.1.ronn generates example.1.html (HTML manpage)
 # / and example.1 (roff manpage) by default.
@@ -75,6 +78,7 @@ view    = false
 server  = false
 port_arg = nil
 formats = nil
+encoding = "UTF-8"
 options = {}
 write_index = false
 styles = %w[man]
@@ -111,6 +115,7 @@ ARGV.options do |argv|
   argv.on('-f', '--fragment') { (formats ||= []) << 'html_fragment' }
   argv.on('--markdown')       { (formats ||= []) << 'markdown' }
   argv.on('--yaml')           { (formats ||= []) << 'yaml' }
+  argv.on('-E', '--encoding=V') { |val| encoding = val }
 
   # html output options
   argv.on('-s', '--style=V')  { |val| styles += val.split(/[, \n]+/) }
@@ -158,6 +163,7 @@ formats.delete('html') if formats.include?('html_fragment')
 options['date'] &&= Date.strptime(options['date'], '%Y-%m-%d')
 options['styles'] = styles
 options['outdir'] = output_dir
+options['encoding'] = encoding
 
 unless port_arg.nil?
   begin

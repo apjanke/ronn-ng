@@ -23,6 +23,9 @@ module Ronn
     # object is created with a stream, in which case stdin will be read.
     attr_reader :path
 
+    # Encoding that the Ronn document is in
+    attr_accessor :encoding
+
     # The raw input data, read from path or stream and unmodified.
     attr_reader :data
 
@@ -67,13 +70,14 @@ module Ronn
     # for any writeable attributes defined on this class.
     def initialize(path = nil, attributes = {}, &block)
       @path = path
+      attributes.each { |attr_name, value| send("#{attr_name}=", value) }
       @basename = path.to_s =~ /^-?$/ ? nil : File.basename(path)
       @reader = block ||
                 lambda do |f|
                   if ['-', nil].include?(f)
-                    STDIN.read
+                    STDIN.read()
                   else
-                    File.read(f)
+                    File.read(f, :encoding => @encoding)
                   end
                 end
       @data = @reader.call(path)
@@ -84,8 +88,6 @@ module Ronn
       @markdown, @input_html, @html = nil
       @index = Ronn::Index[path || '.']
       @index.add_manual(self) if path && name
-
-      attributes.each { |attr_name, value| send("#{attr_name}=", value) }
     end
 
     # Generate a file basename of the form "<name>.<section>.<type>"

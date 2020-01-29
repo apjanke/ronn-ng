@@ -7,7 +7,8 @@ ronn(1) -- convert markdown files to manpages
 `ronn` `-m`|`--man` <file>...<br>
 `ronn` `-S`|`--server` <file>...<br>
 `ronn` `--pipe` <file><br>
-`ronn` &lt; <file>
+`ronn` &lt; <file><br>
+`ronn` `-E`|`--encoding` <encoding> ...
 
 ## DESCRIPTION
 
@@ -34,6 +35,9 @@ from standard input and roff output is written to standard output. Use the
 The `ronn` command expects input to be valid ronn-format(7) text.  Source files
 are typically named <name>.<section>.ronn (e.g., `example.1.ronn`).  The <name>
 and <section> should match the name and section defined in the <file>'s heading.
+
+Source files must be in UTF-8 encoding, or the encoding specified by the
+`-E`/`--encoding` option, regardless of the locale that `ronn` is running under.
 
 When building roff or HTML output files, destination filenames are determined by
 taking the basename of the input <file> and adding the appropriate file
@@ -78,6 +82,11 @@ directly to a man pager.
   * `-o`=<directory>, `--output-dir`=<directory>:
     Write generated files to the specified directory instead of the default
     location.
+  
+  * `-E`=<encoding>, `--encoding`=<encoding:
+    Specify the encoding that input files are in. Default is UTF-8, regardless
+    of user's locale settings. Input sent to STDIN is always treated as UTF-8,
+    regardless of whether `-E` is passed.
 
 Format options control the files `ronn` generates, or the output format when the
 `--pipe` argument is specified. When no format options are given, both `--roff`
