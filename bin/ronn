@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby -E UTF-8
+#!/usr/bin/env ruby
 # / Usage: ronn <options> <file>...
 # /        ronn -m|--man <file>
 # /        ronn -S|--server <file> ...
@@ -39,6 +39,10 @@
 # / and example.1 (roff manpage) by default.
 require 'date'
 require 'optparse'
+
+# Ronn wants its inputs to be in UTF-8, regardless of the user's
+# locale settings or Ruby version.
+Encoding.default_external = Encoding::UTF_8
 
 def usage
   puts File.readlines(__FILE__)
