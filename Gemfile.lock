@@ -15,7 +15,7 @@ GEM
     mini_portile2 (2.4.0)
     mustache (0.99.8)
     mustermann (1.0.3)
-    nokogiri (1.10.7)
+    nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
     parallel (1.17.0)
     parser (2.6.3.0)
