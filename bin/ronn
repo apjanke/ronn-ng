@@ -82,7 +82,7 @@ view    = false
 server  = false
 port_arg = nil
 formats = nil
-encoding = "UTF-8"
+encoding = 'UTF-8'
 options = {}
 write_index = false
 styles = %w[man]
@@ -122,7 +122,7 @@ ARGV.options do |argv|
   argv.on('-E', '--encoding=V') { |val| encoding = val }
 
   # html output options
-  argv.on('-s', '--style=V')  { |val| styles += val.split(/[, \n]+/) }
+  argv.on('-s', '--style=V') { |val| styles += val.split(/[, \n]+/) }
 
   # manual attribute options
   %w[name section manual organization date].each do |attribute|

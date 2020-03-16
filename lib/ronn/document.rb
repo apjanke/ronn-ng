@@ -74,9 +74,9 @@ module Ronn
       @reader = block ||
                 lambda do |f|
                   if ['-', nil].include?(f)
-                    STDIN.read()
+                    STDIN.read
                   else
-                    File.read(f, :encoding => @encoding)
+                    File.read(f, encoding: @encoding)
                   end
                 end
       @data = @reader.call(path)
