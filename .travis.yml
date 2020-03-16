@@ -12,7 +12,7 @@ rvm:
   - jruby-9.2.7.0
 
 before_install:
-  - gem install bundler:2.0.2
+  - gem install bundler:2.1.4
 
 install:
   - bundle install --with development
