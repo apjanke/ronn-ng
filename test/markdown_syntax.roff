@@ -37,7 +37,7 @@ Inline markup like _italics_,  **bold**, and `code()`\.
 .SS "Philosophy"
 Markdown is intended to be as easy\-to\-read and easy\-to\-write as is feasible\.
 .P
-Readability, however, is emphasized above all else\. A Markdown\-formatted document should be publishable as\-is, as plain text, without looking like it\'s been marked up with tags or formatting instructions\. While Markdown\'s syntax has been influenced by several existing text\-to\-HTML filters \-\- including Setext \fI\%http://docutils\.sourceforge\.net/mirror/setext\.html\fR, atx \fI\%http://www\.aaronsw\.com/2002/atx/\fR, Textile \fI\%http://textism\.com/tools/textile/\fR, reStructuredText \fI\%http://docutils\.sourceforge\.net/rst\.html\fR, Grutatext \fI\%http://www\.triptico\.com/software/grutatxt\.html\fR, and EtText \fI\%http://ettext\.taint\.org/doc/\fR \-\- the single biggest source of inspiration for Markdown\'s syntax is the format of plain text email\.
+Readability, however, is emphasized above all else\. A Markdown\-formatted document should be publishable as\-is, as plain text, without looking like it\'s been marked up with tags or formatting instructions\. While Markdown\'s syntax has been influenced by several existing text\-to\-HTML filters \-\- including Setext \fIhttp://docutils\.sourceforge\.net/mirror/setext\.html\fR, atx \fIhttp://www\.aaronsw\.com/2002/atx/\fR, Textile \fIhttp://textism\.com/tools/textile/\fR, reStructuredText \fIhttp://docutils\.sourceforge\.net/rst\.html\fR, Grutatext \fIhttp://www\.triptico\.com/software/grutatxt\.html\fR, and EtText \fIhttp://ettext\.taint\.org/doc/\fR \-\- the single biggest source of inspiration for Markdown\'s syntax is the format of plain text email\.
 .P
 To this end, Markdown\'s syntax is comprised entirely of punctuation characters, which punctuation characters have been carefully chosen so as to look like what they mean\. E\.g\., asterisks around a word actually look like *emphasis*\. Markdown lists look like, well, lists\. Even blockquotes look like quoted passages of text, assuming you\'ve ever used email\.
 .SS "Inline HTML"
@@ -111,7 +111,7 @@ AT&amp;T
 .fi
 .IP "" 0
 .P
-Similarly, because Markdown supports \fI\%#html\fR, if you use angle brackets as delimiters for HTML tags, Markdown will treat them as such\. But if you write:
+Similarly, because Markdown supports \fIinline HTML\fR, if you use angle brackets as delimiters for HTML tags, Markdown will treat them as such\. But if you write:
 .IP "" 4
 .nf
 4 < 5
@@ -134,9 +134,9 @@ The implication of the "one or more consecutive lines of text" rule is that Mark
 .P
 When you \fIdo\fR want to insert a \fB<br />\fR break tag using Markdown, you end a line with two or more spaces, then type return\.
 .P
-Yes, this takes a tad more effort to create a \fB<br />\fR, but a simplistic "every line break is a \fB<br />\fR" rule wouldn\'t work for Markdown\. Markdown\'s email\-style \fI\%#blockquote\fR and multi\-paragraph \fI\%#list\fR work best \-\- and look better \-\- when you format them with hard breaks\.
+Yes, this takes a tad more effort to create a \fB<br />\fR, but a simplistic "every line break is a \fB<br />\fR" rule wouldn\'t work for Markdown\. Markdown\'s email\-style \fIblockquoting\fR and multi\-paragraph \fIlist items\fR work best \-\- and look better \-\- when you format them with hard breaks\.
 .SS "Headers"
-Markdown supports two styles of headers, Setext \fI\%http://docutils\.sourceforge\.net/mirror/setext\.html\fR and atx \fI\%http://www\.aaronsw\.com/2002/atx/\fR\.
+Markdown supports two styles of headers, Setext \fIhttp://docutils\.sourceforge\.net/mirror/setext\.html\fR and atx \fIhttp://www\.aaronsw\.com/2002/atx/\fR\.
 .P
 Setext\-style headers are "underlined" using equal signs (for first\-level headers) and dashes (for second\-level headers)\. For example:
 .IP "" 4
@@ -900,8 +900,8 @@ _   underscore
 .SH "AUTHOR"
 Markdown was created by John Gruber\.
 .P
-Manual page by Ryan Tomayko\. It\'s pretty much a direct copy of the Markdown Syntax Reference \fI\%http://daringfireball\.net/projects/markdown/syntax\fR, also by John Gruber\.
+Manual page by Ryan Tomayko\. It\'s pretty much a direct copy of the Markdown Syntax Reference \fIhttp://daringfireball\.net/projects/markdown/syntax\fR, also by John Gruber\.
 .SH "SEE ALSO"
 ronn(5)
 .br
-\fI\%http://daringfireball\.net/projects/markdown/\fR
+\fIhttp://daringfireball\.net/projects/markdown/\fR

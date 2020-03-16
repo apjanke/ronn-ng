@@ -281,13 +281,13 @@ module Ronn
             inline_filter(node.children)
           elsif node.has_attribute?('data-bare-link')
             write '\fI'
-            write '\%' + escape(node.attributes['href'].content)
+            inline_filter(node.children)
             write '\fR'
           else
             inline_filter(node.children)
             write ' '
             write '\fI'
-            write '\%' + escape(node.attributes['href'].content)
+            write escape(node.attributes['href'].content)
             write '\fR'
           end
 
