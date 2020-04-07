@@ -70,14 +70,13 @@ module Ronn
     # for any writeable attributes defined on this class.
     def initialize(path = nil, attributes = {}, &block)
       @path = path
-      attributes.each { |attr_name, value| send("#{attr_name}=", value) }
       @basename = path.to_s =~ /^-?$/ ? nil : File.basename(path)
       @reader = block ||
                 lambda do |f|
                   if ['-', nil].include?(f)
-                    STDIN.read()
+                    STDIN.read
                   else
-                    File.read(f, :encoding => @encoding)
+                    File.read(f, encoding: @encoding)
                   end
                 end
       @data = @reader.call(path)
@@ -88,6 +87,8 @@ module Ronn
       @markdown, @input_html, @html = nil
       @index = Ronn::Index[path || '.']
       @index.add_manual(self) if path && name
+
+      attributes.each { |attr_name, value| send("#{attr_name}=", value) }
     end
 
     # Generate a file basename of the form "<name>.<section>.<type>"
