@@ -103,7 +103,6 @@ Gem::Specification.new do |s|
     test/titleless_document.ronn
     test/underline_spacing_test.roff
     test/underline_spacing_test.ronn
-    test/url_formatting.ronn
   ]
   # = MANIFEST =
 
