@@ -1,5 +1,4 @@
-Ronn-NG Developer's Guide
-=========================
+# Ronn-NG Developer's Guide
 
 ## Release checklist
 
@@ -26,7 +25,6 @@ After the release, start development on the next release:
 * Update `CHANGES` with a new section for the next release
 * Regenerate the man pages again: `rake man`
 * Commit and push
-
 
 ## Running tests
 
