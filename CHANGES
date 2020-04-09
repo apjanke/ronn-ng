@@ -1,9 +1,10 @@
 Ronn-NG CHANGES
 ===============
 
-Version <TBD>
--------------
+Version 0.9.1 (2020 Apr 09)
+---------------------------
 
+* Fix underlining issue (https://github.com/apjanke/ronn-ng/pull/41)
 
 Version 0.9.0 (2019 Dec 21)
 ---------------------------
