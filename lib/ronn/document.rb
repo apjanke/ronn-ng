@@ -208,7 +208,9 @@ module Ronn
     # tuple of the form: [name, section, description], where missing information
     # is represented by nil and any element may be missing.
     def sniff
-      html = Kramdown::Document.new(data[0, 512], auto_ids: false, smart_quotes: ['apos', 'apos', 'quot', 'quot'], typographic_symbols: { hellip: '...', ndash: '--', mdash: '--' }).to_html
+      html = Kramdown::Document.new(data[0, 512], auto_ids: false, 
+        smart_quotes: ['apos', 'apos', 'quot', 'quot'],
+        typographic_symbols: { hellip: '...', ndash: '--', mdash: '--' }).to_html
       heading, html = html.split("</h1>\n", 2)
       return [nil, nil, nil] if html.nil?
 
@@ -310,7 +312,9 @@ module Ronn
     end
 
     def input_html
-      @input_html ||= strip_heading(Kramdown::Document.new(markdown, auto_ids: false, smart_quotes: ['apos', 'apos', 'quot', 'quot'], typographic_symbols: { hellip: '...', ndash: '--', mdash: '--' }).to_html)
+      @input_html ||= strip_heading(Kramdown::Document.new(markdown, auto_ids: false,
+        smart_quotes: ['apos', 'apos', 'quot', 'quot'],
+        typographic_symbols: { hellip: '...', ndash: '--', mdash: '--' }).to_html)
     end
 
     def strip_heading(html)
