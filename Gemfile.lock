@@ -1,8 +1,9 @@
 PATH
   remote: .
   specs:
-    ronn-ng (0.9.1)
+    ronn-ng (0.10.0.pre.SNAPSHOT)
       kramdown (~> 2.1)
+      kramdown-parser-gfm (~> 1.0.1)
       mustache (~> 1.0)
       nokogiri (~> 1.9, >= 1.9.0)
 
@@ -12,6 +13,8 @@ GEM
     ast (2.4.1)
     kramdown (2.3.0)
       rexml
+    kramdown-parser-gfm (1.0.1)
+      kramdown (~> 2.0)
     mini_portile2 (2.4.0)
     mustache (1.1.1)
     mustermann (1.1.1)

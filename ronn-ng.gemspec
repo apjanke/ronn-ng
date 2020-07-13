@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = 'ronn-ng'
-  s.version = '0.9.1'
-  s.date = '2020-04-09'
+  s.version = '0.10.0-SNAPSHOT'
+  s.date = '2020-07-13'
 
   s.summary     = 'Builds man pages from Markdown'
   s.description = 'Ronn-NG builds manuals in HTML and Unix man page format from Markdown.'
@@ -110,9 +110,10 @@ Gem::Specification.new do |s|
   s.test_files = s.files.select { |path| path =~ /^test\/.*_test.rb/ }
 
   s.extra_rdoc_files = %w[LICENSE.txt AUTHORS]
-  s.add_dependency 'kramdown',    '~> 2.1'
-  s.add_dependency 'mustache',    '~> 1.0'
-  s.add_dependency 'nokogiri',    '~> 1.9', '>= 1.9.0'
+  s.add_dependency 'kramdown',              '~> 2.1'
+  s.add_dependency 'kramdown-parser-gfm',   '~> 1.0.1'
+  s.add_dependency 'mustache',              '~> 1.0'
+  s.add_dependency 'nokogiri',              '~> 1.9', '>= 1.9.0'
   s.add_development_dependency 'rack',      '~> 2.0',  '>= 2.0.6'
   s.add_development_dependency 'rake',      '~> 12.3', '>= 12.3.0'
   s.add_development_dependency 'rubocop',   '~> 0.60', '>= 0.57.1'
