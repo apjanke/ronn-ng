@@ -1,0 +1,19 @@
+.\" generated with Ronn-NG/v0.9.1
+.\" http://github.com/apjanke/ronn-ng/tree/0.9.1
+.TH "CODE_BLOCKS_REGRESSION" "" "July 2020" ""
+.SH "In the text:"
+This is Renzo\'s code\.
+.P
+Debian\'s lintian returns the following warning: acute\-accent\-in\-manual\-page
+.P
+This manual page uses the \' groff sequence\. Usually, the intent to generate an apostrophe, but that sequence actually renders as a an acute accent\.
+.P
+For an apostrophe or a single closing quote, use plain \'\. For single opening quote, i\.e\. a straight downward line \' like the one used in shell commands, use \e(aq\.
+.SH "Basic code block"
+The situation is even worse when there are code blocks, mainly code chunks or commands\. E\.g\., copy\-paste fails\.
+.P
+Type the following command \fBecho \'Hello World\'\fR\.
+.P
+\fBbash $ echo \'hello world\'\fR
+.P
+The following code cannot be compiled: \fBC int main() { 	int example = 42; 	switch (example) { 		case \'a\': return 10; 		default: return 42; 	} }\fR
