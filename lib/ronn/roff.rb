@@ -168,7 +168,7 @@ module Ronn
           when 'ol'
             macro 'IP', %W["#{node.parent.children.index(node) + 1}." 4]
           when 'ul'
-            macro 'IP', ['"\\[ci]"', '4']
+            macro 'IP', ['"\(bu"', '4']
           else
             raise "List element found as a child of non-list parent element: #{node.inspect}"
           end
@@ -316,7 +316,7 @@ module Ronn
     end
 
     HTML_ROFF_ENTITIES = {
-      '•' => '\[ci]',
+      '•' => '\(bu',
       '&lt;' => '<',
       '&gt;' => '>',
       ' ' => '\~', # That's a literal non-breaking space character there
