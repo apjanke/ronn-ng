@@ -59,12 +59,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  rack (~> 2.0, >= 2.0.6)
-  rake (~> 12.3, >= 12.3.0)
+  rack (~> 2.2, >= 2.2.3)
+  rake (~> 12.3, >= 12.3.3)
   ronn-ng!
-  rubocop (~> 0.60, >= 0.57.1)
-  sinatra (~> 2.0, >= 2.0.0)
-  test-unit (~> 3.2, >= 3.2.7)
+  rubocop (~> 0.88, >= 0.88.0)
+  sinatra (~> 2.0, >= 2.0.8)
+  test-unit (~> 3.3, >= 3.3.6)
 
 BUNDLED WITH
    2.1.4
