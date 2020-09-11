@@ -312,7 +312,11 @@ module Ronn
     end
 
     def input_html
-      @input_html ||= strip_heading(Kramdown::Document.new(markdown, auto_ids: false,
+      @input_html ||= strip_heading(Kramdown::Document.new(markdown,
+        auto_ids: false,
+        input: 'GFM',
+        hard_wrap: 'false',
+        syntax_highlighter_opts: 'line_numbers: false',
         smart_quotes: ['apos', 'apos', 'quot', 'quot'],
         typographic_symbols: { hellip: '...', ndash: '--', mdash: '--' }).to_html)
     end

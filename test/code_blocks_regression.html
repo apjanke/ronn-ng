@@ -1,0 +1,38 @@
+<div class='mp'>
+
+<h1 id="Example-Quote-Error">Example Quote Error</h1>
+<h2 id="In-the-text-">In the text:</h2>
+
+<p>This is Renzo's code.</p>
+
+<p>Debian's lintian returns the following warning:
+acute-accent-in-manual-page</p>
+
+<p>This manual page uses the ' groff sequence. Usually, the intent to
+generate an apostrophe, but that sequence actually renders as a an acute
+accent.</p>
+
+<p>For an apostrophe or a single closing quote, use plain '. For single
+opening quote, i.e. a straight downward line ' like the one used in
+shell commands, use \(aq.</p>
+
+<h2 id="Basic-code-block">Basic code block</h2>
+
+<p>The situation is even worse when there are code blocks, mainly code
+chunks or commands. E.g., copy-paste fails.</p>
+
+<p>Type the following command <code>echo 'Hello World'</code>.</p>
+
+<pre><code class="language-bash">$ echo 'hello world'
+</code></pre>
+
+<p>The following code cannot be compiled:</p>
+<pre><code class="language-C">int main() {
+	int example = 42;
+	switch (example) {
+		case 'a': return 10;
+		default: return 42;
+	}
+}
+</code></pre>
+</div>

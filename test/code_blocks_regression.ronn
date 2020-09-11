@@ -1,0 +1,40 @@
+Example Quote Error
+===================
+
+## In the text:
+
+This is Renzo's code.
+
+Debian's lintian returns the following warning:
+acute-accent-in-manual-page 
+
+This manual page uses the \' groff sequence. Usually, the intent to
+generate an apostrophe, but that sequence actually renders as a an acute
+accent.
+    
+For an apostrophe or a single closing quote, use plain '. For single
+opening quote, i.e. a straight downward line ' like the one used in
+shell commands, use &#92;(aq.
+
+## Basic code block
+
+The situation is even worse when there are code blocks, mainly code
+chunks or commands. E.g., copy-paste fails.
+
+Type the following command `echo 'Hello World'`.
+
+``` bash
+$ echo 'hello world'
+```
+
+The following code cannot be compiled:
+``` C
+int main() {
+	int example = 42;
+	switch (example) {
+		case 'a': return 10;
+		default: return 42;
+	}
+}
+```
+
