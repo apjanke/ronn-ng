@@ -59,7 +59,7 @@ Gem::Specification.new do |s|
     test/basic_document.html
     test/basic_document.ronn
     test/circumflexes.ronn
-    test/code_blocks.7.ronn
+    test/code_blocks.ronn
     test/contest.rb
     test/custom_title_document.html
     test/custom_title_document.ronn
@@ -114,11 +114,11 @@ Gem::Specification.new do |s|
   s.add_dependency 'kramdown-parser-gfm',   '~> 1.0.1'
   s.add_dependency 'mustache',              '~> 1.0'
   s.add_dependency 'nokogiri',              '~> 1.9', '>= 1.9.0'
-  s.add_development_dependency 'rack',      '~> 2.0',  '>= 2.0.6'
-  s.add_development_dependency 'rake',      '~> 12.3', '>= 12.3.0'
-  s.add_development_dependency 'rubocop',   '~> 0.60', '>= 0.57.1'
-  s.add_development_dependency 'sinatra',   '~> 2.0',  '>= 2.0.0'
-  s.add_development_dependency 'test-unit', '~> 3.2',  '>= 3.2.7'
+  s.add_development_dependency 'rack',      '~> 2.2',  '>= 2.2.3'
+  s.add_development_dependency 'rake',      '~> 12.3', '>= 12.3.3'
+  s.add_development_dependency 'rubocop',   '~> 0.88', '>= 0.88.0'
+  s.add_development_dependency 'sinatra',   '~> 2.0',  '>= 2.0.8'
+  s.add_development_dependency 'test-unit', '~> 3.3',  '>= 3.3.6'
 
   s.rdoc_options = ['--line-numbers', '--inline-source', '--title', 'Ronn']
   s.require_paths = %w[lib]
