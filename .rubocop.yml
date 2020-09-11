@@ -9,6 +9,9 @@ Layout/LineLength:
 Layout/HashAlignment:
   Enabled: false
 
+Layout/ArgumentAlignment:
+  Enabled: false
+
 Metrics/BlockLength:
   Enabled: false
 
