@@ -1,15 +1,15 @@
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.7
 
 # To get fixed
 
-Layout/AlignHash:
+Layout/LineLength:
+  Enabled: false
+
+Layout/HashAlignment:
   Enabled: false
 
 Metrics/BlockLength:
-  Enabled: false
-
-Metrics/LineLength:
   Enabled: false
 
 Metrics/ParameterLists:
@@ -43,6 +43,9 @@ Metrics/ClassLength:
   Enabled: false
 
 Metrics/MethodLength:
+  Enabled: false
+
+Style/FormatStringToken:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
