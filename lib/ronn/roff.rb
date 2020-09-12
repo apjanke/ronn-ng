@@ -339,7 +339,7 @@ module Ronn
       text.gsub!(/&#(\d+);/) { $1.to_i.chr }                # dec entities
       text.gsub!('\\', '\e')                                # backslash
       text.gsub!('...', '\|.\|.\|.')                        # ellipses
-      text.gsub!(/['.-]/) { |m| "\\#{m}" }                  # control chars
+      text.gsub!(/[.-]/) { |m| "\\#{m}" }                   # control chars
       ent.each do |key, val|
         text.gsub!(key, val)
       end
@@ -354,10 +354,12 @@ module Ronn
     # write text to output buffer
     def write(text)
       return if text.nil? || text.empty?
-      # lines cannot start with a '.'. insert zero-width character before.
+      # lines cannot start with a '.' or "'". insert zero-width character before.
       text = text.gsub(/\n\\\./, "\n\\\\&\\.")
+      text = text.gsub(/\n'/, "\n\\&\\'")
       buf_ends_in_newline = @buf.last && @buf.last[-1] == "\n"
       @buf << '\&' if text[0, 2] == '\.' && buf_ends_in_newline
+      @buf << '\&' if text[0, 1] == "'" && buf_ends_in_newline
       @buf << text
     end
 
