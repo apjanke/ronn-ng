@@ -1,0 +1,24 @@
+.TH "ANGLE_BRACKET_SYNTAX" "5" "January 1979" ""
+.SH "NAME"
+\fBangle_bracket_syntax\fR \- angle bracket syntax test
+.P
+A \fIWORD\fR in angle brackets is converted to \fIWORD\fR,
+.IP "" 4
+.nf
+except when <WORD> is
+part of a preformatted
+code block,
+.fi
+.IP "" 0
+.P
+or when \fB<WORD>\fR is enclosed in backticks\.
+.P
+or when \fIWORD\fR has a
+.SH "Escaping angle brackets"
+You can escape <angle> <brackets> with backslashes, since we\'re using GitHub Flavored Markdown\.
+.P
+Example:
+.P
+\fBpxzgrep\fR [\fB\-p\fR<n>] [\fB\-V\fR] [<xzgrep options>] <pattern> <file1> <file2> [<more files>]
+.P
+(Though really you should just put that in a fenced code block\.)

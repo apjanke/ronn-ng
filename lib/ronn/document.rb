@@ -373,7 +373,7 @@ module Ronn
 
     # Convert <WORD> to <var>WORD</var> but only if WORD isn't an HTML tag.
     def markdown_filter_angle_quotes(markdown)
-      markdown.gsub(/<([^:.\/]+?)>/) do |match|
+      markdown.gsub(/(?<!\\)<([^:.\/]+?)>/) do |match|
         contents = $1
         tag, attrs = contents.split(' ', 2)
         if attrs =~ /\/=/ || html_element?(tag.sub(/^\//, '')) ||

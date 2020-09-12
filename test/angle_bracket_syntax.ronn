@@ -10,3 +10,13 @@ A <WORD> in angle brackets is converted to <var>WORD</var>,
 or when `<WORD>` is enclosed in backticks.
 
 or when <WORD> has a <dot.> or <foo:colon>.
+
+## Escaping angle brackets
+
+You can escape \<angle\> \<brackets\> with backslashes, since we're using GitHub Flavored Markdown.
+
+Example:
+
+`pxzgrep` [`-p`\<n\>] [`-V`] [\<xzgrep options\>] \<pattern\> \<file1\> \<file2\> [\<more files\>]
+
+(Though really you should just put that in a fenced code block.)
