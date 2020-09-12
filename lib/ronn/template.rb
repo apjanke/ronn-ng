@@ -7,6 +7,7 @@ module Ronn
     self.template_extension = 'html'
 
     def initialize(document, style_path = ENV['RONN_STYLE'].to_s.split(':'))
+      super()
       @document = document
       @style_path = style_path + [Template.template_path]
     end

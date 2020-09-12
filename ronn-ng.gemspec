@@ -2,6 +2,7 @@ Gem::Specification.new do |s|
   s.name = 'ronn-ng'
   s.version = '0.10.0-SNAPSHOT'
   s.date = '2020-07-13'
+  s.required_ruby_version = '>= 2.4'
 
   s.summary     = 'Builds man pages from Markdown'
   s.description = 'Ronn-NG builds manuals in HTML and Unix man page format from Markdown.'

@@ -1,5 +1,6 @@
 AllCops:
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 2.4
+  NewCops: enable
 
 # To get fixed
 
@@ -48,6 +49,9 @@ Metrics/ClassLength:
 Metrics/MethodLength:
   Enabled: false
 
+Style/CombinableLoops:
+  Enabled: false
+
 Style/FormatStringToken:
   Enabled: false
 
@@ -60,7 +64,13 @@ Style/RegexpLiteral:
 Style/PerlBackrefs:
   Enabled: false
 
+Style/RedundantRegexpCharacterClass:
+  Enabled: false
+
 Style/Semicolon:
+  Enabled: false
+
+Style/StringConcatenation:
   Enabled: false
 
 Style/WordArray:

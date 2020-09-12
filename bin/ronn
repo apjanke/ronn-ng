@@ -191,7 +191,7 @@ end
 # Build Pipeline
 
 pid = nil
-wr = STDOUT
+wr = $stdout
 documents = ARGV.map { |file| Ronn::Document.new(file, options) }
 documents.each do |doc|
   # setup the man pipeline if the --man option was specified
@@ -202,7 +202,7 @@ documents.each do |doc|
       rd.close
     else
       wr.close
-      STDIN.reopen rd
+      $stdin.reopen rd
       exec "#{groff} | #{pager}"
     end
   end

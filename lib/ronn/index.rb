@@ -5,8 +5,7 @@ module Ronn
   class Index
     include Enumerable
 
-    attr_reader :path
-    attr_reader :references
+    attr_reader :path, :references
 
     # Retrieve an Index for <path>, where <path> is a directory or normal
     # file. The index is loaded from the corresponding index.txt file if
@@ -142,8 +141,7 @@ module Ronn
   #
   # The #url method should be used to obtain the href value for HTML.
   class Reference
-    attr_reader :name
-    attr_reader :location
+    attr_reader :name, :location
 
     def initialize(index, name, location)
       @index = index
