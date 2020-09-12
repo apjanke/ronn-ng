@@ -1,0 +1,38 @@
+.TH "CODE_BLOCKS" "" "January 1979" ""
+.SH "Basic code block"
+.nf
+Hello, world!
+.fi
+.SH "Language\-identified code blocks"
+.nf
+<html>
+  <head>
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    Hello, world!
+  </body>
+</html>
+.fi
+.SH "Interspersed code blocks and text"
+Some text\.
+.IP "" 4
+.nf
+Some code\.
+.fi
+.IP "" 0
+.P
+Here\'s some <pre> text\.
+.IP "" 4
+.nf
+    This is pre text\.
+.fi
+.IP "" 0
+.P
+Some more text\.
+.IP "" 4
+.nf
+Some more code\.
+.fi
+.IP "" 0
+
