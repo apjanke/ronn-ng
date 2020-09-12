@@ -23,3 +23,12 @@ Here's some special entities:
 
 Here's a line that uses non-breaking spaces to force the
 last&nbsp;few&nbsp;words&nbsp;to&nbsp;wrap&nbsp;together.
+
+And stuff like this:
+
+git bulk [-g] ([-a]|[-w &lt;ws-name&gt;]) &lt;git command&gt; <br/>
+git bulk --addworkspace &lt;ws-name&gt; &lt;ws-root-directory&gt; (--from &lt;URL or file&gt;) <br/>
+git bulk --removeworkspace &lt;ws-name&gt; <br/>
+
+Should have the `&lt;`/`&gt;` entities stay as `&lt;`/`&gt;` in HTML, but be
+turned into literal brackets in the ROFF.
