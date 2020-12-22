@@ -1,12 +1,13 @@
 Ronn-NG CHANGES
 ===============
 
-Version 0.10.0 (2020 Oct 22)
+Version 0.10.0 (2020 Dec 21)
 ----------------------------
 
 * Switch to GitHub Flavored Markdown, fixing code block rendering (<https://github.com/apjanke/ronn-ng/pull/53>)
 * Revert `\[ci]` back to `\(bu)` (<https://github.com/apjanke/ronn-ng/pull/51>)
 * Minor fix to single-quote escaping (<https://github.com/apjanke/ronn-ng/issues/55>)
+* Elide HTML comments when producing roff output (<https://github.com/apjanke/ronn-ng/issues/65>)
 * Bump to mustache 1.x
 
 Version 0.9.1 (2020 Apr 09)
