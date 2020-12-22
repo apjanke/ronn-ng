@@ -88,10 +88,10 @@ class RonnTest < Test::Unit::TestCase
     test File.basename(source, '.ronn') + ' HTML' do
       output = `ronn --pipe --html --fragment #{source}`
       expected = begin
-                   File.read(dest)
-                 rescue IOError
-                   ''
-                 end
+        File.read(dest)
+      rescue IOError
+        ''
+      end
       if expected != output
         flunk_with_diff(dest, wrong, output)
       elsif File.exist?(wrong)
@@ -110,10 +110,10 @@ class RonnTest < Test::Unit::TestCase
       output = `ronn --pipe --roff --date=1979-01-01 #{source}`
                .split("\n", 3).last # remove ronn version comments
       expected = begin
-                   File.read(dest)
-                 rescue IOError
-                   ''
-                 end
+        File.read(dest)
+      rescue IOError
+        ''
+      end
       if expected != output
         flunk_with_diff(dest, wrong, output)
       elsif File.exist?(wrong)
