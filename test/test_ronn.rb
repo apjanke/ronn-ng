@@ -86,7 +86,7 @@ class RonnTest < Test::Unit::TestCase
 
     wrong = dest + '.wrong'
     test File.basename(source, '.ronn') + ' HTML' do
-      output = `ronn --pipe --html --fragment #{source}`
+      output = `ronn --pipe --fragment #{source}`
       expected = begin
         File.read(dest)
       rescue IOError
