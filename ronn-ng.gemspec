@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = 'ronn-ng'
-  s.version = '0.10.0-SNAPSHOT'
-  s.date = '2020-12-21'
+  s.version = '0.10.0'
+  s.date = '2020-12-22'
   s.required_ruby_version = '>= 2.4'
 
   s.summary     = 'Builds man pages from Markdown'
@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
     AUTHORS
     CHANGES
     Gemfile
+    Gemfile.lock
     INSTALLING.md
     LICENSE.txt
     README.md
@@ -54,13 +55,19 @@ Gem::Specification.new do |s|
     man/ronn.1.ronn
     ronn-ng.gemspec
     test/angle_bracket_syntax.html
+    test/angle_bracket_syntax.roff
     test/angle_bracket_syntax.ronn
     test/backticks.html
     test/backticks.ronn
     test/basic_document.html
     test/basic_document.ronn
     test/circumflexes.ronn
+    test/code_blocks.html
+    test/code_blocks.roff
     test/code_blocks.ronn
+    test/code_blocks_regression
+    test/code_blocks_regression.html
+    test/code_blocks_regression.ronn
     test/contest.rb
     test/custom_title_document.html
     test/custom_title_document.ronn
@@ -96,6 +103,9 @@ Gem::Specification.new do |s|
     test/section_reference_links.html
     test/section_reference_links.roff
     test/section_reference_links.ronn
+    test/single_quotes.html
+    test/single_quotes.roff
+    test/single_quotes.ronn
     test/tables.ronn
     test/test_ronn.rb
     test/test_ronn_document.rb

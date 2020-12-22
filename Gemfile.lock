@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ronn-ng (0.10.0.pre.SNAPSHOT)
+    ronn-ng (0.10.0)
       kramdown (~> 2.1)
       kramdown-parser-gfm (~> 1.0.1)
       mustache (~> 1.0)
