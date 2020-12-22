@@ -6,7 +6,7 @@
   * ronn-ng.gemspec (update the release date, too)
   * `lib/ronn.rb`
 * Update `CHANGES` with the release date
-* Regenerate the man pages with `rake man`
+* Regenerate the man pages with `bundle exec rake man`
 * Run the tests one last time! `bundle exec rake test`
 * Commit the updated files
 * Tag the release: `git tag vX.Y.Z`
@@ -28,7 +28,7 @@ After the release, start development on the next release:
 
 ## Running tests
 
-`rake test` will run all the tests.
+`bundle exec rake test` will run all the tests.
 
-Do `RONN_QUIET_TEST=1 rake test` for shorter output that omits the possibly-long
+Do `RONN_QUIET_TEST=1 bundle exec rake test` for shorter output that omits the possibly-long
 diff outputs.
