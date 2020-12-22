@@ -162,6 +162,7 @@ elsif build
   formats ||= %w[roff html]
 end
 formats ||= []
+formats.delete('html') if formats.include?('html_fragment')
 
 options['date'] &&= Date.strptime(options['date'], '%Y-%m-%d')
 options['styles'] = styles
