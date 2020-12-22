@@ -250,10 +250,14 @@ module Ronn
         text = node.to_html.dup
         write escape(text)
 
+      elsif node.comment?
+        # ignore HTML comments
+
       elsif node.elem?
         case node.name
         when 'span'
           inline_filter(node.children)
+
         when 'code'
           if child_of?(node, 'pre')
             inline_filter(node.children)
