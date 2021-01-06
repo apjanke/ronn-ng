@@ -111,6 +111,10 @@ module Ronn
           macro 'SH', quote(escape(node.inner_html))
         when 'h3'
           macro 'SS', quote(escape(node.inner_html))
+        when 'h4', 'h5', 'h6'
+          # Ronn discourages use of this many heading levels, but if they are used,
+          # we should make them legible instead of ignoring them.
+          macro 'SS', quote(escape(node.inner_html))
 
         when 'p'
           prev = previous(node)
