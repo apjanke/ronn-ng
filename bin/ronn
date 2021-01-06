@@ -87,7 +87,7 @@ options = {}
 write_index = false
 styles = %w[man]
 groff = 'groff -Wall -mtty-char -mandoc -Tascii -t'
-pager = ENV['MANPAGER'] || ENV['PAGER'] || 'more -is'
+pager = ENV['MANPAGER'] || ENV['PAGER'] || 'more -s'
 output_dir = nil
 
 ##
