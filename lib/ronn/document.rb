@@ -179,10 +179,13 @@ module Ronn
     end
 
     # The date the man page was published. If not set explicitly,
-    # this is the file's modified time or, if no file is given,
+    # it first checks for "SOURCE_DATE_EPOCH" to support reproducible
+    # builds, then the file's modified time or, if no file is given,
     # the current time. Center displayed in the document footer.
     def date
       return @date if @date
+
+      return Time.at(ENV['SOURCE_DATE_EPOCH'].to_i).gmtime if ENV['SOURCE_DATE_EPOCH']
 
       return File.mtime(path) if File.exist?(path)
 
