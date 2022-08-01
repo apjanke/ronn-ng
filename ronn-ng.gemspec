@@ -65,7 +65,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'nokogiri',              '~> 1.10', '>= 1.10.10'
   s.add_development_dependency 'rack',      '~> 2.2',  '>= 2.2.3'
   s.add_development_dependency 'rake',      '~> 12.3', '>= 12.3.3'
-  s.add_development_dependency 'rubocop',   '~> 0.88', '>= 0.88.0'
+  s.add_development_dependency 'rubocop',   '~> 1.12.1'
   s.add_development_dependency 'sinatra',   '~> 2.0',  '>= 2.0.8'
   s.add_development_dependency 'test-unit', '~> 3.3',  '>= 3.3.6'
 
