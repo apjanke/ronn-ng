@@ -12,6 +12,18 @@ class DocumentTest < Test::Unit::TestCase
       .tr('"', "'")
   end
 
+  def yaml_load(yaml)
+    # Check if `permitted_classes` keyword argument is available. That means
+    # `safe_load` is the default loading mechanism, i.e. Ruby 3.1 + Psych 4.0
+    # are used.
+    kwargs = !(YAML.method(:load).parameters & [[:key, :permitted_classes]]).empty?
+    if kwargs
+      YAML.load(yaml, permitted_classes: [Time])
+    else
+      YAML.load(yaml)
+    end
+  end
+
   test 'new with path' do
     doc = Ronn::Document.new(SIMPLE_FILE)
     assert_equal File.read(SIMPLE_FILE), doc.data
@@ -137,15 +149,6 @@ class DocumentTest < Test::Unit::TestCase
 
     test 'converting to yaml' do
       require 'yaml'
-      # Check if `permitted_classes` keyword argument is available. That means
-      # `safe_load` is the default loading mechanism, i.e. Ruby 3.1 + Psych 4.0
-      # are used.
-      kwargs = !(YAML.method(:load).parameters & [[:key, :permitted_classes]]).empty?
-      loaded_yaml = if kwargs
-        YAML.load(@doc.to_yaml, permitted_classes: [Time])
-      else
-        YAML.load(@doc.to_yaml)
-      end
       assert_equal({
                      'section'      => '1',
                      'name'         => 'hello',
@@ -155,7 +158,7 @@ class DocumentTest < Test::Unit::TestCase
                      'toc'          => [['NAME', 'NAME']],
                      'organization' => nil,
                      'manual'       => nil
-                   }, loaded_yaml)
+                   }, yaml_load(@doc.to_yaml))
     end
 
     test 'converting to json' do
