@@ -16,7 +16,7 @@ class DocumentTest < Test::Unit::TestCase
     # Check if `permitted_classes` keyword argument is available. That means
     # `safe_load` is the default loading mechanism, i.e. Ruby 3.1 + Psych 4.0
     # are used.
-    kwargs = !(YAML.method(:load).parameters & [[:key, :permitted_classes]]).empty?
+    kwargs = !(YAML.method(:load).parameters & [%i[key permitted_classes]]).empty?
     if kwargs
       YAML.load(yaml, permitted_classes: [Time])
     else
