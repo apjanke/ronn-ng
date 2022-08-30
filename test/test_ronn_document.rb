@@ -146,7 +146,7 @@ class DocumentTest < Test::Unit::TestCase
                      'toc'          => [['NAME', 'NAME']],
                      'organization' => nil,
                      'manual'       => nil
-                   }, YAML.load(@doc.to_yaml))
+                   }, YAML.load(@doc.to_yaml, permitted_classes: [Time]))
     end
 
     test 'converting to json' do
