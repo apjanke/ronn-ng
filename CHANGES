@@ -4,6 +4,9 @@ Ronn-NG CHANGES
 Version 0.10.1 (in progress)
 ----------------------------
 
+Note: The Ronn-NG 0.10.0 release does not exist, due to a RubyGems publishing mistake. 0.10.1 is
+the first 0.10.x release.
+
 * Switch to GitHub Flavored Markdown, fixing code block rendering (<https://github.com/apjanke/ronn-ng/pull/53>)
 * Revert `\[ci]` back to `\(bu)` (<https://github.com/apjanke/ronn-ng/pull/51>)
 * Minor fix to single-quote escaping (<https://github.com/apjanke/ronn-ng/issues/55>)
