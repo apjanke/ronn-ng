@@ -15,14 +15,14 @@ The `*.ronn` files found in the [`man/`][1] directory show off a wide range of
 ronn capabilities:
 
 * [ronn(1)](http://rtomayko.github.com/ronn/ronn.1) command -
-  [source file](http://github.com/apjanke/ronn-ng/blob/master/man/ronn.1.ronn),
-  [roff output](http://github.com/apjanke/ronn-ng/blob/master/man/ronn.1)
+  [source file](http://github.com/apjanke/ronn-ng/blob/main/man/ronn.1.ronn),
+  [roff output](http://github.com/apjanke/ronn-ng/blob/main/man/ronn.1)
 
 * [ronn-format(7)](http://rtomayko.github.com/ronn/ronn-format.7) -
-  [source file](http://github.com/apjanke/ronn-ng/blob/master/man/ronn-format.7.ronn),
-  [roff output](http://github.com/apjanke/ronn-ng/blob/master/man/ronn-format.7)
+  [source file](http://github.com/apjanke/ronn-ng/blob/main/man/ronn-format.7.ronn),
+  [roff output](http://github.com/apjanke/ronn-ng/blob/main/man/ronn-format.7)
 
-[1]: http://github.com/apjanke/ronn-ng/tree/master/man
+[1]: http://github.com/apjanke/ronn-ng/tree/main/man
 
 As an alternative, you might want to check out [pandoc](http://johnmacfarlane.net/pandoc/) which can also convert markdown into roff manual pages.
 
@@ -149,4 +149,4 @@ See the file LICENSE.txt for information of licensing and distribution.
 
 ## Build Status
 
-![Travis build status](https://travis-ci.com/apjanke/ronn-ng.svg?branch=master)
+![Travis build status](https://travis-ci.com/apjanke/ronn-ng.svg?branch=main)
