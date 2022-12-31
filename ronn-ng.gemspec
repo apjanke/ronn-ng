@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.4'
 
   s.summary     = 'Builds man pages from Markdown'
-  s.description = 'Ronn-NG builds manuals in HTML and Unix man page format from Markdown.'
+  s.description = 'Ronn-NG builds manuals in HTML and Unix man page format from Markdown. Ronn-NG is a modern, maintained fork of the original Ronn.'
   s.homepage    = 'https://github.com/apjanke/ronn-ng'
   s.license     = 'MIT'
 
