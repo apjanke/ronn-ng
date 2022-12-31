@@ -237,7 +237,7 @@ allow targeting all generated elements:
 
 See the [builtin style sources][builtin] for examples.
 
-[builtin]: http://github.com/apjanke/ronn-ng/tree/master/lib/ronn/template
+[builtin]: http://github.com/apjanke/ronn-ng/tree/main/lib/ronn/template
           "Builtin Stylesheet .css files"
 
 ## EXAMPLES
