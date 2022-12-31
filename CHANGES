@@ -8,13 +8,14 @@ Version 0.10.1 (in progress)
 * Revert `\[ci]` back to `\(bu)` (<https://github.com/apjanke/ronn-ng/pull/51>)
 * Minor fix to single-quote escaping (<https://github.com/apjanke/ronn-ng/issues/55>)
 * Elide HTML comments when producing roff output (<https://github.com/apjanke/ronn-ng/issues/65>)
-* Bump to mustache 1.x
 * Remove non-portable `more -i` option (<https://github.com/apjanke/ronn-ng/issues/71>)
+* Fix charset in HTML output's Content-Type (<https://github.com/apjanke/ronn-ng/pull/83>)
+* Bump to mustache 1.x
 
 Version 0.10.0 (never)
 ---------------------------
 
-Doesn't exist due to a RubyGems publishing mistake
+Doesn't exist due to a RubyGems publishing mistake.
 
 Version 0.9.1 (2020 Apr 09)
 ---------------------------
