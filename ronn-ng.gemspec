@@ -124,7 +124,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'kramdown',              '~> 2.1'
   s.add_dependency 'kramdown-parser-gfm',   '~> 1.0.1'
   s.add_dependency 'mustache',              '~> 1.0'
-  s.add_dependency 'nokogiri',              '~> 1.11', '>= 1.11.0'
+  s.add_dependency 'nokogiri',              '~> 1.10', '>= 1.10.10'
   s.add_development_dependency 'rack',      '~> 2.2',  '>= 2.2.3'
   s.add_development_dependency 'rake',      '~> 12.3', '>= 12.3.3'
   s.add_development_dependency 'rubocop',   '~> 0.88', '>= 0.88.0'

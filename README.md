@@ -83,7 +83,7 @@ comprehensive documentation on `ronn` command line options.
 
 ## Background
 
-Some think Unix manual pages are a poor and outdated form of documentation. Ronn-NG
+Some think Unix man pages are a poor and outdated form of documentation. Ronn-NG
 disagrees:
 
 * Manpages follow a well defined structure that's immediately familiar. This
@@ -120,7 +120,13 @@ modern publishing tools. Ronn aims to solve that problem.
 
 ## Requirements
 
-Ruby 2.3 or newer, and gems as listed in `ronn-ng.gemspec`.
+Ronn-NG requires Ruby 2.4 or newer.
+
+Ruby 3.x support is a work in progress as of Ronn-NG 0.10.1 (December 2022).
+
+If you are installing Ronn-NG as a standalone program (the usual way to use it), it
+includes all its Ruby libraries, and has no other dependencies. If you are using
+Ronn-NG as a gem or other library, it requires gems as listed in `ronn-ng.gemspec`.
 
 ## Project Management
 
