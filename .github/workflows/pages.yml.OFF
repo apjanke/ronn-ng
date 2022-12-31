@@ -1,0 +1,57 @@
+# Currently broken and disabled.
+# We don't have GitHub Pages set up yet. And it fails with this error
+# anyway, in the 'bundle install' step:
+#   You are trying to install in deployment mode after changing
+#   your Gemfile.
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1.2'
+          bundler-cache: true # 'bundle install' and cache
+
+      # cf. https://github.com/actions/starter-workflows/blob/4a8f18e34dd13d2b6ee4d8da2ba72629eafe1609/pages/jekyll.yml
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v1
+
+      - name: Build the pages
+        run: bundle exec rake man
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: "man/" # The action will automatically upload an artifact from this directory
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-22.04
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1

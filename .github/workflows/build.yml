@@ -1,0 +1,62 @@
+name: Ruby
+
+on:
+  push:
+    branches: [ "main", "dev/gh-actions" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    continue-on-error: ${{ matrix.unsupported }}
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby-version: ['2.7', '3.0']
+        unsupported: [false]
+        include:
+          - ruby-version: '2.4'
+            unsupported: true
+          - ruby-version: '2.5'
+            unsupported: true
+          - ruby-version: '2.6'
+            unsupported: true
+          - ruby-version: '3.1'
+            unsupported: true
+          - ruby-version: head
+            unsupported: true
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Remove Gemfile.lock
+      run: rm -f Gemfile.lock
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1.131.0
+      with:
+        ruby-version: ${{ matrix.ruby-version }}
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+      continue-on-error: ${{ matrix.unsupported }} # Only for Ruby 2.4
+    - name: Run tests
+      run: bundle exec rake test
+      continue-on-error: ${{ matrix.unsupported }}
+    - name: Run man tests
+      run: bundle exec rake man
+      continue-on-error: ${{ matrix.unsupported }} # Only for Ruby 2.4
+
+  rubocop:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v3
+    - name: Remove Gemfile.lock
+      run: rm -f Gemfile.lock
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1.131.0
+      with:
+        ruby-version: 2.7.6
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - name: Run RuboCop
+      run: bundle exec rubocop
