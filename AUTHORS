@@ -1,8 +1,12 @@
-# This is a list of people who have contributed code or ideas to ronn -- for
-# copyright purposes or whatever.
+# Ronn-NG Authors
 
-Ryan Tomayko         <http://github.com/rtomayko>
-Chris Wanstrath      <http://github.com/defunkt>
-Suraj N. Kurapati    <http://github.com/sunaku>
-Hallison Batista     <http://github.com/hallison>
-Andrew Janke         <http://github.com/apjanke>
+This is a list of people who have contributed code or ideas to Ronn and Ronn-NG.
+
+Ryan Tomayko (original Ronn author)  <https://github.com/rtomayko>
+Andrew Janke (main Ronn-NG author)   <https://github.com/apjanke>
+
+Hallison Batista     <https://github.com/hallison>
+Suraj N. Kurapati    <https://github.com/sunaku>
+Takuya Noguchi       <https://github.com/tnir>
+Deivid Rodriguez     <https://github.com/deivid-rodriguez>
+Chris Wanstrath      <https://github.com/defunkt>
