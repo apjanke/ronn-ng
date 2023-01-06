@@ -4,12 +4,12 @@ ronn(5)     ronn.5.ronn
 ronn(7)     ronn.7.ronn
 
 # external manuals
-roff(7)     http://man.cx/roff(7)
-grep(1)     http://man.cx/grep(1)
-groff(1)    http://man.cx/groff(1)
-sh(1)       http://man.cx/sh(1posix)
-test(1)     http://man.cx/test(1)
-fork(2)     http://man.cx/fork(2)
-man(1)      http://man.cx/man(1)
-markdown(7) http://daringfireball.net/projects/markdown/syntax
-manpages(5) http://developer.apple.com/mac/library/documentation/Darwin/Reference/ManPages/man5/manpages.5.html
+roff(7)     https://man7.org/linux/man-pages/man7/roff.7.html
+grep(1)     https://man7.org/linux/man-pages/man1/grep.1.html
+groff(1)    https://man7.org/linux/man-pages/man1/groff.1.html
+sh(1)       https://man7.org/linux/man-pages/man1/sh.1p.html
+test(1)     https://man7.org/linux/man-pages/man1/test.1.html
+fork(2)     https://man7.org/linux/man-pages/man2/fork.2.html
+man(1)      https://man7.org/linux/man-pages/man1/man.1.html
+markdown(7) https://daringfireball.net/projects/markdown/syntax
+manpages(5) https://developer.apple.com/library/archive/documentation/System/Conceptual/ManPages_iPhoneOS/man5/manpages.5.html

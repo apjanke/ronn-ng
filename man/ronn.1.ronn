@@ -164,11 +164,11 @@ ignored:
     tango(5)     tango.5.ronn
 
     # external manuals
-    grep(1)      http://man.cx/grep(1)
-    ls(1)        http://man.cx/ls(1)
+    grep(1)      https://man7.org/linux/man-pages/man1/grep.1.html
+    ls(1)        https://man7.org/linux/man-pages/man1/ls.1.html
 
     # other URLs for use with markdown reference links
-    src          http://github.com/
+    src          https://github.com/
 
 The <location> is an absolute or relative URL that usually points at an HTML
 version of manpage. It's possible to define references for things that aren't
@@ -237,7 +237,7 @@ allow targeting all generated elements:
 
 See the [builtin style sources][builtin] for examples.
 
-[builtin]: http://github.com/apjanke/ronn-ng/tree/main/lib/ronn/template
+[builtin]: https://github.com/apjanke/ronn-ng/tree/main/lib/ronn/template
           "Builtin Stylesheet .css files"
 
 ## EXAMPLES
@@ -309,8 +309,9 @@ under a `man/` directory:
 
 ## COPYRIGHT
 
-Ronn-NG is Copyright (C) 2009 Ryan Tomayko <http://tomayko.com/about> and
-(C) 2018 Andrew Janke <https://apjanke.net>
+Ronn-NG is Copyright (C) 2009 Ryan Tomayko <https://tomayko.com/about>,
+(C) 2018-2023 Andrew Janke <https://apjanke.net>, and other contributors.
+See the AUTHORS file in the Ronn-NG distribution for full details.
 
 ## SEE ALSO
 
