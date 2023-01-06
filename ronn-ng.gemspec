@@ -59,7 +59,7 @@ Gem::Specification.new do |s|
 
   s.extra_rdoc_files = %w[LICENSE.txt AUTHORS]
   s.add_dependency 'kramdown',              '~> 2.1'
-  s.add_dependency 'kramdown-parser-gfm',   '~> 1.0.1'
+  s.add_dependency 'kramdown-parser-gfm',   '>= 1.0.1', '< 1.2'
   s.add_dependency 'mustache',              '~> 1.0'
   s.add_dependency 'nokogiri',              '~> 1.10', '>= 1.10.10'
   s.add_development_dependency 'rack',      '~> 2.2',  '>= 2.2.3'

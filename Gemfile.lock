@@ -3,7 +3,7 @@ PATH
   specs:
     ronn-ng (0.10.1.pre1)
       kramdown (~> 2.1)
-      kramdown-parser-gfm (~> 1.0.1)
+      kramdown-parser-gfm (>= 1.0.1, < 1.2)
       mustache (~> 1.0)
       nokogiri (~> 1.10, >= 1.10.10)
 
