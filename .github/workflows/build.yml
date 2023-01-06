@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby-version: ['2.7', '3.0']
+        ruby-version: ['2.7', '3.0', '3.1', head]
         unsupported: [false]
         include:
           - ruby-version: '2.4'
@@ -24,10 +24,6 @@ jobs:
           - ruby-version: '2.5'
             unsupported: true
           - ruby-version: '2.6'
-            unsupported: true
-          - ruby-version: '3.1'
-            unsupported: true
-          - ruby-version: head
             unsupported: true
 
     steps:

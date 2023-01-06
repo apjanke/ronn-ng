@@ -137,6 +137,11 @@ class DocumentTest < Test::Unit::TestCase
 
     test 'converting to yaml' do
       require 'yaml'
+      actual = begin
+        YAML.load(@doc.to_yaml, permitted_classes: [Time])
+      rescue ArgumentError # Remove this line when Ruby 3.0.x support is dropped
+        YAML.load(@doc.to_yaml)
+      end
       assert_equal({
                      'section'      => '1',
                      'name'         => 'hello',
@@ -146,7 +151,7 @@ class DocumentTest < Test::Unit::TestCase
                      'toc'          => [['NAME', 'NAME']],
                      'organization' => nil,
                      'manual'       => nil
-                   }, YAML.load(@doc.to_yaml))
+                   }, actual)
     end
 
     test 'converting to json' do
