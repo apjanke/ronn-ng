@@ -1,7 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'ronn-ng'
-  s.version = '0.10.1.pre1'
-  s.date = '2020-12-22'
+  s.version = '0.10.1.pre2'
   s.required_ruby_version = '>= 2.4'
 
   s.summary     = 'Builds man pages from Markdown'
