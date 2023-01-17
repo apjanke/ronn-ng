@@ -1,6 +1,6 @@
 .\" generated with Ronn-NG/v0.10.1
-.\" http://github.com/apjanke/ronn-ng/tree/0.10.1.pre1
-.TH "RONN" "1" "January 2020" "Ronn-NG 0.10.1.pre1" "Ronn Manual"
+.\" http://github.com/apjanke/ronn-ng/tree/0.10.1.pre2
+.TH "RONN" "1" "January 2023" "Ronn-NG 0.10.1.pre2" "Ronn Manual"
 .SH "NAME"
 \fBronn\fR \- convert markdown files to manpages
 .SH "SYNOPSIS"
@@ -101,11 +101,11 @@ whisky(1)    whisky\.1\.ronn
 tango(5)     tango\.5\.ronn
 
 # external manuals
-grep(1)      http://man\.cx/grep(1)
-ls(1)        http://man\.cx/ls(1)
+grep(1)      https://man7\.org/linux/man\-pages/man1/grep\.1\.html
+ls(1)        https://man7\.org/linux/man\-pages/man1/ls\.1\.html
 
 # other URLs for use with markdown reference links
-src          http://github\.com/
+src          https://github\.com/
 .fi
 .IP "" 0
 .P
@@ -149,7 +149,7 @@ The heading and footing, respectively\.
 \fB\.man\-title\fR
 The main \fB<h1>\fR element\. Hidden by default unless the manual has no \fIname\fR or \fIsection\fR attributes\.
 .P
-See the builtin style sources \fIhttp://github\.com/apjanke/ronn\-ng/tree/main/lib/ronn/template\fR for examples\.
+See the builtin style sources \fIhttps://github\.com/apjanke/ronn\-ng/tree/main/lib/ronn/template\fR for examples\.
 .SH "EXAMPLES"
 Build roff and HTML output files and view the roff manpage using man(1):
 .IP "" 4
@@ -222,6 +222,6 @@ The paging program used for man pages\. This is typically set to something like 
 \fBPAGER\fR
 Used instead of \fBMANPAGER\fR when \fBMANPAGER\fR is not defined\.
 .SH "COPYRIGHT"
-Ronn\-NG is Copyright (C) 2009 Ryan Tomayko \fIhttp://tomayko\.com/about\fR and (C) 2018 Andrew Janke \fIhttps://apjanke\.net\fR
+Ronn\-NG is Copyright (C) 2009 Ryan Tomayko \fIhttps://tomayko\.com/about\fR, (C) 2018\-2023 Andrew Janke \fIhttps://apjanke\.net\fR, and other contributors\. See the AUTHORS file in the Ronn\-NG distribution for full details\.
 .SH "SEE ALSO"
 groff(1), man(1), pandoc(1), manpages(5), markdown(7), roff(7), ronn\-format(7)
