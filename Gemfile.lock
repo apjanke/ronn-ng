@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ronn-ng (0.10.1.pre1)
+    ronn-ng (0.10.1.pre2)
       kramdown (~> 2.1)
       kramdown-parser-gfm (>= 1.0.1, < 1.2)
       mustache (~> 1.0)
@@ -13,20 +13,19 @@ GEM
     ast (2.4.2)
     kramdown (2.4.0)
       rexml
-    kramdown-parser-gfm (1.0.1)
+    kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
     mini_portile2 (2.4.0)
     mustache (1.1.1)
     mustermann (2.0.2)
       ruby2_keywords (~> 0.0.1)
-    nokogiri (1.13.10)
-      mini_portile2 (~> 2.8.0)
-      racc (~> 1.4)
+    nokogiri (1.10.10)
+      mini_portile2 (~> 2.4.0)
     parallel (1.20.1)
     parser (3.1.2.0)
       ast (~> 2.4.1)
     power_assert (1.2.0)
-    rack (2.2.3.1)
+    rack (2.2.6.2)
     rack-protection (2.2.3)
       rack
     rainbow (3.0.0)
