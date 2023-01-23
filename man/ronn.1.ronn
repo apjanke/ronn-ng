@@ -70,7 +70,7 @@ directly to a man pager.
     and styling manuals. It is in no way recommended as a general purpose web
     server.*
 
-  * `--port`=<port>
+  * `--port`=<port>:
     When used with `-S`/`--server`, runs the server at the specified port instead
     of the default port 1207.
 
@@ -83,7 +83,7 @@ directly to a man pager.
     Write generated files to the specified directory instead of the default
     location.
   
-  * `-E`=<encoding>, `--encoding`=<encoding:
+  * `-E`=<encoding>, `--encoding`=<encoding>:
     Specify the encoding that input files are in. Default is UTF-8, regardless
     of user's locale settings. Input sent to STDIN is always treated as UTF-8,
     regardless of whether `-E` is passed.
