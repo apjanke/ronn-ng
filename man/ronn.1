@@ -31,23 +31,28 @@ Source files must be in UTF\-8 encoding, or the encoding specified by the \fB\-E
 When building roff or HTML output files, destination filenames are determined by taking the basename of the input \fIfile\fR and adding the appropriate file extension (or removing the file extension in the case of roff output)\. For example, executing \fBronn example\.1\.ronn\fR generates \fBexample\.1\fR with roff output and \fBexample\.1\.html\fR with HTML output\.
 .SH "OPTIONS"
 These options control whether output is written to file(s), standard output, or directly to a man pager\.
-.IP "\(bu" 4
-\fB\-m\fR, \fB\-\-man\fR: Don't generate files, display \fIfile\fRs as if man(1) were invoked on the roff output file\. This simulates default man behavior by piping the roff output through groff(1) and the paging program specified by the \fBMANPAGER\fR environment variable\.
-.IP "\(bu" 4
-\fB\-S\fR, \fB\-\-server\fR: Don't generate files, start an HTTP server at \fIhttp://localhost:1207/\fR and serve dynamically generated HTML for the set of input \fIfile\fRs\. A file named \fIexample\.2\.ronn\fR is served as \fI/example\.2\.html\fR\. There's also an index page at the root with links to each \fIfile\fR\.
+.TP
+\fB\-m\fR, \fB\-\-man\fR
+Don't generate files, display \fIfile\fRs as if man(1) were invoked on the roff output file\. This simulates default man behavior by piping the roff output through groff(1) and the paging program specified by the \fBMANPAGER\fR environment variable\.
+.TP
+\fB\-S\fR, \fB\-\-server\fR
+Don't generate files, start an HTTP server at \fIhttp://localhost:1207/\fR and serve dynamically generated HTML for the set of input \fIfile\fRs\. A file named \fIexample\.2\.ronn\fR is served as \fI/example\.2\.html\fR\. There's also an index page at the root with links to each \fIfile\fR\.
 .IP
 The server respects the \fB\-\-style\fR and document attribute options (\fB\-\-manual\fR, \fB\-\-date\fR, etc\.)\. These same options can be varied at request time by giving them as query parameters: \fB?manual=FOO&style=dark,toc\fR
 .IP
 \fINOTE: The builtin server is designed to assist in the process of writing and styling manuals\. It is in no way recommended as a general purpose web server\.\fR
-.IP "\(bu" 4
-\fB\-\-port\fR=\fIport\fR When used with \fB\-S\fR/\fB\-\-server\fR, runs the server at the specified port instead of the default port 1207\.
-.IP "\(bu" 4
-\fB\-\-pipe\fR: Don't generate files, write generated output to standard output\. This is the default behavior when ronn source text is piped in on standard input and no \fIfile\fR arguments are provided\.
-.IP "\(bu" 4
-\fB\-o\fR=\fIdirectory\fR, \fB\-\-output\-dir\fR=\fIdirectory\fR: Write generated files to the specified directory instead of the default location\.
-.IP "\(bu" 4
-\fB\-E\fR=\fIencoding\fR, \fB\-\-encoding\fR=<encoding: Specify the encoding that input files are in\. Default is UTF\-8, regardless of user's locale settings\. Input sent to STDIN is always treated as UTF\-8, regardless of whether \fB\-E\fR is passed\.
-.IP "" 0
+.TP
+\fB\-\-port\fR=\fIport\fR
+When used with \fB\-S\fR/\fB\-\-server\fR, runs the server at the specified port instead of the default port 1207\.
+.TP
+\fB\-\-pipe\fR
+Don't generate files, write generated output to standard output\. This is the default behavior when ronn source text is piped in on standard input and no \fIfile\fR arguments are provided\.
+.TP
+\fB\-o\fR=\fIdirectory\fR, \fB\-\-output\-dir\fR=\fIdirectory\fR
+Write generated files to the specified directory instead of the default location\.
+.TP
+\fB\-E\fR=\fIencoding\fR, \fB\-\-encoding\fR=\fIencoding\fR
+Specify the encoding that input files are in\. Default is UTF\-8, regardless of user's locale settings\. Input sent to STDIN is always treated as UTF\-8, regardless of whether \fB\-E\fR is passed\.
 .P
 Format options control the files \fBronn\fR generates, or the output format when the \fB\-\-pipe\fR argument is specified\. When no format options are given, both \fB\-\-roff\fR and \fB\-\-html\fR are assumed\.
 .TP
