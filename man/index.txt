@@ -13,3 +13,4 @@ fork(2)     https://man7.org/linux/man-pages/man2/fork.2.html
 man(1)      https://man7.org/linux/man-pages/man1/man.1.html
 markdown(7) https://daringfireball.net/projects/markdown/syntax
 manpages(5) https://developer.apple.com/library/archive/documentation/System/Conceptual/ManPages_iPhoneOS/man5/manpages.5.html
+pandoc(1)   https://linux.die.net/man/1/pandoc
