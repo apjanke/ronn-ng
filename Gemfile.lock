@@ -25,7 +25,7 @@ GEM
     parser (3.2.0.0)
       ast (~> 2.4.1)
     power_assert (2.0.3)
-    rack (2.2.6.3)
+    rack (2.2.6.4)
     rack-protection (2.2.4)
       rack
     rainbow (3.1.1)
