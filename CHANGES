@@ -4,8 +4,9 @@ Ronn-NG CHANGES
 Version 0.10.1 (in progress)
 ----------------------------
 
-Note: The Ronn-NG 0.10.0 release does not exist, due to a RubyGems publishing mistake. 0.10.1 is
-the first 0.10.x release.
+This release is focused on bug fixes and updating library dependencies, to get Ronn-NG building and working correctly on recent Linux and macOS releases.
+
+Note: 0.10.1 is the first 0.10.x release, because Ronn-NG 0.10.0 does not exist.
 
 * Switch to GitHub Flavored Markdown, fixing code block rendering (<https://github.com/apjanke/ronn-ng/pull/53>)
 * Revert `\[ci]` back to `\(bu)` (<https://github.com/apjanke/ronn-ng/pull/51>)
@@ -14,6 +15,7 @@ the first 0.10.x release.
 * Remove non-portable `more -i` option (<https://github.com/apjanke/ronn-ng/issues/71>)
 * Fix charset in HTML output's Content-Type (<https://github.com/apjanke/ronn-ng/pull/83>)
 * Bump to mustache 1.x
+* Bump all the other RubyGems deps
 
 Version 0.10.0 (never)
 ---------------------------
