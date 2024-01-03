@@ -1,71 +1,77 @@
 PATH
   remote: .
   specs:
-    ronn-ng (0.10.1.pre3)
-      kramdown (~> 2.1)
-      kramdown-parser-gfm (>= 1.0.1, < 1.2)
-      mustache (~> 1.0)
-      nokogiri (~> 1.10, >= 1.10.10)
+    ronn-ng (0.10.1.pre4)
+      kramdown (~> 2.4)
+      kramdown-parser-gfm (~> 1.1)
+      mustache (~> 1.1)
+      nokogiri (~> 1.15)
 
 GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.2)
+    json (2.7.1)
     kramdown (2.4.0)
       rexml
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
-    mini_portile2 (2.4.0)
+    language_server-protocol (3.17.0.3)
+    mini_portile2 (2.8.5)
     mustache (1.1.1)
     mustermann (2.0.2)
       ruby2_keywords (~> 0.0.1)
-    nokogiri (1.10.10)
-      mini_portile2 (~> 2.4.0)
-    parallel (1.20.1)
-    parser (3.2.0.0)
+    nokogiri (1.15.5)
+      mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
+    parallel (1.24.0)
+    parser (3.2.2.4)
       ast (~> 2.4.1)
+      racc
     power_assert (2.0.3)
-    rack (2.2.6.4)
+    racc (1.7.3)
+    rack (2.2.8)
     rack-protection (2.2.4)
       rack
     rainbow (3.1.1)
-    rake (12.3.3)
-    regexp_parser (2.6.2)
-    rexml (3.2.5)
-    rubocop (1.12.1)
+    rake (13.1.0)
+    regexp_parser (2.8.3)
+    rexml (3.2.6)
+    rubocop (1.59.0)
+      json (~> 2.3)
+      language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
-      parser (>= 3.0.0.0)
+      parser (>= 3.2.2.4)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
-      rexml
-      rubocop-ast (>= 1.2.0, < 2.0)
+      rexml (>= 3.2.5, < 4.0)
+      rubocop-ast (>= 1.30.0, < 2.0)
       ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.4.1)
-      parser (>= 2.7.1.5)
-    ruby-progressbar (1.11.0)
+      unicode-display_width (>= 2.4.0, < 3.0)
+    rubocop-ast (1.30.0)
+      parser (>= 3.2.1.0)
+    ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     sinatra (2.2.4)
       mustermann (~> 2.0)
       rack (~> 2.2)
       rack-protection (= 2.2.4)
       tilt (~> 2.0)
-    test-unit (3.5.7)
+    test-unit (3.6.1)
       power_assert
-    tilt (2.0.11)
-    unicode-display_width (2.4.2)
+    tilt (2.3.0)
+    unicode-display_width (2.5.0)
 
 PLATFORMS
-  x86_64-darwin-18
-  x86_64-linux
+  ruby
 
 DEPENDENCIES
   rack (~> 2.2, >= 2.2.3)
-  rake (~> 12.3, >= 12.3.3)
+  rake (~> 13.0, >= 13.0.3)
   ronn-ng!
-  rubocop (~> 1.12.1)
-  sinatra (~> 2.0, >= 2.0.8)
-  test-unit (~> 3.3, >= 3.3.6)
+  rubocop (~> 1.57)
+  sinatra (~> 2.2)
+  test-unit (~> 3.6)
 
 BUNDLED WITH
-   2.4.4
+   2.1.4
