@@ -1,6 +1,4 @@
-# We want to track the RubyMine project in the repo
-!.idea
-/.idea/workspace.xml
+# Build and test artifacts and droppings
 
 /man/*.html
 /pkg
@@ -11,4 +9,20 @@ ronn.7
 ronn*.markdown
 ronn*.html
 ronn-ng-*.gem
+
+# RubyMine - we do want to track the project in the repo
+
+!.idea
+/.idea/workspace.xml
+
+# Local bundler stuff
+
 .bundle
+vendor
+
+# rbenv and other Ruby env managers we don't want fixed at the source level
+
+# Actually, include the Ruby version, because as an application, Ronn targets a
+# specific Ruby (like 2.7.x), and the gem versions in Gemfile.lock depend on the
+# versions of ruby and bundler.
+# .ruby-version
