@@ -1,7 +1,10 @@
 Gem::Specification.new do |s|
   s.name = 'ronn-ng'
-  s.version = '0.10.1.pre3'
-  s.required_ruby_version = '>= 2.4'
+  s.version = '0.10.1.pre4'
+  # As of 2023-09, ronn-ng targets and is tested on Ruby 2.7 for deployment. May well
+  # be compatible with earlier versions, but that's not really supported, and users can
+  # modify this locally if they want to try under older Rubies.
+  s.required_ruby_version = '>= 2.7'
 
   s.summary     = 'Builds man pages from Markdown'
   s.description = 'Ronn-NG builds manuals in HTML and Unix man page format from Markdown. Ronn-NG is a modern, maintained fork of the original Ronn.'
@@ -58,15 +61,15 @@ Gem::Specification.new do |s|
   s.test_files = s.files.select { |path| path =~ /^test\/.*_test.rb/ }
 
   s.extra_rdoc_files = %w[LICENSE.txt AUTHORS]
-  s.add_dependency 'kramdown',              '~> 2.1'
-  s.add_dependency 'kramdown-parser-gfm',   '>= 1.0.1', '< 1.2'
+  s.add_dependency 'kramdown',              '~> 2.4'
+  s.add_dependency 'kramdown-parser-gfm',   '~> 1.1'
   s.add_dependency 'mustache',              '~> 1.1'
-  s.add_dependency 'nokogiri',              '~> 1.10', '>= 1.10.10'
+  s.add_dependency 'nokogiri',              '~> 1.15'
   s.add_development_dependency 'rack',      '~> 2.2',  '>= 2.2.3'
-  s.add_development_dependency 'rake',      '~> 12.3', '>= 12.3.3'
-  s.add_development_dependency 'rubocop',   '~> 1.12.1'
-  s.add_development_dependency 'sinatra',   '~> 2.0',  '>= 2.0.8'
-  s.add_development_dependency 'test-unit', '~> 3.3',  '>= 3.3.6'
+  s.add_development_dependency 'rake',      '~> 13.0', '>= 13.0.3'
+  s.add_development_dependency 'rubocop',   '~> 1.57'
+  s.add_development_dependency 'sinatra',   '~> 2.2'
+  s.add_development_dependency 'test-unit', '~> 3.6'
 
   s.rdoc_options = ['--line-numbers', '--inline-source', '--title', 'Ronn']
   s.require_paths = %w[lib]
