@@ -241,7 +241,7 @@ documents.each do |doc|
   end
 end
 
-# Write index.txt files
+# write index.txt files
 
 if write_index
   indexes = documents.map(&:index).uniq
