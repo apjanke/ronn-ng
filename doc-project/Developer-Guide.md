@@ -26,6 +26,30 @@ After the release, start development on the next release:
 * Regenerate the man pages again: `rake man`
 * Commit and push
 
+## Setting up your dev environment
+
+You need to have all of the gem dependencies installed, either in your system gem installation location, or user gems, or locally in this directory. `bundle install` will do something like that, but I haven't been able to figure out how to get that to work with `bundle exec rake test` without requiring you to install the gems and stuff in to the system location instead of a user or dir-local location.
+
+### References: dev env
+
+* Ruby env setup
+  * [Ruby setup on macOS](https://www.moncefbelyamani.com/the-definitive-guide-to-installing-ruby-gems-on-a-mac/)
+  * <https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/#start-here-if-you-choose-the-long-and-manual-route>
+
+## Running locally
+
+You need to use special techniques to run `ronn` locally, entirely from the local repo and dev environment, instead of pulling stuff in from the main local system, including system-level installed gems and `ronn` itself.
+
+This describes how to do it using an rbenv-managed Ruby dev environment. On some platforms, it may be possible to do this using the system Ruby and user-installed gems, but that's tricky and not covered here.
+
+1. Activate your dev ruby with `rbenv local <version>`.
+2. Install the gem dependencies.
+    1. `rm Gemfile.lock` to release versions, if needed (like when switching ruby versions).
+    2. `bundle install` to actually install the gems.
+3. `bundle exec ./bin/ronn [...]` to actually run it.
+
+It would be nice for plain `./bin/ronn` or `ronn` with `./bin` on the `$PATH` to work in a bundler context, but I don't know how to do that.
+
 ## Running tests
 
 `bundle exec rake test` will run all the tests.
