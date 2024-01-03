@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.7'
 
   s.summary     = 'Builds man pages from Markdown'
-  s.description = 'Ronn-NG builds manuals in HTML and Unix man page format from Markdown. Ronn-NG is a modern, maintained fork of the original Ronn.'
+  s.description = 'Ronn-NG builds manuals in Unix man page and HTML format from Markdown. Ronn-NG is a modern, maintained fork of the original Ronn.'
   s.homepage    = 'https://github.com/apjanke/ronn-ng'
   s.license     = 'MIT'
 
@@ -17,13 +17,13 @@ Gem::Specification.new do |s|
   s.metadata = {
     'bug_tracker_uri'   => 'https://github.com/apjanke/ronn-ng/issues',
     'source_code_uri'   => 'https://github.com/apjanke/ronn-ng',
-    'changelog_uri'     => 'https://github.com/apjanke/ronn-ng/blob/main/CHANGES'
+    'changelog_uri'     => 'https://github.com/apjanke/ronn-ng/blob/main/CHANGELOG.md'
   }
 
   # = MANIFEST =
   s.files = %w[
     AUTHORS
-    CHANGES
+    CHANGELOG.md
     INSTALLING.md
     LICENSE.txt
     README.md

@@ -1,76 +1,86 @@
-Ronn-NG CHANGES
-===============
+# Ronn-NG CHANGELOG
 
-Version 0.10.1 (in progress)
-----------------------------
+## 0.10.1 (unreleased)
 
 This release is focused on bug fixes and updating library dependencies, to get Ronn-NG building and working correctly on recent Linux and macOS releases.
 
 Note: 0.10.1 is the first 0.10.x release, because Ronn-NG 0.10.0 does not exist.
 
+### Features and Additions
+
 * Switch to GitHub Flavored Markdown, fixing code block rendering (<https://github.com/apjanke/ronn-ng/pull/53>)
+* Bump Ruby to 2.7, gem deps to latest minor versions
+
+### Bug Fixes
+
 * Revert `\[ci]` back to `\(bu)` (<https://github.com/apjanke/ronn-ng/pull/51>)
-* Minor fix to single-quote escaping (<https://github.com/apjanke/ronn-ng/issues/55>)
+* Fix single-quote escaping (<https://github.com/apjanke/ronn-ng/issues/55>)
 * Elide HTML comments when producing roff output (<https://github.com/apjanke/ronn-ng/issues/65>)
 * Remove non-portable `more -i` option (<https://github.com/apjanke/ronn-ng/issues/71>)
 * Fix charset in HTML output's Content-Type (<https://github.com/apjanke/ronn-ng/pull/83>)
-* Bump to mustache 1.x
-* Bump all the other RubyGems deps
+* Bump Ruby to 2.7, gem deps to latest minor versions
+* Fix test failure for angle-bracket items with namespace-like "foo:" prefixes (<https://github.com/apjanke/ronn-ng/issues/102>)
+  * Inclusion of the "foo:" is now considered correct, matching current code behavior
 
-Version 0.10.0 (never)
----------------------------
+### Internal
+
+* doc: Reformat Changelog to match common gem and keep-a-changelog conventions
+
+## 0.10.0 (never released)
 
 Doesn't exist due to a RubyGems publishing mistake.
 
-Version 0.9.1 (2020 Apr 09)
----------------------------
+## 0.9.1 (2020-04-09)
 
 * Fix underlining issue (<https://github.com/apjanke/ronn-ng/pull/41>)
 
-Version 0.9.0 (2019 Dec 21)
----------------------------
+## 0.9.0 (2019-12-21)
 
 * Migrate to kramdown for the underlying Markdown library
 * Minor output formatting and documentation improvements
 
-Version 0.8.2 (2019 Mar 5)
---------------------------
+## 0.8.2 (2019-03-05)
 
 * Fixes packaging error in 0.8.1
 
-Version 0.8.1 (2019 Mar 5)
---------------------------
+## 0.8.1 (2019-03-05)
 
-* Fixed URL hyphenation bug. (<https://github.com/apjanke/ronn-ng/issues/23>) (apjanke)
-* Fixed ordered-list bustication. (<https://github.com/apjanke/ronn-ng/issues/24>) (apjanke)
+* Fix URL hyphenation bug (<https://github.com/apjanke/ronn-ng/issues/23>)
+* Fix ordered-list bustication. (<https://github.com/apjanke/ronn-ng/issues/24>)
 
-Version 0.8.0 (2018 Dec 25)
----------------------------
+## 0.8.0 (2018-12-25)
 
-* Added tables support. (apjanke)
-* Lint & Rubocop fixes. (apjanke)
-* Added --output-dir option. (apjanke)
-* Support file names with periods in the name section. (apjanke)
-* Migrated from Hpricot to Nokogiri. (apjanke)
+### Features
 
-Version 0.7.4 (2018 Dec 22)
----------------------------
+* Add tables support.
+* Add --output-dir option.
+* Migrate from Hpricot to Nokogiri.
 
-* Forked Ronn-NG from original Ronn. (apjanke)
-* Minor bug fixes: #4, #5 (apjanke)
+### Bug Fixes
 
-Original Ronn CHANGES
-=====================
+* Lint & Rubocop fixes
+* Support file names with periods in the name section
 
-Version 0.7.3 (2010 June 24)
-----------------------------
+## 0.7.4 (2018-12-22)
+
+* Forked Ronn-NG from original Ronn
+
+### Bug Fixes
+
+* Fix test for HTML meta elements (#4)
+* Fix circumflex rendering (#5)
+
+## Original Ronn changelog
+
+The following sections are the changes from the original Ronn project, before Ronn-NG was forked from it. They were pulled in from its existing CHANGES file and reformatted.
+
+## 0.7.3 (2010-06-24)
 
 * Fixed a major bug in roff output due to overly aggressive doublequote
   escaping. Paragraphs and code blocks were not being displayed if they
   included a double-quote character. (rtomayko, pawelz)
 
-Version 0.7.0 (2010 June 21)
-----------------------------
+## 0.7.0 (2010-06-21)
 
 * HTML: Manual references (like 'grep(1)', 'ls(1)', etc.) are now hyperlinked
   based on a set of name -> URL mappings defined in an index.txt file. The index
@@ -103,16 +113,14 @@ Version 0.7.0 (2010 June 21)
 * Performance improvements. Fixed a few cases where HTML was being reparsed
   needlessly, tuned dom selectors, ... (rtomayko)
 
-Version 0.6.6 (2010 June 13)
-----------------------------
+## 0.6.6 (2010-06-13)
 
 Small bug fix release fixes whitespace stripping between adjacent
 inline elements in roff output (adamv, rtomayko)
 
-Version 0.6 (2010 June 13)
---------------------------
+## 0.6 (2010-06-13)
 
-Features:
+### Features
 
 * HTML: New styling system:
     ronn --style=toc,print program.1.ronn
@@ -170,7 +178,7 @@ Features:
   establish the default values of the --manual, --organization, and --date
   options (rtomayko)
 
-Bugs:
+### Bug Fixes
 
 * ROFF: Don't crash with empty preformatted blocks (sunaku)
 
@@ -181,7 +189,7 @@ Bugs:
 * ROFF: All ['".] characters are backslash escaped in roff output. These
   characters are used for various roff macro syntax (rtomayko)
 
-Deprecations, Obsoletions:
+### Deprecations, Obsoletions
 
 * The ronn(1) command line interface has changed in ways that are not
   backward-compatible with previous versions of ronn. The --build option is
@@ -211,8 +219,7 @@ Deprecations, Obsoletions:
   shipped with the latest version of rdiscount, however.
   (rtomayko, sunaku)
 
-0.5 (2010 April 24)
--------------------
+## 0.5 (2010-04-24)
 
 * Fixed a bug in roff output where multiple successive newlines were being
   collapsed into a single newline in preformatted output.
@@ -223,9 +230,7 @@ Deprecations, Obsoletions:
 * The compatibility shims that allowed the ronn command to be invoked as "ron",
   and the ronn library to be required as "ron", have been removed.
 
-
-0.4 (2010 March 08)
--------------------
+## 0.4 (2010-03-08)
 
 * Ron has been renamed "Ronn", including the "ronn" command and the "ronn"
   library. Compatibility shims are included in this release but will be removed
