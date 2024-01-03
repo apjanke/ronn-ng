@@ -8,23 +8,23 @@ terminal display, and also to HTML for the web.
 
 The source format includes all of Markdown but has a more rigid structure and
 syntax extensions for features commonly found in manpages (definition lists,
-link notation, etc.). The ronn-format(7) manual page defines the format in
+link notation, etc.). The ronn-format(7) man page defines the format in
 detail.
 
 The `*.ronn` files found in the [`man/`][1] directory show off a wide range of
 ronn capabilities:
 
-* [ronn(1)](http://rtomayko.github.com/ronn/ronn.1) command -
-  [source file](http://github.com/apjanke/ronn-ng/blob/main/man/ronn.1.ronn),
-  [roff output](http://github.com/apjanke/ronn-ng/blob/main/man/ronn.1)
+* [ronn(1)](https://rtomayko.github.io/ronn/ronn-format.7.html) command –
+  [source file](https://github.com/apjanke/ronn-ng/blob/main/man/ronn.1.ronn),
+  [roff output](https://github.com/apjanke/ronn-ng/blob/main/man/ronn.1)
 
-* [ronn-format(7)](http://rtomayko.github.com/ronn/ronn-format.7) -
-  [source file](http://github.com/apjanke/ronn-ng/blob/main/man/ronn-format.7.ronn),
-  [roff output](http://github.com/apjanke/ronn-ng/blob/main/man/ronn-format.7)
+* [ronn-format(7)](https://rtomayko.github.io/ronn/ronn-format.7.html) file format –
+  [source file](https://github.com/apjanke/ronn-ng/blob/main/man/ronn-format.7.ronn),
+  [roff output](https://github.com/apjanke/ronn-ng/blob/main/man/ronn-format.7)
 
-[1]: http://github.com/apjanke/ronn-ng/tree/main/man
+[1]: https://github.com/apjanke/ronn-ng/tree/main/man
 
-As an alternative, you might want to check out [pandoc](http://johnmacfarlane.net/pandoc/) which can also convert markdown into roff manual pages.
+As an alternative, you might want to check out [pandoc](https://pandoc.org/) which can also convert markdown into roff manual pages.
 
 ## Installation
 
@@ -78,7 +78,7 @@ View roff output with man(1):
 $ man man/ronn.5
 ```
 
-The [ronn(1)](http://rtomayko.github.com/ronn/ronn.1) manual page includes
+The [ronn(1)](https://rtomayko.github.io/ronn/ronn-format.7.html) man page includes
 comprehensive documentation on `ronn` command line options.
 
 ## Background
@@ -141,7 +141,7 @@ some bugs fixed.
 
 MIT License.
 
-Ronn is Copyright (C) 2010 [Ryan Tomayko](http://tomayko.com/about).
+Ronn is Copyright (C) 2010 [Ryan Tomayko](https://github.com/rtomayko).
 
 New Ronn-NG material is Copyright (C) 2018-2022 [Andrew Janke](https://apjanke.net) and other contributors.
 
