@@ -5,7 +5,7 @@ class RonnTest < Test::Unit::TestCase
 
   # setup PATH so that we execute the right ronn command
   bindir = File.dirname(testdir) + '/bin'
-  ENV['PATH'] = "#{bindir}:#{ENV['PATH']}"
+  ENV['PATH'] = "#{bindir}:#{ENV.fetch('PATH', nil)}"
 
   # make sure the load path is setup correctly
   libdir = File.expand_path("#{testdir}/../lib")
@@ -35,7 +35,7 @@ class RonnTest < Test::Unit::TestCase
   end
 
   def flunk_with_diff(dest, wrong, output)
-    File.open(wrong, 'wb') { |f| f.write(output) }
+    File.binwrite(wrong, output)
     if ENV['RONN_QUIET_TEST'] == '1'
       flunk 'Output did not match expected.'
     else
@@ -94,8 +94,8 @@ class RonnTest < Test::Unit::TestCase
       end
       if expected != output
         flunk_with_diff(dest, wrong, output)
-      elsif File.exist?(wrong)
-        File.unlink(wrong)
+      else
+        FileUtils.rm_f(wrong)
       end
     end
   end
@@ -116,8 +116,8 @@ class RonnTest < Test::Unit::TestCase
       end
       if expected != output
         flunk_with_diff(dest, wrong, output)
-      elsif File.exist?(wrong)
-        File.unlink(wrong)
+      else
+        FileUtils.rm_f(wrong)
       end
     end
   end

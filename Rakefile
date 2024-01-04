@@ -7,13 +7,14 @@ ROOTDIR = File.expand_path(__dir__).sub(/#{Dir.pwd}(?=\/)/, '.')
 LIBDIR = "#{ROOTDIR}/lib".freeze
 BINDIR = "#{ROOTDIR}/bin".freeze
 
+desc 'Set up environment'
 task :environment do
   $LOAD_PATH.unshift ROOTDIR unless $LOAD_PATH.include?(ROOTDIR)
   $LOAD_PATH.unshift LIBDIR unless $LOAD_PATH.include?(LIBDIR)
   require_library 'nokogiri'
   require_library 'kramdown'
   ENV['RUBYLIB'] = $LOAD_PATH.join(':')
-  ENV['PATH'] = "#{BINDIR}:#{ENV['PATH']}"
+  ENV['PATH'] = "#{BINDIR}:#{ENV.fetch('PATH', nil)}"
 end
 
 desc 'Run tests'
@@ -66,11 +67,12 @@ end
 # PACKAGING ============================================================
 
 # Rev Ronn::VERSION
+desc 'Bump package version'
 task :rev do
   rev = ENV['REV'] || `git describe --tags`.chomp
   data = File.read('lib/ronn.rb')
   data.gsub!(/^( *)REV *=.*/, "\\1REV = '#{rev.sub(/\Av/, '')}'.freeze")
-  File.open('lib/ronn.rb', 'wb') { |fd| fd.write(data) }
+  File.binwrite('lib/ronn.rb', data)
   puts "revision: #{rev}"
   puts "version:  #{`ruby -Ilib -rronn -e 'puts Ronn::VERSION'`}"
 end
@@ -120,14 +122,16 @@ file 'ronn-ng.gemspec' => FileList['{lib,test,bin}/**', 'Rakefile'] do |f|
   files = `git ls-files`
           .split("\n")
           .sort
-          .reject { |file| file =~ /^\./ }
-          .reject { |file| file =~ /^doc/ }
+          .grep_v(/^\./)
+          # .reject { |file| file =~ /^\./ }
+          .grep_v(/^doc/)
+          # .reject { |file| file =~ /^doc/ }
           .map { |file| "    #{file}" }
           .join("\n")
   # piece file back together and write...
   manifest = "  s.files = %w[\n#{files}\n  ]\n"
   spec = [head, manifest, tail].join("  # = MANIFEST =\n")
-  File.open(f.name, 'w') { |io| io.write(spec) }
+  File.write(f.name, spec)
   puts "updated #{f.name}"
 end
 
@@ -145,6 +149,7 @@ rescue LoadError => e
 end
 
 # make .wrong test files right
+desc 'Mark *.wrong test files as right'
 task :right do
   Dir['test/*.wrong'].each do |file|
     dest = file.sub(/\.wrong$/, '')

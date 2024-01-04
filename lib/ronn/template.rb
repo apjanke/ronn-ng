@@ -13,7 +13,7 @@ module Ronn
     end
 
     def render(template = 'default')
-      super template[0, 1] == '/' ? File.read(template) : partial(template)
+      super(template[0, 1] == '/' ? File.read(template) : partial(template))
     end
 
     ##

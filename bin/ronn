@@ -47,7 +47,7 @@ Encoding.default_external = Encoding::UTF_8
 def usage
   puts File.readlines(__FILE__)
            .grep(/^# \/.*/)
-           .map { |line| line.chomp[4..-1] }
+           .map { |line| line.chomp[4..] }
            .join("\n")
 end
 
@@ -94,7 +94,7 @@ output_dir = nil
 # Environment variables
 
 %w[manual organization date].each do |attribute|
-  value = ENV["RONN_#{attribute.upcase}"]
+  value = ENV.fetch("RONN_#{attribute.upcase}", nil)
   next if value.nil? || value.empty?
 
   options[attribute] = value
