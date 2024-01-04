@@ -15,9 +15,8 @@
 * Build and publish the gem to RubyGems
   * `gem build ronn-ng.gemspec`
   * `gem push ronn-ng-<version>.gem`
+* Update the ronn-ng formula in our [ronn-ng/homebrew-ronn-ng Homebrew tap repo](https://github.com/apjanke/homebrew-ronn-ng) and push it
 * TBD: Announce the release somewhere
-
-TODO: Add instructions for prerelease/beta releases.
 
 After the release, start development on the next release:
 
@@ -29,6 +28,8 @@ After the release, start development on the next release:
   * `bundle exec rake man`
 * Commit and push
   * Use commit message like "open development for next release"
+
+TODO: Add instructions for prerelease/beta releases. Include a process for making a prerelease ronn-ng formula in our Homebrew tap.
 
 ## Setting up your dev environment
 

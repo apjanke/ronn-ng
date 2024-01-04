@@ -10,6 +10,8 @@ Note: 0.10.1 is the first 0.10.x release, because Ronn-NG 0.10.0 does not exist.
 
 * Switch to GitHub Flavored Markdown ([#53](https://github.com/apjanke/ronn-ng/pull/53))
   * Fixes code block rendering
+* doc: Reformat Changelog to match common gem and keep-a-changelog conventions
+  * NOTE: Renamed `CHANGES` to `CHANGELOG.md`. Packagers will need to update specs.
 * Bump Ruby to 2.7, gem deps to latest minor versions
 
 ### Bug Fixes
@@ -19,13 +21,9 @@ Note: 0.10.1 is the first 0.10.x release, because Ronn-NG 0.10.0 does not exist.
 * Elide HTML comments when producing roff output ([#65](https://github.com/apjanke/ronn-ng/issues/65))
 * Remove non-portable `more -i` option ([#71](https://github.com/apjanke/ronn-ng/issues/71))
 * Fix charset (utf-8) in HTML output's Content-Type ([#83](https://github.com/apjanke/ronn-ng/pull/83))
-* Psych 4.0 test workaround, Ruby 3.x support (from n-ronn) ([#87](https://github.com/apjanke/ronn-ng/issues/87))
+* Psych 4.0 test fix, Ruby 3.x support (from n-ronn) ([#87](https://github.com/apjanke/ronn-ng/issues/87))
 * Fix test failure for angle-bracket items with namespace-like "foo:" prefixes ([#102](https://github.com/apjanke/ronn-ng/issues/102))
   * Inclusion of the "foo:" is now considered correct, matching current code behavior
-
-### Internal
-
-* doc: Reformat Changelog to match common gem and keep-a-changelog conventions
 
 ## 0.10.0 (never released)
 
