@@ -1,10 +1,8 @@
 Gem::Specification.new do |s|
   s.name = 'ronn-ng'
   s.version = '0.10.1.pre4'
-  # As of 2023-09, ronn-ng targets and is tested on Ruby 2.7 for deployment. It'll mostly
-  # work on lower versions, but in effect requires >= 2.7 because it needs nokogiri
-  # >= 1.14.3 for correct tag name handling, and that nokogiri requires Ruby 2.7.
-  s.required_ruby_version = '>= 2.4'
+  # We target Ruby 2.7+ for test & deploy, plus nokogiri 1.14.3+ need Ruby 2.7
+  s.required_ruby_version = '>= 2.7'
 
   s.summary     = 'Builds man pages from Markdown'
   s.description = 'Ronn-NG builds manuals in Unix man page and HTML format from Markdown. Ronn-NG is a modern, maintained fork of the original Ronn.'
