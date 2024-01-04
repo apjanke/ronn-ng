@@ -16,6 +16,7 @@ Note: 0.10.1 is the first 0.10.x release, because Ronn-NG 0.10.0 does not exist.
 
 ### Bug Fixes
 
+* Relaxed and fixed dependency versions ([#108](https://github.com/apjanke/ronn-ng/issues/108))
 * Revert `\[ci]` back to `\(bu)` ([#51](https://github.com/apjanke/ronn-ng/pull/51))
 * Fix single-quote escaping ([#55](https://github.com/apjanke/ronn-ng/issues/55))
 * Elide HTML comments when producing roff output ([#65](https://github.com/apjanke/ronn-ng/issues/65))
