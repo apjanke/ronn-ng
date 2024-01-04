@@ -13,6 +13,7 @@ Note: 0.10.1 is the first 0.10.x release, because Ronn-NG 0.10.0 does not exist.
 * doc: Reformat Changelog to match common gem and keep-a-changelog conventions
   * NOTE: Renamed `CHANGES` to `CHANGELOG.md`. Packagers will need to update specs.
 * Bump Ruby to 2.7, gem deps to latest minor versions
+* Tweak `ronn --version` output: remove GitHub URL and format it "ronn <ver> (Ronn-NG)"
 
 ### Bug Fixes
 
