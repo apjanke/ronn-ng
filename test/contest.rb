@@ -49,11 +49,11 @@ module Test
       end
 
       def self.context_name(name)
-        "Test#{sanitize_name(name).gsub(/(^| )(\w)/) { $2.upcase }}".to_sym
+        :"Test#{sanitize_name(name).gsub(/(^| )(\w)/) { $2.upcase }}"
       end
 
       def self.test_name(name)
-        "test_#{sanitize_name(name).gsub(/\s+/, '_')}".to_sym
+        :"test_#{sanitize_name(name).gsub(/\s+/, '_')}"
       end
 
       def self.sanitize_name(name)

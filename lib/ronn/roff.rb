@@ -142,7 +142,7 @@ module Ronn
           # HACK: strip an initial \n to avoid extra spacing
           if node.children && node.children[0].text?
             text = node.children[0].to_s
-            node.children[0].replace(text[1..-1]) if text.start_with? "\n"
+            node.children[0].replace(text[1..]) if text.start_with? "\n"
           end
           inline_filter(node.children)
           macro 'fi'
@@ -356,15 +356,15 @@ module Ronn
     end
 
     def quote(text)
-      "\"#{text.gsub(/"/, '\\"')}\""
+      "\"#{text.gsub('"', '\\"')}\""
     end
 
     # write text to output buffer
     def write(text)
       return if text.nil? || text.empty?
       # lines cannot start with a '.' or "'". insert zero-width character before.
-      text = text.gsub(/\n\\\./, "\n\\\\&\\.")
-      text = text.gsub(/\n'/, "\n\\&\\'")
+      text = text.gsub("\n\\.", "\n\\\\&\\.")
+      text = text.gsub("\n'", "\n\\&\\'")
       buf_ends_in_newline = @buf.last && @buf.last[-1] == "\n"
       @buf << '\&' if text[0, 2] == '\.' && buf_ends_in_newline
       @buf << '\&' if text[0, 1] == "'" && buf_ends_in_newline

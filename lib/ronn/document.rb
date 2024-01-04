@@ -258,7 +258,7 @@ module Ronn
     # Convert the document to HTML and return the result as a string.
     # The returned string is a complete HTML document.
     def to_html
-      layout = ENV['RONN_LAYOUT']
+      layout = ENV.fetch('RONN_LAYOUT', nil)
       layout_path = nil
       if layout
         layout_path = File.expand_path(layout)
@@ -438,7 +438,7 @@ module Ronn
           "<h1>#{title}</h1>"
         elsif name
           "<h2>NAME</h2>\n" \
-            "<p class='man-name'>\n  <code>#{name}</code>" +
+          "<p class='man-name'>\n  <code>#{name}</code>" +
             (tagline ? " - <span class='man-whatis'>#{tagline}</span>\n" : "\n") +
             "</p>\n"
         end
