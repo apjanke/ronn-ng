@@ -1,10 +1,10 @@
 Gem::Specification.new do |s|
   s.name = 'ronn-ng'
   s.version = '0.10.1.pre4'
-  # As of 2023-09, ronn-ng targets and is tested on Ruby 2.7 for deployment. May well
-  # be compatible with earlier versions, but that's not really supported, and users can
-  # modify this locally if they want to try under older Rubies.
-  s.required_ruby_version = '>= 2.7'
+  # As of 2023-09, ronn-ng targets and is tested on Ruby 2.7 for deployment. It'll mostly
+  # work on lower versions, but in effect requires >= 2.7 because it needs nokogiri
+  # >= 1.14.3 for correct tag name handling, and that nokogiri requires Ruby 2.7.
+  s.required_ruby_version = '>= 2.4'
 
   s.summary     = 'Builds man pages from Markdown'
   s.description = 'Ronn-NG builds manuals in Unix man page and HTML format from Markdown. Ronn-NG is a modern, maintained fork of the original Ronn.'
@@ -61,15 +61,19 @@ Gem::Specification.new do |s|
   s.test_files = s.files.select { |path| path =~ /^test\/.*_test.rb/ }
 
   s.extra_rdoc_files = %w[LICENSE.txt AUTHORS]
-  s.add_dependency 'kramdown',              '~> 2.4'
-  s.add_dependency 'kramdown-parser-gfm',   '~> 1.1'
-  s.add_dependency 'mustache',              '~> 1.1'
-  s.add_dependency 'nokogiri',              '~> 1.15'
-  s.add_development_dependency 'rack',      '~> 2.2',  '>= 2.2.3'
-  s.add_development_dependency 'rake',      '~> 13.0', '>= 13.0.3'
-  s.add_development_dependency 'rubocop',   '~> 1.57'
-  s.add_development_dependency 'sinatra',   '~> 2.2'
-  s.add_development_dependency 'test-unit', '~> 3.6'
+  s.add_dependency 'kramdown',              '>= 2.1'
+  s.add_dependency 'kramdown-parser-gfm',   '>= 1.0.1'
+  s.add_dependency 'mustache',              '>= 0.7.0'
+  # nokogiri <= 1.14.2 mishandle tag names with ":" in them (see #102)
+  s.add_dependency 'nokogiri',              '>= 1.14.3'
+  # rack < 2.2.3.0 have security vulns
+  s.add_development_dependency 'rack',      '>= 2.2.3'
+  s.add_development_dependency 'rake',      '>= 13.0.3'
+  # just a guess based on what I used to use
+  s.add_development_dependency 'rubocop',   '>= 1.25.1'
+  # sinatra < 2.2.3 have security vulns
+  s.add_development_dependency 'sinatra',   '>= 2.2.3'
+  s.add_development_dependency 'test-unit', '>= 3.2.7'
 
   s.rdoc_options = ['--line-numbers', '--inline-source', '--title', 'Ronn']
   s.require_paths = %w[lib]
