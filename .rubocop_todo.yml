@@ -10,7 +10,7 @@
 # Cop supports --auto-correct.
 # Configuration parameters: Include.
 # Include: **/*.gemspec
-Gemspec/DateAssignment:
+Gemspec/DeprecatedAttributeAssignment:
   Exclude:
     - 'nronn.gemspec'
 
