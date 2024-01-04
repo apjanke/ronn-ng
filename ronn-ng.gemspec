@@ -15,9 +15,10 @@ Gem::Specification.new do |s|
   s.email       = 'floss@apjanke.net'
 
   s.metadata = {
-    'bug_tracker_uri'   => 'https://github.com/apjanke/ronn-ng/issues',
-    'source_code_uri'   => 'https://github.com/apjanke/ronn-ng',
-    'changelog_uri'     => 'https://github.com/apjanke/ronn-ng/blob/main/CHANGELOG.md'
+    'bug_tracker_uri'       => 'https://github.com/apjanke/ronn-ng/issues',
+    'source_code_uri'       => 'https://github.com/apjanke/ronn-ng',
+    'changelog_uri'         => 'https://github.com/apjanke/ronn-ng/blob/main/CHANGELOG.md',
+    'rubygems_mfa_required' => 'true'
   }
 
   # = MANIFEST =
@@ -58,7 +59,6 @@ Gem::Specification.new do |s|
   # = MANIFEST =
 
   s.executables = ['ronn']
-  s.test_files = s.files.select { |path| path =~ /^test\/.*_test.rb/ }
 
   s.extra_rdoc_files = %w[LICENSE.txt AUTHORS]
   s.add_dependency 'kramdown',              '>= 2.1'
@@ -71,6 +71,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake',      '>= 13.0.3'
   # just a guess based on what I used to use
   s.add_development_dependency 'rubocop',   '>= 1.25.1'
+  s.add_development_dependency 'rubocop-rake'
   # sinatra < 2.2.3 have security vulns
   s.add_development_dependency 'sinatra',   '>= 2.2.3'
   s.add_development_dependency 'test-unit', '>= 3.2.7'
