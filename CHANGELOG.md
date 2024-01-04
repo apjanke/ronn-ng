@@ -8,18 +8,19 @@ Note: 0.10.1 is the first 0.10.x release, because Ronn-NG 0.10.0 does not exist.
 
 ### Features and Additions
 
-* Switch to GitHub Flavored Markdown, fixing code block rendering (<https://github.com/apjanke/ronn-ng/pull/53>)
+* Switch to GitHub Flavored Markdown ([#53](https://github.com/apjanke/ronn-ng/pull/53))
+  * Fixes code block rendering
 * Bump Ruby to 2.7, gem deps to latest minor versions
 
 ### Bug Fixes
 
-* Revert `\[ci]` back to `\(bu)` (<https://github.com/apjanke/ronn-ng/pull/51>)
-* Fix single-quote escaping (<https://github.com/apjanke/ronn-ng/issues/55>)
-* Elide HTML comments when producing roff output (<https://github.com/apjanke/ronn-ng/issues/65>)
-* Remove non-portable `more -i` option (<https://github.com/apjanke/ronn-ng/issues/71>)
-* Fix charset in HTML output's Content-Type (<https://github.com/apjanke/ronn-ng/pull/83>)
-* Bump Ruby to 2.7, gem deps to latest minor versions
-* Fix test failure for angle-bracket items with namespace-like "foo:" prefixes (<https://github.com/apjanke/ronn-ng/issues/102>)
+* Revert `\[ci]` back to `\(bu)` ([#51](https://github.com/apjanke/ronn-ng/pull/51))
+* Fix single-quote escaping ([#55](https://github.com/apjanke/ronn-ng/issues/55))
+* Elide HTML comments when producing roff output ([#65](https://github.com/apjanke/ronn-ng/issues/65))
+* Remove non-portable `more -i` option ([#71](https://github.com/apjanke/ronn-ng/issues/71))
+* Fix charset (utf-8) in HTML output's Content-Type ([#83](https://github.com/apjanke/ronn-ng/pull/83))
+* Psych 4.0 test workaround, Ruby 3.x support (from n-ronn) ([#87](https://github.com/apjanke/ronn-ng/issues/87))
+* Fix test failure for angle-bracket items with namespace-like "foo:" prefixes ([#102](https://github.com/apjanke/ronn-ng/issues/102))
   * Inclusion of the "foo:" is now considered correct, matching current code behavior
 
 ### Internal
@@ -32,11 +33,11 @@ Doesn't exist due to a RubyGems publishing mistake.
 
 ## 0.9.1 (2020-04-09)
 
-* Fix underlining issue (<https://github.com/apjanke/ronn-ng/pull/41>)
+* Fix underlining issue ([#41](https://github.com/apjanke/ronn-ng/pull/41))
 
 ## 0.9.0 (2019-12-21)
 
-* Migrate to kramdown for the underlying Markdown library
+* Migrate to kramdown from rdiscount for the underlying Markdown library
 * Minor output formatting and documentation improvements
 
 ## 0.8.2 (2019-03-05)
@@ -45,8 +46,8 @@ Doesn't exist due to a RubyGems publishing mistake.
 
 ## 0.8.1 (2019-03-05)
 
-* Fix URL hyphenation bug (<https://github.com/apjanke/ronn-ng/issues/23>)
-* Fix ordered-list bustication. (<https://github.com/apjanke/ronn-ng/issues/24>)
+* Fix URL hyphenation bug ([#23](https://github.com/apjanke/ronn-ng/issues/23))
+* Fix ordered-list bustication. ([#24](https://github.com/apjanke/ronn-ng/issues/24))
 
 ## 0.8.0 (2018-12-25)
 
@@ -67,8 +68,8 @@ Doesn't exist due to a RubyGems publishing mistake.
 
 ### Bug Fixes
 
-* Fix test for HTML meta elements (#4)
-* Fix circumflex rendering (#5)
+* Fix test for HTML meta elements ([#4](https://github.com/apjanke/ronn-ng/issues/4))
+* Fix circumflex rendering ([#5](https://github.com/apjanke/ronn-ng/issues/4))
 
 ## Original Ronn changelog
 
