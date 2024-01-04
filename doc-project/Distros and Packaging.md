@@ -77,12 +77,12 @@ MacPorts provides subports for different Ruby versions. Our tight dependency ver
 
 ### Homebrew
 
-* Our Tap Formula: [ronn-ng/ronn-ng](https://github.com/apjanke/homebrew-ronn-ng)
+* Our Tap Formula: [apjanke/ronn-ng](https://github.com/apjanke/homebrew-ronn-ng)
 * Core Formula (clasic Ronn, not Ronn-NG): [ronn.rb](https://github.com/Homebrew/homebrew-core/blob/master/Formula/r/ronn.rb)
 
 Homebrew still uses the original Ronn, not Ronn-NG. As of 2024-01, they're on Ronn 0.7.3.
 
-We provide a [custom ronn-ng Tap](https://github.com/apjanke/homebrew-ronn-ng) with formulae for installing Ronn-NG with brew. Users need to "tap" it first, and can then do `brew install ronn-ng`.
+We provide a [custom apjanke/ronn-ng Tap](https://github.com/apjanke/homebrew-ronn-ng) with formulae for installing Ronn-NG with brew. Users need to "tap" it first (`brew tap apjanke/ronn-ng`), and can then do `brew install ronn-ng`.
 
 We do not actively test our custom Homebrew formula as part of our development and release process. We should probably start doing so.
 
