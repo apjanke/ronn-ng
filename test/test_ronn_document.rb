@@ -200,4 +200,9 @@ class DocumentTest < Test::Unit::TestCase
     @doc = Ronn::Document.new('hello.1.ronn', styles: %w[test boom test]) { '' }
     assert_equal %w[man test boom], @doc.styles
   end
+
+  test 'NAME section is not duplicated' do
+    html = Ronn::Document.new(File.expand_path('existing_name_section.ronn', __dir__)).to_html
+    assert html.scan(/<h2[^>]*>NAME<\/h2>/).length == 1
+  end
 end

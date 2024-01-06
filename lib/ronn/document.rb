@@ -460,7 +460,7 @@ module Ronn
       markup =
         if title?
           "<h1>#{title}</h1>"
-        elsif name
+        elsif name && !@html.css('h2').map(&:text).include?('NAME')
           "<h2>NAME</h2>\n" \
           "<p class='man-name'>\n  <code>#{name}</code>" +
             (tagline ? " - <span class='man-whatis'>#{tagline}</span>\n" : "\n") +
