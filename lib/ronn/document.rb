@@ -214,8 +214,14 @@ module Ronn
       html = Kramdown::Document.new(data[0, 512], auto_ids: false,
         smart_quotes: ['apos', 'apos', 'quot', 'quot'],
         typographic_symbols: { hellip: '...', ndash: '--', mdash: '--' }).to_html
+      sniff_h1_heading(html) or [nil, nil, nil]
+    end
+
+    # If the document has a top-level '# <data>' type heading, see
+    # what kind of metadata we can sniff out of it.
+    def sniff_h1_heading(html)
       heading, html = html.split("</h1>\n", 2)
-      return [nil, nil, nil] if html.nil?
+      return if html.nil?
 
       case heading
       when /([\w_.\[\]~+=@:-]+)\s*\((\d\w*)\)\s*-+\s*(.*)/
