@@ -36,7 +36,9 @@ TODO: Add instructions for prerelease/beta releases. Include a process for makin
 
 You need to have all of the gem dependencies installed, either in your system gem installation location, or user gems, or locally in this directory. `bundle install` will do something like that, but I haven't been able to figure out how to get that to work with `bundle exec rake test` without requiring you to install the gems and stuff in to the system location instead of a user or dir-local location.
 
-The system Rubies in some OSes, especially macOS, are not suitable for doing Ruby development. Those are for the system's use. You'll need to set up a Ruby development environment. As of 2024-01, I'm using rbenv to create Ruby dev envs, and bundler on top of that to install the gems. Other Ruby env managers may well work, but I don't know them, and don't support them. The docs here assume that you're using rbenv the same way I am.
+The system Rubies in some OSes, especially macOS, are not well suited for doing Ruby development. Those are more for the system's use. You'll need to set up a Ruby development environment. On the other hand, you may want to do testing against the system Ruby, for scenarios like Fedora RPMs where they ship a ronn-ng package that uses system-supplied gem dependencies.
+
+As of 2024-01, I'm using rbenv to create Ruby dev envs, and bundler on top of that to install the gems. Other Ruby env managers may well work, but I don't know them, and don't support them. The docs here assume that you're using rbenv the same way I am.
 
 To set up a Ruby dev env for Ronn-NG in the manner that I use:
 
@@ -58,7 +60,7 @@ The `ronn-ng.gemspec` file uses pretty loose dependency version definitions, so 
   * [Ruby setup on macOS](https://www.moncefbelyamani.com/the-definitive-guide-to-installing-ruby-gems-on-a-mac/)
   * <https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/#start-here-if-you-choose-the-long-and-manual-route>
 
-## Running locally
+## Running locally from repo
 
 You need to use special techniques to run `ronn` locally, entirely from the local repo and dev environment, instead of pulling stuff in from the main local system, including system-level installed gems and `ronn` itself.
 
@@ -74,17 +76,41 @@ It would be nice for plain `./bin/ronn` or `ronn` with `./bin` on the `$PATH` to
 
 ## Running tests
 
-Doing `bundle exec rake test` will run all the tests.
+There are a few different scenarios or envs that tests can be run under:
 
-Do `RONN_QUIET_TEST=1 bundle exec rake test` for shorter output that omits the possibly-long results-diff outputs.
+* Repo code, dev Ruby, repo-driven gem deps
+* Repo code, env-provided gem deps
+  * Where "env" means some external environment, not the dev Ruby you set up
+* Installed code, env-provided gem deps
+  * Testing after-deployment code, like done by `brew install` or an RPM package
 
-The `rake test` should be done against each of the supported Ruby versions we're developing and testing against. TODO: Add a script that automates that.
+The "dev env" section above mostly describes scenario 1. TODO: Update this document to reflect the additional dev & test scenarios.
+
+Running `rake test` will run all the unit tests. Depending on the scenario, you may need to decorate or enclose it in something.
+
+Do `RONN_QUIET_TEST=1 rake test` for shorter output that omits the possibly-long results-diff outputs.
+
+### Repo code, repo-driven gem deps
+
+Here, we use rbenv and bundler to manage gems, so the `rake` commands go inside bundler calls.
+
+Switch to your rbenv-managed development Ruby, and do `bundle install` per above to install the gem deps. Then do `bundle exec rake test` to run the tests against that dev Ruby.
+
+The `rake test` should be done against each of the supported Ruby major versions we're developing and testing against. TODO: Add a script that automates that.
+
+### Repo code, system deps: Fedora
+
+Fedora packages Ronn-NG in an RPM that uses gem dependencies from other `rubygem-*` RPMs, which are installed in to the system ruby, and (I think) available by default, without using Bundler. So if you install those gem RPMs and run against the system ruby, then you're testing how the Fedora-distributed Ronn-NG will end up running when shipped in that Fedora distro/release. The `devkit/install-fedora-deps.sh` script will do the installation.
+
+On the other hand, installing the gem deps at the system level means that you're not validating the gem/bundler dependency definitions in the current repo code. And do not install the ronn-ng RPM itself, because then the system-installed Ronn-NG code will contaminate your testing of the repo code.
+
+To test this way, install the gem RPMs, and then run `rake test` or `./bin/ronn` from the repo, without doing `bundler exec` or other wrapping.
 
 ## Git commits
 
 I like Git commit messages that have a "[blah]" prefix to indicate what area of the code they did something to. If you're going to do commits or PRs, please consider wording your commit messages that way.
 
-In late 2023, I experimented wiht "blah:" instead of "[blah]" prefixes, but I think I like "[blah]" better, and am sticking with that now.
+In late 2023, I experimented with "blah:" instead of "[blah]" prefixes, but I think I like "[blah]" better, and am sticking with that now.
 
 Prefixes I use as of 2024-01:
 

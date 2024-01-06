@@ -1,0 +1,28 @@
+# Root .editorconfig for ronn-ng repo
+
+# EditorConfig is awesome: https://EditorConfig.org
+
+root = true
+
+# This projet is generally a 2-space-indent one.
+
+# TODO: Use explicit, limited list of extensions to avoid setting any controls
+# for test fixture files like .html, .ronn, and .roff?
+# [*.{rb,ru,sh,yml,md}]
+[*]
+end_of_line = lf
+indent_style = space
+indent_size = 2
+tab_width = 4
+insert_final_newline = true
+trim_trailing_whitespace = true
+charset = utf-8
+
+[Makefile]
+indent_style = tab
+indent_size = 4
+
+# Test fixture text should remain exactly as is.
+[test/**]
+insert_final_newline = false
+trim_trailing_whitespace = false
