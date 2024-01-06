@@ -17,13 +17,15 @@ GEM
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
     language_server-protocol (3.17.0.3)
+    mini_portile2 (2.8.5)
     mustache (1.1.1)
     mustermann (2.0.2)
       ruby2_keywords (~> 0.0.1)
-    nokogiri (1.16.0-x86_64-darwin)
+    nokogiri (1.15.5)
+      mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     parallel (1.24.0)
-    parser (3.2.2.4)
+    parser (3.3.0.0)
       ast (~> 2.4.1)
       racc
     power_assert (2.0.3)
@@ -63,7 +65,7 @@ GEM
     unicode-display_width (2.5.0)
 
 PLATFORMS
-  x86_64-darwin-23
+  ruby
 
 DEPENDENCIES
   rack (~> 2, >= 2.2.3)
@@ -75,4 +77,4 @@ DEPENDENCIES
   test-unit (~> 3, >= 3.2.7)
 
 BUNDLED WITH
-   2.4.10
+   2.1.4
