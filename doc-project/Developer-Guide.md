@@ -9,7 +9,7 @@
 1. Regenerate the man pages with `bundle exec rake man`
 1. Run the tests one last time! `bundle exec rake test`
 1. Commit the updated files
-    1. Commit message format: "rel: vX.Y.Z"
+    1. Commit message format: "[rel] vX.Y.Z"
 1. Tag the release: `git tag vX.Y.Z`
 1. `git push --tags`
 1. Create the Release on GitHub Releases

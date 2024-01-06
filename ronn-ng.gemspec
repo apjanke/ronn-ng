@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'ronn-ng'
-  s.version = '0.10.1.pre5'
+  s.version = '0.10.1.pre6'
   # We target Ruby 2.7+ for test & deploy, plus nokogiri 1.14.3+ need Ruby 2.7
   s.required_ruby_version = '>= 2.7'
 
