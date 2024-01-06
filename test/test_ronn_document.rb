@@ -74,6 +74,18 @@ class DocumentTest < Test::Unit::TestCase
       assert_equal '5', doc.section
       assert_equal 'wootderitis', doc.tagline
     end
+
+    test "new with NAME heading with #{i} dashes and description" do
+      doc = Ronn::Document.new { "# whatever\n\n## NAME\n\n`foo` #{dashes} bar" }
+      assert_equal 'foo', doc.name
+      assert_equal 'bar', doc.tagline
+    end
+  end
+
+  test 'new with NAME heading without description' do
+    doc = Ronn::Document.new { "# whatever\n\n## NAME\n\n`foo`" }
+    assert_equal 'foo', doc.name
+    assert_equal nil, doc.tagline
   end
 
   context 'simple conventionally named document' do

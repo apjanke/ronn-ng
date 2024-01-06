@@ -214,7 +214,25 @@ module Ronn
       html = Kramdown::Document.new(data[0, 512], auto_ids: false,
         smart_quotes: ['apos', 'apos', 'quot', 'quot'],
         typographic_symbols: { hellip: '...', ndash: '--', mdash: '--' }).to_html
-      sniff_h1_heading(html) or [nil, nil, nil]
+      sniff_h2_headings(html) or sniff_h1_heading(html) or [nil, nil, nil]
+    end
+
+    # If the document has a '## NAME' heading, see if we can sniff out
+    # some of the document metadata.
+    def sniff_h2_headings(html)
+      html.split('<h2>').each do |section|
+        case section
+        when /^NAME<\/h2>\s*<p>([\w_.\/\[\]~+=@:<>-]+)\s+-+\s+([\w_.\/\[\]~+=@: -]*)<\/p>/m
+          # name -- description
+          description = $2
+          name = $1.gsub(/<[^>]+>/, '')
+          return [name, nil, description]
+        when /^NAME<\/h2>\s*<p>([\w_.\/\[\]~+=@:<>-]+)<\/p>/m
+          # name
+          return [$1.gsub(/<[^>]+>/, ''), nil, nil]
+        end
+      end
+      nil
     end
 
     # If the document has a top-level '# <data>' type heading, see
