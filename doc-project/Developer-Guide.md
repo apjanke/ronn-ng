@@ -31,7 +31,7 @@ After the release, start development on the next release:
 * Regenerate the man pages again
   * `bundle exec rake man`
 * Commit and push
-  * Use commit message like "open development for next release"
+  * Use commit message like "open development for next release (v0.x.y)"
 
 TODO: Add instructions for prerelease/beta releases. Include a process for making a prerelease ronn-ng formula in our Homebrew tap.
 

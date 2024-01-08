@@ -1,5 +1,9 @@
 # Ronn-NG CHANGELOG
 
+## 0.10.2 (unreleased)
+
+Nothing here yet.
+
 ## 0.10.1 (2024-01-08)
 
 This release is focused on bug fixes and updating library dependencies, to get Ronn-NG building and working correctly on recent Linux and macOS releases.
