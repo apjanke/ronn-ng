@@ -20,7 +20,7 @@ GEM
     mustache (1.1.1)
     mustermann (2.0.2)
       ruby2_keywords (~> 0.0.1)
-    nokogiri (1.15.5-x86_64-linux)
+    nokogiri (1.15.6-x86_64-linux)
       racc (~> 1.4)
     parallel (1.24.0)
     parser (3.3.0.0)
