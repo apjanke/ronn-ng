@@ -1,3 +1,4 @@
+require 'fileutils'
 require 'contest'
 
 class RonnTest < Test::Unit::TestCase
