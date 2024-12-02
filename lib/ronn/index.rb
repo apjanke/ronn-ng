@@ -88,7 +88,7 @@ module Ronn
       raise ArgumentError, 'local paths only' if path =~ /(https?|mailto):/
       return self if any? { |ref| ref.path == File.expand_path(path) }
       relative_path = relative_to_index(path)
-      @references << \
+      @references <<
         if path =~ /\.ronn?$/
           reference manual(path).reference_name, relative_path
         else
