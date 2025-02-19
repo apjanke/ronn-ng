@@ -14,7 +14,7 @@ detail.
 The `*.ronn` files found in the [`man/`][1] directory show off a wide range of
 ronn capabilities:
 
-* [ronn(1)](https://rtomayko.github.io/ronn/ronn-format.7.html) command –
+* [ronn(1)](https://rtomayko.github.io/ronn/ronn.1.html) command –
   [source file](https://github.com/apjanke/ronn-ng/blob/main/man/ronn.1.ronn),
   [roff output](https://github.com/apjanke/ronn-ng/blob/main/man/ronn.1)
 
@@ -78,7 +78,7 @@ View roff output with man(1):
 $ man man/ronn.5
 ```
 
-The [ronn(1)](https://rtomayko.github.io/ronn/ronn-format.7.html) man page includes
+The [ronn(1)](https://rtomayko.github.io/ronn/ronn.1.html) man page includes
 comprehensive documentation on `ronn` command line options.
 
 ## Background
