@@ -2,7 +2,10 @@
 
 ## 0.10.2 (unreleased)
 
-Nothing here yet.
+* Fix bad link to `ronn(1)` in README. ([#128](https://github.com/apjanke/ronn-ng/pull/128))
+* Officially support Ruby 3.x, removing "Ruby 3.x support is a work in progress" note. ([#116](https://github.com/apjanke/ronn-ng/pull/116))
+* Require `fileutils` explicitly to avoid broken tests under Ruby 3.4+. ([#124](https://github.com/apjanke/ronn-ng/issues/124))
+* Bump dependencies.
 
 ## 0.10.1 (2024-01-08)
 
