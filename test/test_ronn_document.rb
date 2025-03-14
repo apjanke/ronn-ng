@@ -74,6 +74,18 @@ class DocumentTest < Test::Unit::TestCase
       assert_equal '5', doc.section
       assert_equal 'wootderitis', doc.tagline
     end
+
+    test "new with NAME heading with #{i} dashes and description" do
+      doc = Ronn::Document.new { "# whatever\n\n## NAME\n\n`foo` #{dashes} bar" }
+      assert_equal 'foo', doc.name
+      assert_equal 'bar', doc.tagline
+    end
+  end
+
+  test 'new with NAME heading without description' do
+    doc = Ronn::Document.new { "# whatever\n\n## NAME\n\n`foo`" }
+    assert_equal 'foo', doc.name
+    assert_equal nil, doc.tagline
   end
 
   context 'simple conventionally named document' do
@@ -187,5 +199,10 @@ class DocumentTest < Test::Unit::TestCase
   test 'passing a list of styles' do
     @doc = Ronn::Document.new('hello.1.ronn', styles: %w[test boom test]) { '' }
     assert_equal %w[man test boom], @doc.styles
+  end
+
+  test 'NAME section is not duplicated' do
+    html = Ronn::Document.new(File.expand_path('existing_name_section.ronn', __dir__)).to_html
+    assert html.scan(/<h2[^>]*>NAME<\/h2>/).length == 1
   end
 end
