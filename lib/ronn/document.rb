@@ -409,7 +409,15 @@ module Ronn
       # process all unordered lists depth-first
       @html.search('ul').to_a.reverse_each do |ul|
         items = ul.search('li')
-        next if items.any? { |item| item.inner_text.strip.split("\n", 2).first !~ /:$/ }
+        next if items.all? { |item| term_definition(item) !~ /:$/ }
+
+        ul_item = items.find { |item| term_definition(item) !~ /:$/ }
+
+        if ul_item
+          warn "Found one item in a definition list inside #{@path} that does not look like a definition list item. " \
+               "In particular, the term definition `#{term_definition(ul_item)}` is missing a trailing `:`."
+          next
+        end
 
         dl = Nokogiri::XML::Node.new 'dl', html
         items.each do |item|
@@ -525,6 +533,12 @@ module Ronn
         # warn "warn: manual reference not defined: '#{name}#{section}'"
         "<span class='man-ref'>#{name_or_node}<span class='s'>#{section}</span></span>"
       end
+    end
+
+    private
+
+    def term_definition(item)
+      item.inner_text.strip.split("\n", 2).first
     end
   end
 end
