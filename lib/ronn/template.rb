@@ -167,9 +167,5 @@ module Ronn
       path = File.expand_path("../template/#{name}.css", __FILE__)
       "<link rel='stylesheet' type='text/css' media='#{media}' href='#{path}'>"
     end
-
-    def stylesheet(_path, media = 'all')
-      inline_stylesheet(name, media)
-    end
   end
 end
