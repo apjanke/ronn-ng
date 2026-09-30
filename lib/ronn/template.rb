@@ -101,8 +101,8 @@ module Ronn
     # Array of stylesheet info hashes.
     def stylesheets
       styles.zip(style_files).map do |name, path|
+        raise "style not found: #{name.inspect}" if path.nil?
         base = File.basename(path, '.css')
-        raise "style not found: #{style.inspect}" if path.nil?
         {
           name:  name,
           path:  path,
