@@ -136,8 +136,8 @@ module Ronn
 
     # Array of style names for which no file could be found.
     def missing_styles
-      style_files
-        .zip(files)
+      styles
+        .zip(style_files)
         .select { |_style, file| file.nil? }
         .map    { |style, _file| style }
     end
