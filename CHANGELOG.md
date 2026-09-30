@@ -2,6 +2,7 @@
 
 ## 0.10.2 (unreleased)
 
+* Fix `NoMethodError` crash in HTML output with `mustache` 1.x, whose `template_path` is an Array instead of a String.
 * Fix bad link to `ronn(1)` in README. ([#128](https://github.com/apjanke/ronn-ng/pull/128))
 * Officially support Ruby 3.x, removing "Ruby 3.x support is a work in progress" note. ([#116](https://github.com/apjanke/ronn-ng/pull/116))
 * Require `fileutils` explicitly to avoid broken tests under Ruby 3.4+. ([#124](https://github.com/apjanke/ronn-ng/issues/124))

@@ -9,7 +9,9 @@ module Ronn
     def initialize(document, style_path = ENV['RONN_STYLE'].to_s.split(':'))
       super()
       @document = document
-      @style_path = style_path + [Template.template_path]
+      # Mustache's template_path is an Array in mustache >= 1.0 and a String in
+      # 0.x. Array() normalizes both to a list of directories.
+      @style_path = style_path + Array(Template.template_path)
     end
 
     def render(template = 'default')
