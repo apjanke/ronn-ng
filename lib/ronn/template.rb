@@ -9,7 +9,9 @@ module Ronn
     def initialize(document, style_path = ENV['RONN_STYLE'].to_s.split(':'))
       super()
       @document = document
-      @style_path = style_path + [Template.template_path]
+      # Mustache's template_path is an Array in mustache >= 1.0 and a String in
+      # 0.x. Array() normalizes both to a list of directories.
+      @style_path = style_path + Array(Template.template_path)
     end
 
     def render(template = 'default')
@@ -99,8 +101,8 @@ module Ronn
     # Array of stylesheet info hashes.
     def stylesheets
       styles.zip(style_files).map do |name, path|
+        raise "style not found: #{name.inspect}" if path.nil?
         base = File.basename(path, '.css')
-        raise "style not found: #{style.inspect}" if path.nil?
         {
           name:  name,
           path:  path,
@@ -134,8 +136,8 @@ module Ronn
 
     # Array of style names for which no file could be found.
     def missing_styles
-      style_files
-        .zip(files)
+      styles
+        .zip(style_files)
         .select { |_style, file| file.nil? }
         .map    { |style, _file| style }
     end
@@ -164,10 +166,6 @@ module Ronn
     def remote_stylesheet(name, media = 'all')
       path = File.expand_path("../template/#{name}.css", __FILE__)
       "<link rel='stylesheet' type='text/css' media='#{media}' href='#{path}'>"
-    end
-
-    def stylesheet(_path, media = 'all')
-      inline_stylesheet(name, media)
     end
   end
 end
